@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- Define o tipo do documento como HTML5 -->
+
+<html lang="pt-BR">
+<!-- Início do documento HTML com idioma definido como português do Brasil -->
+
+<head>
+
+    <meta charset="UTF-8">
+    <!-- Define a codificação de caracteres como UTF-8, suportando acentuação e caracteres especiais -->
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura o layout responsivo, ajustando para diferentes tamanhos de tela -->
+
+    <script src="https://unpkg.com/petite-vue" defer></script>
+
+    <script src="js/cadastroUsuario.js" defer></script>
+
+    <title>IGYM - Cadastro de Usuário</title>
+    <!-- Define o título da aba do navegador -->
+
+
+    <!-- Importa a biblioteca Petite-Vue (um mini framework reativo parecido com Vue.js) de forma assíncrona (defer) -->
+
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Vincula um arquivo CSS externo chamado style.css para estilizar a página -->
+</head>
+
+<body>
+    <div class="cadastro-container">
+        <!-- Container principal para a área de cadastro -->
+
+        <div class="form-containerCadastro" v-scope="formCadastroUsuario">
+
+            <!-- Div que contém o formulário, com escopo reativo da aplicação Petite-Vue usando o objeto 'userFormApp' -->
+
+            <h1 class="titulo">Cadastre-se no IGYM</h1>
+            <!-- Título principal da página -->
+
+            <form @submit.prevent="cadastrarUsuario" v-scope="formCadastroUsuario">
+
+                <!-- Início do formulário. O @submit.prevent evita o recarregamento da página e chama a função 'cadastrarUsuario' -->
+
+                <!-- Campo de entrada para o nome completo -->
+                <div class="input-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" v-model="formData.nome" placeholder="Seu nome completo" required>
+                    <!-- v-model conecta o valor do input ao dado 'formData.nome' da aplicação -->
+                </div>
+
+                <!-- Campo para telefone -->
+                <div class="input-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" v-model="formData.telefone" placeholder="(XX) XXXXX-XXXX" required>
+                </div>
+
+                <!-- Campo para CPF -->
+                <div class="input-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" v-model="formData.cpf" placeholder="000.000.000-00" required>
+                </div>
+
+                <!-- Campo para data nascimento -->
+                <div class="input-group">
+                    <label for="dataNascimento">Data de nascimento:</label>
+                    <input type="date" id="dataNascimento" v-model="formData.dataNascimento" placeholder="00/00/0000"
+                        required>
+                </div>
+
+                <!-- Campo para e-mail -->
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" v-model="formData.email" placeholder="seu@email.com" required>
+                </div>
+
+                <!-- Campo para senha -->
+                <div class="input-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" v-model="formData.senha" placeholder="Crie uma senha" required>
+                </div>
+
+                <!-- Campo para confirmação de senha -->
+                <div class="input-group">
+                    <label for="confirmarSenha">Confirmar Senha:</label>
+                    <input type="password" id="confirmarSenha" v-model="formData.confirmarSenha"
+                        placeholder="Confirme sua senha" required>
+                </div>
+
+                <!-- Campo de seleção de sexo -->
+                <div class="input-group">
+                    <label for="sexo">Sexo:</label>
+                    <select id="sexo" v-model="formData.sexo" required>
+                        <option disabled value="">Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
+
+                <!-- Botão de envio do formulário -->
+                <button type="submit" class="login-button">Cadastrar</button>
+
+                <!-- Link para a tela de login -->
+                <p class="signup-link"><a href="../index.html">Tela de login</a>
+                </p>
+
+
+            </form>
+            <!-- Fim do formulário -->
+
+
+        </div>
+        <!-- Fim do container do formulário -->
+    </div>
+    <!-- Fim do container principal -->
+</body>
+
+</html>
+<!-- Fim do documento HTML -->

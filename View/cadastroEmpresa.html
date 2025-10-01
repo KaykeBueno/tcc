@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Define a codificação dos caracteres para UTF-8, que inclui acentos e caracteres especiais -->
+    <meta charset="UTF-8">
+
+    <!-- Tornando a página responsiva, ajustando o conteúdo ao tamanho da tela do dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Importando o script do Petite Vue (uma versão leve do Vue.js) -->
+    <script src="https://unpkg.com/petite-vue" defer></script>
+
+    <!-- Importando o arquivo JavaScript específico para o cadastro da empresa -->
+    <script src="js/cadastroEmpresa.js" defer></script>
+
+    <!-- Definindo o título da página (será exibido na aba do navegador) -->
+    <title>IGYM - Cadastro de Empresa</title>
+
+    <!-- Link para o arquivo CSS que irá estilizar o formulário -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Contêiner principal do cadastro -->
+    <div class="cadastro-container">
+
+        <!-- Contêiner para o formulário de cadastro -->
+        <div class="form-containerCadastro">
+
+            <!-- Título principal do formulário -->
+            <h1 class="titulo">Cadastre sua Empresa no IGYM</h1>
+
+            <!-- Formulário de cadastro da empresa (usando Vue.js para binding de dados) -->
+            <form @submit.prevent="cadastrarEmpresa" v-scope="formCadastroEmpresa">
+
+                <!-- Campo para o nome fantasia da empresa -->
+                <div class="input-group">
+                    <label for="nomeFantasia">Nome Fantasia:</label>
+                    <!-- v-model vincula o valor do input ao modelo de dados 'formData.nomeFantasia' -->
+                    <input type="text" id="nomeFantasia" v-model="formData.nomeFantasia"
+                        placeholder="Nome comercial da empresa" required>
+                </div>
+
+                <!-- Campo para o CNPJ da empresa -->
+                <div class="input-group">
+                    <label for="cnpj">CNPJ:</label>
+                    <input type="text" id="cnpj" v-model="formData.cnpj" placeholder="00.000.000/0000-00" required>
+                </div>
+
+                <!-- Campo para a atividade econômica da empresa -->
+                <div class="input-group">
+                    <label for="atividadeEconomica">Atividade Econômica:</label>
+                    <input type="text" id="atividadeEconomica" v-model="formData.atividadeEconomica"
+                        placeholder="Ex: Academia de ginástica" required>
+                </div>
+
+                <!-- Campo para o telefone da empresa -->
+                <div class="input-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" v-model="formData.telefone" placeholder="(XX) XXXXX-XXXX" required>
+                </div>
+
+                <!-- Campo para o porte empresarial (tipo de empresa) -->
+                <div class="input-group">
+                    <label for="porteEmpresarial">Porte Empresarial:</label>
+                    <select id="porteEmpresarial" v-model="formData.porteEmpresarial" required>
+                        <option value="">Selecione o porte</option>
+                        <option value="MEI">Microempresa Individual (MEI)</option>
+                        <option value="ME">Microempresa (ME)</option>
+                        <option value="EPP">Empresa de Pequeno Porte (EPP)</option>
+                        <option value="EMP">Empresa de Médio Porte (EMP)</option>
+                        <option value="GE">Grande Empresa</option>
+                    </select>
+                </div>
+
+                <!-- Campo para o email da empresa -->
+                <div class="input-group">
+                    <label for="emailEmpresa">Email:</label>
+                    <input type="text" id="emailEmpresa" v-model="formData.email" placeholder="contato@suaempresa.com"
+                        required>
+                </div>
+
+                <!-- Campo para a senha da empresa -->
+                <div class="input-group">
+                    <label for="senhaEmpresa">Senha:</label>
+                    <input type="password" id="senhaEmpresa" v-model="formData.senha" placeholder="Sua senha" required>
+                </div>
+
+                <!-- Campo para confirmar a senha -->
+                <div class="input-group">
+                    <label for="confirmarSenhaEmpresa">Confirmar Senha:</label>
+                    <input type="password" id="confirmarSenhaEmpresa" v-model="formData.confirmarSenha"
+                        placeholder="Confirme sua senha" required>
+                </div>
+
+                <!-- Botão para enviar o formulário de cadastro -->
+                <button type="submit" class="login-button">Cadastrar Empresa</button>
+
+                <!-- Link para voltar à tela de login -->
+                <p class="signup-link"><a href="../index.html">Tela de login</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+/* Importa a fonte "Patua One" do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+/* Estilos do corpo da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fonte padrão */
+    margin: 0;
+    /* Remove as margens da página */
+    background-color: #f4f4f4;
+    /* Cor de fundo bem clara */
+    display: flex;
+    /* Utiliza flexbox para centralizar o conteúdo */
+    justify-content: center;
+    /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    /* Centraliza o conteúdo verticalmente */
+    min-height: 100vh;
+    /* Garante que o corpo ocupe toda a altura da tela */
+}
+
+/* Estilos para o contêiner de login */
+.login-container {
+    background-color: #fff;
+    /* Cor de fundo branca */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Sombra leve para dar profundidade */
+    display: flex;
+    /* Utiliza flexbox para organizar o conteúdo */
+    overflow: hidden;
+    /* Garante que o conteúdo não ultrapasse os limites */
+    width: 80%;
+    /* Largura do contêiner (80% da tela) */
+    max-width: 900px;
+    /* Largura máxima de 900px */
+}
+
+/* Estilos para o contêiner de cadastro */
+.cadastro-container {
+    background-color: #fff;
+    /* Cor de fundo branca */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Sombra leve para dar profundidade */
+    display: flex;
+    /* Utiliza flexbox para organizar o conteúdo */
+    overflow: hidden;
+    /* Garante que o conteúdo não ultrapasse os limites */
+    width: 80%;
+    /* Largura do contêiner (80% da tela) */
+    max-width: 900px;
+    /* Largura máxima de 900px */
+    align-items: stretch;
+    /* Alinha os itens ao longo do eixo vertical */
+    justify-content: center;
+    /* Centraliza o conteúdo horizontalmente */
+}
+
+/* Estilos para o contêiner da imagem */
+.image-container {
+    background-color: #dcdcdc;
+    /* Adiciona um fundo amarelo */
+    color: #fff;
+    /* Cor do texto branca */
+    padding: 40px;
+    /* Espaçamento interno */
+    display: flex;
+    /* Utiliza flexbox para alinhar os elementos */
+    justify-content: center;
+    /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    /* Centraliza o conteúdo verticalmente */
+    flex-direction: column;
+    /* Organiza o conteúdo em coluna */
+    width: 45%;
+    /* Largura do contêiner da imagem (45% da tela) */
+    background-size: contain;
+    /* Ajusta a imagem para caber no contêiner sem distorção */
+    background-repeat: no-repeat;
+    /* Evita que a imagem se repita */
+    background-position: center;
+    /* Posiciona a imagem no centro do contêiner */
+    min-height: 300px;
+    /* Altura mínima de 300px */
+}
+
+/* Estilos para o contêiner do formulário */
+.form-container {
+    padding: 40px;
+    /* Espaçamento interno */
+    width: 55%;
+    /* Largura do contêiner do formulário (55% da tela) */
+    display: flex;
+    /* Utiliza flexbox para organizar o conteúdo */
+    flex-direction: column;
+    /* Organiza os campos do formulário em coluna */
+    justify-content: center;
+    /* Centraliza o conteúdo verticalmente */
+}
+
+/* Estilos para o contêiner do formulário de cadastro */
+.form-containerCadastro {
+    padding: 40px;
+    /* Espaçamento interno */
+    width: 100%;
+    /* Largura total */
+    display: flex;
+    /* Utiliza flexbox para organizar o conteúdo */
+    flex-direction: column;
+    /* Organiza os campos do formulário em coluna */
+    justify-content: center;
+    /* Centraliza o conteúdo verticalmente */
+    box-sizing: border-box;
+    /* Inclui o padding nas dimensões do contêiner */
+}
+
+/* Estilos para o título dentro do formulário */
+.form-container h1 {
+    color: #333;
+    /* Cor do título */
+    text-align: center;
+    /* Centraliza o título */
+    margin-bottom: 30px;
+    /* Espaçamento abaixo do título */
+}
+
+/* Estilos para cada grupo de campo do formulário */
+.input-group {
+    margin-bottom: 20px;
+    /* Espaçamento abaixo de cada campo */
+}
+
+/* Estilos para os rótulos dos campos */
+.input-group label {
+    display: block;
+    /* Exibe o rótulo como bloco */
+    margin-bottom: 8px;
+    /* Espaçamento abaixo do rótulo */
+    color: #555;
+    /* Cor do texto do rótulo */
+    font-weight: bold;
+    /* Deixa o rótulo em negrito */
+}
+
+/* Estilos para os campos de entrada do formulário (CPF, CNPJ, senha, etc.) */
+.input-group input[type="password"],
+.input-group input[type="text"],
+.input-group select {
+    width: calc(100% - 22px);
+    /* Largura do campo (ajusta para considerar o padding) */
+    padding: 10px;
+    /* Espaçamento interno */
+    border: 1px solid #ddd;
+    /* Cor da borda */
+    border-radius: 4px;
+    /* Bordas arredondadas */
+    font-size: 16px;
+    /* Tamanho da fonte */
+}
+
+/* Estilos para o botão de login */
+.login-button {
+    background-color: #2ecc71;
+    /* Cor de fundo do botão */
+    color: #fff;
+    /* Cor do texto do botão */
+    padding: 12px 20px;
+    /* Espaçamento interno do botão */
+    border: none;
+    /* Remove a borda */
+    border-radius: 4px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    /* Aparece o ponteiro ao passar o mouse */
+    font-size: 18px;
+    /* Tamanho da fonte */
+    transition: background-color 0.3s ease;
+    /* Transição suave para a cor de fundo ao passar o mouse */
+    width: 100%;
+    /* Largura total */
+    box-sizing: border-box;
+    /* Inclui o padding nas dimensões do botão */
+}
+
+/* Estilos para quando o botão de login está sendo hover (passa o mouse sobre ele) */
+.login-button:hover {
+    background-color: #27ae60;
+    /* Muda a cor de fundo quando o mouse está sobre o botão */
+}
+
+/* Estilos para o link de cadastro */
+.signup-link {
+    margin-top: 20px;
+    /* Espaçamento acima do link */
+    text-align: center;
+    /* Centraliza o link */
+    color: #777;
+    /* Cor do texto do link */
+}
+
+/* Estilos para os links dentro da seção de cadastro */
+.signup-link a {
+    color: #3498db;
+    /* Cor do link */
+    text-decoration: none;
+    /* Remove o sublinhado do link */
+    font-weight: bold;
+    /* Deixa o link em negrito */
+}
+
+/* Estilos para o link quando o mouse passa sobre ele */
+.signup-link a:hover {
+    text-decoration: underline;
+    /* Adiciona o sublinhado ao passar o mouse */
+}
+
+/* Estilos para o título principal (logo do IGYM) */
+.titulo {
+    font-family: "Patua One", serif;
+    /* Usa a fonte Patua One importada */
+    font-weight: 400;
+    /* Peso normal da fonte */
+    font-style: normal;
+    /* Estilo normal (sem itálico) */
+    font-size: 40px;
+    /* Tamanho grande da fonte */
+    margin-bottom: 25px;
+    /* Espaçamento abaixo do título */
+    color: #333;
+    /* Cor do título */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    /* Sombra leve no título */
+}
+
+/* Estilos para telas menores (como tablets e celulares) */
+@media (max-width: 768px) {
+
+    /* Ajusta a disposição dos elementos na tela para telas pequenas */
+    .login-container {
+        flex-direction: column;
+        /* Organiza os elementos em coluna */
+        width: 95%;
+        /* Largura total da tela */
+    }
+
+    /* Ajustes para o contêiner da imagem em telas pequenas */
+    .image-container {
+        width: 100%;
+        /* Largura total da tela */
+        padding: 30px;
+        /* Menos padding */
+        text-align: center;
+        /* Centraliza o texto */
+        min-height: 250px;
+        /* Altura mínima ajustada */
+    }
+
+    /* Ajustes para o contêiner do formulário em telas pequenas */
+    .form-container {
+        width: 100%;
+        /* Largura total da tela */
+        padding: 30px;
+        /* Menos padding */
+    }
+}
