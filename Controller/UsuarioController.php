@@ -48,7 +48,7 @@ class UsuarioController
             // O construtor da sua classe Usuario espera 8 parâmetros, mas você está passando 7.
             // Falta o primeiro parâmetro, que é o 'id_usuario'. Para um novo cadastro, ele deve ser 'null'.
             $usuario = new Usuario(
-                // null, // <--- Faltou este parâmetro para o id_usuario.
+                "", // <--- Faltou este parâmetro para o id_usuario.
                 $data["cpf"], 
                 $data["nome"], 
                 $data["email"],

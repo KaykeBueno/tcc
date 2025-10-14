@@ -7,7 +7,7 @@ class UsuarioDAO extends BaseDAO
     // Insere um novo usuário no banco de dados
     public function inserir(Usuario $usuario)
     {
-        $sql = "INSERT INTO Usuario (cpf, nome, senha, telefone, dataNascimento, email, sexo)
+        $sql = "INSERT INTO usuario (cpf, nome, senha, telefone, dataNascimento, email, sexo)
         VALUES (:cpf, :nome, :senha, :telefone, :dataNascimento, :email, :sexo)";
     
         

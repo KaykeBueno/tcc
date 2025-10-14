@@ -31,7 +31,7 @@ const FormApp = {
 
                 // Se a resposta for OK (HTTP 200), redireciona.
                 if (response.ok) {
-                    window.location.href = "View/listagemExercicios.html";
+                    window.location.href = "View/perfilUsuario.html";
                 }
                 else {
                     // Tratamento de erro caso o login falhe (ex: senha errada).
@@ -50,7 +50,7 @@ const FormApp = {
                 });
 
                 if (response.ok) {
-                    window.location.href = "View/listagemExerciciosEmpresa.html";
+                    window.location.href = "View/perfilEmpresa.html";
                 }
 
                 else {
