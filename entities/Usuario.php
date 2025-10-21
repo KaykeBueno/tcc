@@ -1,13 +1,10 @@
 <?php
 
-// A classe Usuario implementa a interface JsonSerializable,
-// o que permite definir um formato de saída customizado quando a função json_encode() é usada em um objeto desta classe.
+
 class Usuario implements JsonSerializable
 {
 
-    // --- Propriedades Privadas ---
-    // Estas são as variáveis que armazenam os dados de cada objeto Usuario.
-    // Sendo 'private', elas só podem ser acessadas pelos métodos dentro desta classe (getters e setters).
+
     private $id_usuario;
     private $nome;
     private $email;
@@ -17,9 +14,6 @@ class Usuario implements JsonSerializable
     private $sexo;
     private $telefone;
 
-    // --- Serialização para JSON ---
-    // Este método é chamado automaticamente quando se usa json_encode() em um objeto Usuario.
-    // Ele define exatamente quais dados serão incluídos na resposta JSON para o frontend.
     public function jsonSerialize()
     {
         return [
@@ -34,10 +28,7 @@ class Usuario implements JsonSerializable
     }
 
 
-    // --- Construtor ---
-    // O método __construct é chamado automaticamente quando um novo objeto Usuario é criado (ex: new Usuario(...)).
-    // Ele serve para inicializar o objeto, atribuindo os valores passados como parâmetro às propriedades da classe.
-    // Parâmetros com "= """ são opcionais; se não forem fornecidos, assumirão o valor de uma string vazia.
+ 
     function __construct($id_usuario = "", $cpf = "", $nome = "", $email = "", $senha = "", $dataNascimento = "", $sexo = "", $telefone = "") 
     {
         $this->id_usuario = $id_usuario;
@@ -52,7 +43,6 @@ class Usuario implements JsonSerializable
 
     
     // --- Métodos Getters e Setters ---
-    // São métodos públicos que permitem acessar (get) e modificar (set) as propriedades privadas de forma controlada.
 
     // "Getter" para o id_usuario: retorna o valor do ID do usuário.
     public function getId_usuario()

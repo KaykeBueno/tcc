@@ -1,42 +1,39 @@
 <?php
-    // A classe Empresa implementa a interface JsonSerializable,
-    // o que permite definir um formato de saída customizado quando a função json_encode() é usada em um objeto desta classe.
+
     class Empresa implements JsonSerializable
     {
-        // --- Propriedades Privadas ---
-        // Estas são as variáveis que armazenam os dados de cada objeto Empresa.
+
         // Sendo 'private', elas só podem ser acessadas pelos métodos dentro desta classe (getters e setters).
         private $id_empresa;
         private $nomeFantasia;
+        private $telefone;
         private $email;
         private $senha;
         private $atividadeEconomica;
         private $cnpj;
         private $porteEmpresarial;
 
-        // --- Serialização para JSON ---
-        // Este método é chamado automaticamente quando se usa json_encode() em um objeto Empresa.
-        // Ele define exatamente quais dados serão incluídos na resposta JSON para o frontend.
+
         public function jsonSerialize()
         {
             return [
                 'id_empresa' => $this->id_empresa,
                 'cnpj' => $this->cnpj,
                 'nomeFantasia' => $this->nomeFantasia,
+                'telefone' => $this->telefone,
                 'email' => $this->email,
                 'atividadeEconomica' => $this->atividadeEconomica,
                 'porteEmpresarial' => $this->porteEmpresarial,
             ];
         }
         
-        // --- Construtor ---
-        // O método __construct é chamado automaticamente quando um novo objeto Empresa é criado (ex: new Empresa(...)).
-        // Ele serve para inicializar o objeto, atribuindo os valores passados como parâmetro às propriedades da classe.
-        function __construct($id_empresa = "", $cnpj = "", $nomeFantasia = "", $email = "", $senha = "", $atividadeEconomica = "", $porteEmpresarial = "") 
+    
+        function __construct($id_empresa = "", $cnpj = "", $nomeFantasia = "", $telefone = "", $email = "", $senha = "", $atividadeEconomica = "", $porteEmpresarial = "") 
         {
             $this->id_empresa = $id_empresa;
             $this->cnpj = $cnpj;
             $this->nomeFantasia = $nomeFantasia;
+            $this->telefone = $telefone;
             $this->email = $email;
             $this->senha = $senha;
             $this->atividadeEconomica = $atividadeEconomica;
@@ -45,7 +42,6 @@
         
 
         // --- Métodos Getters e Setters ---
-        // São métodos públicos que permitem acessar (get) e modificar (set) as propriedades privadas de forma controlada.
 
         // "Getter" para o id_empresa: retorna o valor do ID da empresa.
         public function getId_empresa()
@@ -69,6 +65,16 @@
         public function setNomeFantasia($nomeFantasia)
         {
             $this->nomeFantasia = $nomeFantasia;
+        }
+
+        public function getTelefone()
+        {
+            return $this->telefone;
+        }
+
+        public function setTelefone($telefone)
+        {
+            $this->telefone = $telefone;
         }
 
         // "Getter" para o porteEmpresarial.
