@@ -29,7 +29,7 @@ const FormApp = {
                 });
 
                 if (response.ok) {
-                    window.location.href = "View/perfilUsuario.php";
+                    window.location.href = "View/perfil.php";
                 }
                 else {
                     const retorno = await response.json()
@@ -46,7 +46,7 @@ const FormApp = {
                 });
 
                 if (response.ok) {
-                    window.location.href = "View/perfilEmpresa.php";
+                    window.location.href = "View/perfil.php";
                 }
 
                 else {

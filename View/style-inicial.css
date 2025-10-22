@@ -1,214 +1,321 @@
-/* Importa a fonte 'Poppins' do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* --- Configurações Gerais --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-/* --- Estilos Gerais --- */
+:root {
+    --cor-principal: #121212;
+    --cor-secundaria: #1E1E1E;
+    --cor-destaque: #A0FF00;
+    /* Verde limão do protótipo */
+    --cor-texto-claro: #FFFFFF;
+    --cor-texto-cinza: #adb5bd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #121212;
-    /* Fundo principal escuro */
-    color: #E0E0E0;
-    margin: 0;
-    height: 100vh;
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-claro);
     overflow-x: hidden;
 }
 
-.wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* --- Barra Lateral (Sidebar) --- */
-#sidebar {
-    min-width: 280px;
-    max-width: 280px;
-    background-color: #1E1E1E;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    transition: all 0.3s;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
 }
 
-.sidebar-header {
-    padding: 20px;
+h2 {
+    font-size: 2.5rem;
+    color: var(--cor-destaque);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+p {
+    color: var(--cor-texto-cinza);
+    line-height: 1.6;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* --- 1. Cabeçalho de Navegação --- */
+.navbar {
+    background-color: var(--cor-principal);
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+}
+
+.navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.sidebar-logo {
+.logo {
     font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
+    font-weight: 800;
+    color: var(--cor-destaque);
     text-decoration: none;
 }
 
-.sidebar-logo span {
-    color: #A0FF00;
-    /* Verde-limão característico */
-}
-
-.hamburger-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-    /* Escondido por padrão em telas maiores */
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    padding: 20px 25px;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-}
-
-.user-profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.user-profile .user-info h6 {
-    margin: 0;
-    font-weight: 600;
+.search-bar {
+    width: 50%;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
     font-size: 1rem;
 }
 
-.user-profile .user-info span {
-    font-size: 0.85rem;
-    color: #adb5bd;
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--cor-texto-claro);
+    font-size: 1.8rem;
+    cursor: pointer;
 }
 
-.sidebar-nav {
-    padding: 20px 0;
-    flex-grow: 1;
-    /* Empurra o "Sair" para o final */
-    list-style: none;
-    margin: 0;
-}
-
-.sidebar-nav .nav-link {
-    font-size: 1.1rem;
-    color: #adb5bd;
-    padding: 12px 25px;
+/* --- 2. Seção Hero --- */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800/333?text=Imagem+de+Fundo') no-repeat center center/cover;
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.sidebar-nav .nav-link i {
-    margin-right: 15px;
-    width: 25px;
-    /* Alinha os ícones */
     text-align: center;
 }
 
-.sidebar-nav .nav-link:hover {
-    background-color: #333;
-    color: #fff;
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--cor-texto-claro);
+    margin-bottom: 30px;
 }
 
-.sidebar-nav .nav-link.active {
-    color: #A0FF00;
-    background-color: #282828;
-    border-left: 4px solid #A0FF00;
-    padding-left: 21px;
-}
-
-.sidebar-footer {
-    padding-bottom: 20px;
-}
-
-.sidebar-footer .nav-link {
-    font-size: 1.1rem;
-    color: #adb5bd;
-    padding: 15px 25px;
-    display: flex;
-    align-items: center;
+.btn-primary {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 15px 30px;
+    border-radius: 5px;
     text-decoration: none;
-    transition: all 0.3s;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar-footer .nav-link:hover {
-    background-color: #333;
-    color: #fff;
+.btn-primary:hover {
+    background-color: #fff;
 }
 
-/* --- Conteúdo Principal --- */
-#content {
-    flex-grow: 1;
-    padding: 40px;
-    overflow-y: auto;
+/* --- 3. Seção Sobre --- */
+.sobre {
+    background-color: var(--cor-principal);
 }
 
-.dashboard-grid {
+.container-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    /* Cria um grid responsivo que se ajusta ao tamanho da tela */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
 }
 
-.dashboard-card {
-    background-color: #E0E0E0;
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    text-decoration: none;
-    color: #000000;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: #fff;
-}
-
-.dashboard-card img {
-    width: 80px;
-    height: 80px;
+.sobre-texto p {
     margin-bottom: 20px;
+    font-size: 1rem;
 }
 
-.dashboard-card h5 {
-    font-size: 1.2rem;
+.link-mais {
+    color: var(--cor-destaque);
+    text-decoration: none;
     font-weight: 600;
+}
+
+.sobre-imagens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.sobre-imagens img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* --- 4. Seção O Que Oferecemos --- */
+.oferta {
+    background-color: var(--cor-secundaria);
+    text-align: center;
+}
+
+.oferta .subtitulo {
+    color: var(--cor-texto-cinza);
+    margin-bottom: 40px;
+}
+
+.oferta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.oferta-card {
+    height: 250px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.oferta-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.oferta-card h3 {
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+/* --- 5. Seção Depoimentos --- */
+.depoimentos {
+    background-color: var(--cor-principal);
+    text-align: center;
+}
+
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: left;
+}
+
+.depoimento-card img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.depoimento-texto {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 25px;
+    border-radius: 0 0 8px 8px;
+}
+
+.depoimento-texto p {
+    color: var(--cor-principal);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.depoimento-texto span {
+    font-weight: 700;
+}
+
+/* --- 6. Seção Contato CTA --- */
+.contato-cta {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x400/333?text=Imagem+Contato') no-repeat center center/cover;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.contato-cta h2 {
+    font-size: 2.8rem;
+    color: var(--cor-texto-claro);
+}
+
+/* --- 7. Rodapé --- */
+.rodape {
+    background-color: var(--cor-destaque);
+    padding: 40px 0;
+    color: var(--cor-principal);
+}
+
+.container-grid-footer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.rodape-info strong {
+    display: block;
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
-.dashboard-card p {
-    font-size: 0.9rem;
-    color: #000000;
-    line-height: 1.5;
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .container-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oferta-grid,
+    .depoimentos-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-/* --- Responsividade para Telas Menores --- */
-@media (max-width: 992px) {
-    #sidebar {
-        margin-left: -280px;
-        /* Esconde a sidebar fora da tela */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-wrap: wrap;
     }
 
-    .hamburger-btn {
-        display: block;
-        /* Mostra o botão hamburguer */
+    .search-bar {
+        width: 100%;
+        margin-top: 15px;
+        order: 3;
     }
 
-    #content {
-        padding: 20px;
+    .hero-content h1 {
+        font-size: 2.5rem;
     }
 
-    .dashboard-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    h2 {
+        font-size: 2rem;
+    }
+
+    .oferta-grid,
+    .depoimentos-grid,
+    .container-grid-footer {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-imagens {
+        grid-template-columns: 1fr;
     }
 }
