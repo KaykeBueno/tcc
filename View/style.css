@@ -1,268 +1,817 @@
-/* Importa a fonte "Patua One" do Google Fonts */
+/* =================================================================== */
+/* === 1. IMPORTAÇÕES DE FONTES E VARIÁVEIS GLOBAIS === */
+/* =================================================================== */
+
+/* Importa as fontes Poppins e Patua One, usadas no projeto */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
-/* Estilos do corpo da página */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Fonte padrão */
+:root {
+    --cor-principal: #121212;
+    --cor-secundaria: #1E1E1E;
+    --cor-destaque: #A0FF00;
+    --cor-texto-claro: #FFFFFF;
+    --cor-texto-cinza: #adb5bd;
+    --navbar-height: 70px; /* Altura da navbar, para cálculo do hero */
+}
+
+* {
     margin: 0;
-    /* Remove as margens da página */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =================================================================== */
+/* === 2. ESTILOS DA PÁGINA DE LOGIN/CADASTRO (TEMA CLARO) === */
+/* =================================================================== */
+/* Usados em index.html, View/cadastroUsuario.html, View/cadastroEmpresa.html */
+
+body.page-login {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
     background-color: #f4f4f4;
-    /* Cor de fundo bem clara */
-    display: flex;
-    /* Utiliza flexbox para centralizar o conteúdo */
+    display: flex; /* Centraliza o container */
     justify-content: center;
-    /* Centraliza o conteúdo horizontalmente */
     align-items: center;
-    /* Centraliza o conteúdo verticalmente */
     min-height: 100vh;
-    /* Garante que o corpo ocupe toda a altura da tela */
 }
 
-/* Estilos para o contêiner de login */
-.login-container {
+.page-login .login-container,
+.page-login .cadastro-container {
     background-color: #fff;
-    /* Cor de fundo branca */
     border-radius: 8px;
-    /* Bordas arredondadas */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    /* Sombra leve para dar profundidade */
     display: flex;
-    /* Utiliza flexbox para organizar o conteúdo */
     overflow: hidden;
-    /* Garante que o conteúdo não ultrapasse os limites */
-    width: 80%;
-    /* Largura do contêiner (80% da tela) */
+    width: 90%; /* Ajustado para mobile */
     max-width: 900px;
-    /* Largura máxima de 900px */
+    margin: 20px; /* Adiciona margem em telas menores */
 }
-
-/* Estilos para o contêiner de cadastro */
-.cadastro-container {
-    background-color: #fff;
-    /* Cor de fundo branca */
-    border-radius: 8px;
-    /* Bordas arredondadas */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    /* Sombra leve para dar profundidade */
-    display: flex;
-    /* Utiliza flexbox para organizar o conteúdo */
-    overflow: hidden;
-    /* Garante que o conteúdo não ultrapasse os limites */
-    width: 80%;
-    /* Largura do contêiner (80% da tela) */
-    max-width: 900px;
-    /* Largura máxima de 900px */
+.page-login .cadastro-container {
     align-items: stretch;
-    /* Alinha os itens ao longo do eixo vertical */
     justify-content: center;
-    /* Centraliza o conteúdo horizontalmente */
+    flex-direction: column; /* Cadastro fica em coluna única */
+    max-width: 600px; /* Mais estreito para cadastro */
 }
 
-/* Estilos para o contêiner da imagem */
-.image-container {
-    background-color: #dcdcdc;
-    /* Adiciona um fundo amarelo */
-    color: #fff;
-    /* Cor do texto branca */
-    padding: 40px;
-    /* Espaçamento interno */
+.page-login .image-container {
+    background-color: #f0f0f0; /* Fundo mais claro */
+    color: #333; /* Texto escuro */
+    padding: 30px; /* Ajustado */
     display: flex;
-    /* Utiliza flexbox para alinhar os elementos */
     justify-content: center;
-    /* Centraliza o conteúdo horizontalmente */
     align-items: center;
-    /* Centraliza o conteúdo verticalmente */
     flex-direction: column;
-    /* Organiza o conteúdo em coluna */
     width: 45%;
-    /* Largura do contêiner da imagem (45% da tela) */
     background-size: contain;
-    /* Ajusta a imagem para caber no contêiner sem distorção */
     background-repeat: no-repeat;
-    /* Evita que a imagem se repita */
     background-position: center;
-    /* Posiciona a imagem no centro do contêiner */
-    min-height: 300px;
-    /* Altura mínima de 300px */
+    min-height: 400px; /* Ajustado */
+}
+.page-login .image-container img { /* Estilo para a imagem dentro */
+    max-width: 80%;
+    height: auto;
 }
 
-/* Estilos para o contêiner do formulário */
-.form-container {
-    padding: 40px;
-    /* Espaçamento interno */
+
+.page-login .form-container {
+    padding: 30px 40px; /* Ajustado */
     width: 55%;
-    /* Largura do contêiner do formulário (55% da tela) */
     display: flex;
-    /* Utiliza flexbox para organizar o conteúdo */
     flex-direction: column;
-    /* Organiza os campos do formulário em coluna */
     justify-content: center;
-    /* Centraliza o conteúdo verticalmente */
+}
+.page-login .form-containerCadastro {
+    padding: 30px 40px; /* Ajustado */
+    width: 100%; /* Ocupa container pai */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Adicionado para centralizar */
 }
 
-/* Estilos para o contêiner do formulário de cadastro */
-.form-containerCadastro {
-    padding: 40px;
-    /* Espaçamento interno */
-    width: 100%;
-    /* Largura total */
-    display: flex;
-    /* Utiliza flexbox para organizar o conteúdo */
-    flex-direction: column;
-    /* Organiza os campos do formulário em coluna */
-    justify-content: center;
-    /* Centraliza o conteúdo verticalmente */
-    box-sizing: border-box;
-    /* Inclui o padding nas dimensões do contêiner */
-}
-
-/* Estilos para o título dentro do formulário */
-.form-container h1 {
+.page-login .form-container h1, /* Afeta o H1 do form-container */
+.page-login .form-containerCadastro h1 { /* Afeta o H1 do form-containerCadastro */
     color: #333;
-    /* Cor do título */
     text-align: center;
-    /* Centraliza o título */
     margin-bottom: 30px;
-    /* Espaçamento abaixo do título */
 }
 
-/* Estilos para cada grupo de campo do formulário */
-.input-group {
+.page-login .input-group {
     margin-bottom: 20px;
-    /* Espaçamento abaixo de cada campo */
 }
 
-/* Estilos para os rótulos dos campos */
-.input-group label {
+.page-login .input-group label {
     display: block;
-    /* Exibe o rótulo como bloco */
     margin-bottom: 8px;
-    /* Espaçamento abaixo do rótulo */
     color: #555;
-    /* Cor do texto do rótulo */
     font-weight: bold;
-    /* Deixa o rótulo em negrito */
 }
 
-/* Estilos para os campos de entrada do formulário (CPF, CNPJ, senha, etc.) */
-.input-group input[type="password"],
-.input-group input[type="text"],
-.input-group select {
-    width: calc(100% - 22px);
-    /* Largura do campo (ajusta para considerar o padding) */
+.page-login .input-group input[type="password"],
+.page-login .input-group input[type="text"],
+.page-login .input-group input[type="date"], /* Adicionado date */
+.page-login .input-group select {
+    width: 100%; /* Simplificado e corrigido */
     padding: 10px;
-    /* Espaçamento interno */
     border: 1px solid #ddd;
-    /* Cor da borda */
     border-radius: 4px;
-    /* Bordas arredondadas */
     font-size: 16px;
-    /* Tamanho da fonte */
+    box-sizing: border-box; /* Garante que padding não aumente o tamanho */
 }
 
-/* Estilos para o botão de login */
-.login-button {
-    background-color: #2ecc71;
-    /* Cor de fundo do botão */
+.page-login .login-button { /* Nome genérico para botões */
+    background-color: #2ecc71; /* Verde */
     color: #fff;
-    /* Cor do texto do botão */
     padding: 12px 20px;
-    /* Espaçamento interno do botão */
     border: none;
-    /* Remove a borda */
     border-radius: 4px;
-    /* Bordas arredondadas */
     cursor: pointer;
-    /* Aparece o ponteiro ao passar o mouse */
     font-size: 18px;
-    /* Tamanho da fonte */
     transition: background-color 0.3s ease;
-    /* Transição suave para a cor de fundo ao passar o mouse */
     width: 100%;
-    /* Largura total */
-    box-sizing: border-box;
-    /* Inclui o padding nas dimensões do botão */
 }
 
-/* Estilos para quando o botão de login está sendo hover (passa o mouse sobre ele) */
-.login-button:hover {
+.page-login .login-button:hover {
     background-color: #27ae60;
-    /* Muda a cor de fundo quando o mouse está sobre o botão */
 }
 
-/* Estilos para o link de cadastro */
-.signup-link {
+.page-login .signup-link {
     margin-top: 20px;
-    /* Espaçamento acima do link */
     text-align: center;
-    /* Centraliza o link */
     color: #777;
-    /* Cor do texto do link */
 }
 
-/* Estilos para os links dentro da seção de cadastro */
-.signup-link a {
+.page-login .signup-link a {
     color: #3498db;
-    /* Cor do link */
     text-decoration: none;
-    /* Remove o sublinhado do link */
     font-weight: bold;
-    /* Deixa o link em negrito */
 }
 
-/* Estilos para o link quando o mouse passa sobre ele */
-.signup-link a:hover {
+.page-login .signup-link a:hover {
     text-decoration: underline;
-    /* Adiciona o sublinhado ao passar o mouse */
 }
 
-/* Estilos para o título principal (logo do IGYM) */
-.titulo {
+.page-login .titulo {
     font-family: "Patua One", serif;
-    /* Usa a fonte Patua One importada */
     font-weight: 400;
-    /* Peso normal da fonte */
     font-style: normal;
-    /* Estilo normal (sem itálico) */
     font-size: 40px;
-    /* Tamanho grande da fonte */
     margin-bottom: 25px;
-    /* Espaçamento abaixo do título */
     color: #333;
-    /* Cor do título */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    /* Sombra leve no título */
+    text-align: center; /* Garante centralização */
 }
 
-/* Estilos para telas menores (como tablets e celulares) */
 @media (max-width: 768px) {
-
-    /* Ajusta a disposição dos elementos na tela para telas pequenas */
-    .login-container {
+    .page-login .login-container,
+    .page-login .cadastro-container {
         flex-direction: column;
-        /* Organiza os elementos em coluna */
         width: 95%;
-        /* Largura total da tela */
+        margin: 10px; /* Reduz margem */
     }
 
-    /* Ajustes para o contêiner da imagem em telas pequenas */
-    .image-container {
+    .page-login .image-container {
         width: 100%;
-        /* Largura total da tela */
-        padding: 30px;
-        /* Menos padding */
+        padding: 20px; /* Reduzido */
         text-align: center;
-        /* Centraliza o texto */
-        min-height: 250px;
-        /* Altura mínima ajustada */
+        min-height: 150px; /* Reduzido */
     }
 
-    /* Ajustes para o contêiner do formulário em telas pequenas */
-    .form-container {
+    .page-login .form-container,
+    .page-login .form-containerCadastro {
         width: 100%;
-        /* Largura total da tela */
-        padding: 30px;
-        /* Menos padding */
+        padding: 20px; /* Reduzido */
     }
+     .page-login .titulo {
+        font-size: 30px; /* Reduzido */
+     }
+}
+
+/* =================================================================== */
+/* === 3. ESTILOS GERAIS PARA DASHBOARD E LANDING PAGE (TEMA ESCURO) === */
+/* =================================================================== */
+/* Usados em View/perfil.php (que inclui perfilUsuario/Empresa) e landing.php */
+
+body.page-dashboard,
+body.page-landing {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-claro);
+    margin: 0;
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    position: relative; /* Para posicionamento da sidebar */
+}
+
+#sidebar {
+    min-width: 280px;
+    max-width: 280px;
+    background-color: var(--cor-secundaria);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Sidebar sempre ocupa a altura da tela */
+    position: sticky; /* Fica fixa ao rolar */
+    top: 0;
+    transition: margin-left 0.3s ease; /* Transição suave */
+    z-index: 1000; /* Fica sobre o conteúdo em mobile */
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-logo span {
+    color: var(--cor-destaque);
+}
+
+/* Botão Hamburguer DENTRO da Sidebar */
+#sidebar .hamburger-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Só aparece em telas pequenas */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    padding: 20px 25px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.user-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-profile .user-info h6 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--cor-texto-claro);
+}
+
+.user-profile .user-info span {
+    font-size: 0.85rem;
+    color: var(--cor-texto-cinza);
+}
+
+/* Estilo para botão de login na sidebar (landing page) */
+.sidebar-login {
+    padding: 20px 25px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.btn-login-sidebar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.btn-login-sidebar:hover {
+    background-color: #fff;
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+    flex-grow: 1; /* Empurra o footer para baixo */
+    list-style: none;
+    margin: 0;
+}
+
+.sidebar-nav .nav-link {
+    font-size: 1.1rem;
+    color: var(--cor-texto-cinza);
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-nav .nav-link i {
+    margin-right: 15px;
+    width: 25px;
+    text-align: center;
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+    color: var(--cor-destaque);
+    background-color: #282828;
+    border-left: 4px solid var(--cor-destaque);
+    padding-left: 21px;
+}
+
+.sidebar-footer {
+    padding-bottom: 20px;
+    margin-top: auto; /* Garante que fique no final */
+}
+
+.sidebar-footer .nav-link {
+    font-size: 1.1rem;
+    color: var(--cor-texto-cinza);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-footer .nav-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+#content {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    /* Padding será definido por página específica */
+    overflow-y: auto; /* Permite scroll vertical */
+}
+
+/* =================================================================== */
+/* === 4. ESTILOS ESPECÍFICOS DO DASHBOARD (PERFIL) === */
+/* =================================================================== */
+/* Usados em View/perfil.php */
+
+body.page-dashboard {
+     height: 100vh; /* Dashboard não tem scroll */
+     overflow-y: hidden; /* Esconde scroll do body */
+}
+.page-dashboard #content {
+    padding: 40px; /* Padding específico do dashboard */
+     overflow-y: auto; /* Scroll SÓ no conteúdo */
+     height: 100vh; /* Ocupa altura */
+}
+
+.page-dashboard .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.page-dashboard .dashboard-card {
+    background-color: #E0E0E0; /* Fundo claro para cards */
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: #000000; /* Texto escuro */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-dashboard .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #000000; /* Mantém cor escura no hover */
+}
+
+.page-dashboard .dashboard-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.page-dashboard .dashboard-card h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000000; /* Título escuro */
+}
+
+.page-dashboard .dashboard-card p {
+    font-size: 0.9rem;
+    color: #333333; /* Texto de descrição escuro */
+    line-height: 1.6;
+}
+
+/* =================================================================== */
+/* === 5. ESTILOS ESPECÍFICOS DA LANDING PAGE === */
+/* =================================================================== */
+/* Usados em landing.php */
+
+
+.page-landing .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-landing section {
+    padding: 60px 0; /* Padding padrão das seções */
+}
+
+.page-landing h1,
+.page-landing h2,
+.page-landing h3 {
+     color: var(--cor-texto-claro); /* Garante cor clara para títulos */
+}
+.page-landing h2 {
+    font-size: 2.2rem; /* Ajustado */
+    color: var(--cor-destaque);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.page-landing section p { /* Ajusta a cor do P geral da landing */
+    color: var(--cor-texto-cinza);
+    line-height: 1.6;
+}
+
+
+
+.page-landing .navbar {
+    background-color: var(--cor-principal);
+    padding: 15px 0; /* Reduzido padding */
+    border-bottom: 1px solid #333;
+    position: sticky; /* Fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 999; /* Fica abaixo da sidebar */
+}
+
+.page-landing .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botão Hamburguer NO HEADER da Landing Page */
+.page-landing .hamburger-btn-header {
+    background: none;
+    border: none;
+    color: var(--cor-texto-claro);
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: none; /* Só aparece em telas pequenas */
+    padding: 5px; /* Área de clique */
+}
+/* Logo opcional no header */
+.page-landing .logo-header-only {
+     font-size: 1.8rem;
+     font-weight: 800;
+     color: var(--cor-destaque);
+     text-decoration: none;
+     display: none; /* Escondido por padrão, aparece em telas menores */
+}
+
+.page-landing .search-bar {
+    width: 40%; /* Reduzido */
+    padding: 8px 12px; /* Reduzido */
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
+    font-size: 0.9rem; /* Reduzido */
+}
+
+
+.page-landing .hero {
+    /* Ajusta altura considerando a navbar */
+    min-height: calc(100vh - var(--navbar-height));
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1920x800/333?text=Imagem+de+Fundo') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0; /* Adiciona padding vertical */
+}
+
+.page-landing .hero-content h1 {
+    font-size: 3.5rem; /* Ajustado */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--cor-texto-claro);
+    margin-bottom: 30px;
+}
+
+.page-landing .btn-primary {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 12px 25px; /* Ajustado */
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.page-landing .btn-primary:hover {
+    background-color: #fff;
+}
+
+
+.page-landing .sobre {
+    background-color: var(--cor-principal);
+}
+
+.page-landing .container-grid { /* Layout de 2 colunas */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.page-landing .sobre-texto p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: var(--cor-texto-cinza);
+}
+
+.page-landing .link-mais {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-landing .sobre-imagens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.page-landing .sobre-imagens img {
+    width: 100%;
+    border-radius: 8px;
+    display: block; /* Remove espaço extra */
+}
+
+.page-landing .oferta {
+    background-color: var(--cor-secundaria);
+    text-align: center;
+}
+
+.page-landing .oferta .subtitulo {
+    color: var(--cor-texto-cinza);
+    margin-bottom: 40px;
+    max-width: 600px; /* Limita largura do subtítulo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-landing .oferta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+    gap: 30px;
+}
+
+.page-landing .oferta-card {
+    height: 250px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden; /* Garante que overlay não vaze */
+}
+.page-landing .oferta-card::after { /* Overlay escuro */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    z-index: 1; /* Fica abaixo do texto */
+}
+.page-landing .oferta-card h3 {
+    font-size: 1.5rem;
+    z-index: 2; /* Fica acima do overlay */
+    color: var(--cor-texto-claro);
+}
+
+
+.page-landing .depoimentos {
+    background-color: var(--cor-principal);
+    text-align: center;
+}
+
+.page-landing .depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+    gap: 30px;
+    text-align: left;
+}
+
+.page-landing .depoimento-card img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+.page-landing .depoimento-texto {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 25px;
+    border-radius: 0 0 8px 8px;
+}
+.page-landing .depoimento-texto p {
+    color: var(--cor-principal);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.page-landing .depoimento-texto span {
+    font-weight: 700;
+    color: var(--cor-principal);
+}
+
+
+.page-landing .contato-cta {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x400/333?text=Imagem+Contato') no-repeat center center/cover;
+    padding: 80px 0; /* Reduzido */
+    text-align: center;
+}
+.page-landing .contato-cta h2 {
+    font-size: 2.5rem; /* Ajustado */
+    color: var(--cor-texto-claro);
+}
+
+
+.page-landing .rodape {
+    background-color: var(--cor-destaque);
+    padding: 30px 0; /* Reduzido */
+    color: var(--cor-principal);
+}
+
+.page-landing .container-grid-footer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo */
+    gap: 20px; /* Reduzido */
+}
+
+.page-landing .rodape-info strong {
+    display: block;
+    font-size: 1.1rem; /* Ajustado */
+    margin-bottom: 8px; /* Ajustado */
+    color: var(--cor-principal);
+}
+.page-landing .rodape-info span {
+    color: #333; /* Cor ligeiramente mais clara */
+}
+
+
+/* =================================================================== */
+/* === 6. RESPONSIVIDADE GERAL (Aplica a todas as páginas com Sidebar) === */
+/* =================================================================== */
+
+@media (max-width: 992px) {
+    /* Esconde a Sidebar e mostra o botão hamburguer da Sidebar */
+    #sidebar {
+        margin-left: -280px; /* Esconde fora da tela */
+        position: fixed; /* Fixa para flutuar */
+        height: 100%; /* Garante altura total */
+    }
+    #sidebar.active {
+        margin-left: 0; /* Mostra */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    #sidebar .hamburger-btn {
+        display: block; /* Mostra o botão da sidebar (para fechar) */
+    }
+
+    /* Mostra o botão hamburguer do Header na Landing Page */
+     .page-landing .hamburger-btn-header {
+         display: block; /* Mostra botão do header (para abrir) */
+     }
+     /* Mostra logo menor no header em telas menores */
+    .page-landing .logo-header-only {
+        display: block;
+    }
+
+    /* Ajusta padding do conteúdo principal quando sidebar está escondida */
+    #content {
+        padding: 20px; /* Reduz padding geral em telas menores */
+    }
+    .page-landing #content {
+         padding: 0; /* Landing page controla padding por seção */
+    }
+
+
+     /* Ajustes de layout para landing page em tablet */
+    .page-landing .container-grid {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+    .page-landing .sobre-texto { order: 2; } /* Texto abaixo da imagem */
+    .page-landing .sobre-imagens { order: 1; }
+
+    .page-landing .oferta-grid,
+    .page-landing .depoimentos-grid {
+        grid-template-columns: 1fr 1fr; /* 2 colunas */
+    }
+
+    /* Ajuste padding dashboard */
+    .page-dashboard #content {
+        padding: 20px;
+    }
+     .page-dashboard .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+}
+
+@media (max-width: 768px) {
+     /* Ajustes navbar landing page para mobile */
+    .page-landing .navbar {
+        padding: 10px 0; /* Menos padding */
+    }
+    .page-landing .navbar .container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .page-landing .search-bar {
+        width: 100%;
+        margin-top: 10px; /* Menos espaço */
+        order: 3; /* Vai para baixo */
+        font-size: 0.85rem; /* Menor */
+    }
+     .page-landing .logo-header-only {
+         order: 1; /* Esquerda */
+         font-size: 1.5rem; /* Menor */
+     }
+     .page-landing .hamburger-btn-header {
+         order: 2; /* Direita */
+         font-size: 1.5rem; /* Menor */
+     }
+
+
+    .page-landing .hero-content h1 {
+        font-size: 2.2rem; /* Reduzido */
+    }
+    .page-landing .btn-primary {
+         padding: 10px 20px; /* Menor */
+         font-size: 0.9rem; /* Menor */
+    }
+
+    .page-landing h2 {
+        font-size: 1.8rem; /* Reduzido */
+    }
+
+     /* Coluna única para grids menores em mobile */
+    .page-landing .oferta-grid,
+    .page-landing .depoimentos-grid,
+    .page-landing .container-grid-footer {
+        grid-template-columns: 1fr;
+    }
+
+    .page-landing .sobre-imagens {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+     .page-landing section {
+         padding: 40px 0; /* Menos padding em mobile */
+     }
+     .page-landing .rodape {
+         padding: 20px 0; /* Menos padding */
+     }
+     .page-landing .container-grid-footer {
+         gap: 15px; /* Menos gap */
+     }
+     .page-landing .rodape-info strong {
+         font-size: 1rem; /* Menor */
+     }
+     .page-landing .rodape-info span {
+         font-size: 0.9rem; /* Menor */
+     }
+
+      /* Ajuste dashboard mobile */
+      .page-dashboard .dashboard-grid {
+          grid-template-columns: 1fr; /* Coluna única */
+      }
+      .page-dashboard #content {
+           padding: 15px; /* Menos padding */
+      }
+
 }

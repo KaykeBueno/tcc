@@ -37,7 +37,7 @@ const formCadastroUsuario = {
 
             alert(resultado.mensagem);
 
-            window.location.href = 'http://localhost/tcc-3/index.html';
+            window.location.href = 'http://localhost/tcc/index.html';
 
         } catch (error) {
 

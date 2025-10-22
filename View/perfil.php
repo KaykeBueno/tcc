@@ -10,12 +10,12 @@ require_once("validaLogin.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial - IGym</title>
 
-    <link rel="stylesheet" href="style-perfil.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<body>
+<body class="page-dashboard">
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
@@ -33,7 +33,7 @@ require_once("validaLogin.php");
 
             <ul class="nav flex-column sidebar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="inicial.php">
                         <i class="fas fa-home"></i>
                         <span>Inicial</span>
                     </a>
