@@ -38,7 +38,7 @@ const formCadastroEmpresa = {
 
             alert(resultado.mensagem);
         
-            window.location.href = 'http://localhost/tcc/index.html';
+            window.location.href = 'http://localhost/tcc/View/login.html';
 
         } catch (error) {
 

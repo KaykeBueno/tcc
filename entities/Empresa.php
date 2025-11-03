@@ -43,25 +43,21 @@
 
         // --- Métodos Getters e Setters ---
 
-        // "Getter" para o id_empresa: retorna o valor do ID da empresa.
         public function getId_empresa()
         {
             return $this->id_empresa;
         }
 
-        // "Setter" para o id_empresa: define um novo valor para o ID da empresa.
         public function setId_empresa($id_empresa)
         {
             $this->id_empresa = $id_empresa;
         }
 
-        // "Getter" para o nomeFantasia.
         public function getNomeFantasia()
         {
             return $this->nomeFantasia;
         }
 
-        // "Setter" para o nomeFantasia.
         public function setNomeFantasia($nomeFantasia)
         {
             $this->nomeFantasia = $nomeFantasia;
@@ -77,61 +73,51 @@
             $this->telefone = $telefone;
         }
 
-        // "Getter" para o porteEmpresarial.
         public function getPorteEmpresarial()
         {
             return $this->porteEmpresarial;
         }
 
-        // "Setter" para o porteEmpresarial.
         public function setPorteEmpresarial($porteEmpresarial)
         {
             $this->porteEmpresarial = $porteEmpresarial;
         }
 
-        // "Getter" para o email.
         public function getEmail()
         {
             return $this->email;
         }
 
-        // "Setter" para o email.
         public function setEmail($email)
         {
             $this->email = $email;
         }
 
-        // "Getter" para a senha.
         public function getSenha()
         {
             return $this->senha;
         }
 
-        // "Setter" para a senha.
         public function setSenha($senha)
         {
             $this->senha = $senha;
         }
 
-        // "Getter" para a atividadeEconomica.
         public function getAtividadeEconomica()
         {
             return $this->atividadeEconomica;
         }
 
-        // "Setter" para a atividadeEconomica.
         public function setAtividadeEconomica($atividadeEconomica)
         {
             $this->atividadeEconomica = $atividadeEconomica;
         }
 
-        // "Getter" para o cnpj.
         public function getCnpj()
         {
             return $this->cnpj;
         }
 
-        // "Setter" para o cnpj.
         public function setCnpj($cnpj)
         {
             $this->cnpj = $cnpj;

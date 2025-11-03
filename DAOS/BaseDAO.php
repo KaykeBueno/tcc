@@ -7,8 +7,7 @@ class BaseDAO
     public function __construct()
     {
 
-        // O 'dbname=tcc' está CORRETO para o seu projeto.
-        // O 'port=3306' é a porta padrão do MySQL. Se o seu XAMPP/WAMP usa uma porta diferente, ajuste aqui.
+    
         $connection_string = "mysql:host=localhost;dbname=tcc;port=3306";
         
 

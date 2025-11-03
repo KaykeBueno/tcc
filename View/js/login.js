@@ -1,6 +1,4 @@
-
 const FormApp = {
-
     formData: {
         cpf: '',
         cnpj: '',
@@ -9,49 +7,44 @@ const FormApp = {
     },
 
     async autenticar() {
-
-
         if (!this.formData.tipoUsuario) {
             alert("Por favor, selecione o tipo de usuário (CPF ou CNPJ).");
             return;
         }
 
-
         if (this.formData.tipoUsuario === 'cpf') {
-
             if (this.formData.cpf != '' && this.formData.senha != '') {
-
-                const response = await fetch("Controller/UsuarioController.php?acao=autenticar", {
+                
+                const response = await fetch("../Controller/UsuarioController.php?acao=autenticar", {
                     method: "POST",
-
                     body: JSON.stringify(this.formData),
                     headers: { "Content-Type": "application/json" }
                 });
 
                 if (response.ok) {
-                    window.location.href = "View/perfil.php";
+                    window.location.href = "perfil.php";
                 }
                 else {
-                    const retorno = await response.json()
-                    alert(retorno.mensagem)
+                    const retorno = await response.json();
+                    alert(retorno.mensagem);
                 }
             }
         }
-        else {
+        else { // Se for 'cnpj'
             if (this.formData.cnpj != '' && this.formData.senha != '') {
-                const response = await fetch("Controller/EmpresaController.php?acao=autenticar", {
+                
+                const response = await fetch("../Controller/EmpresaController.php?acao=autenticar", {
                     method: "POST",
                     body: JSON.stringify(this.formData),
                     headers: { "Content-Type": "application/json" }
                 });
 
                 if (response.ok) {
-                    window.location.href = "View/perfil.php";
+                    window.location.href = "perfil.php";
                 }
-
                 else {
-                    const retorno = await response.json()
-                    alert(retorno.mensagem)
+                    const retorno = await response.json();
+                    alert(retorno.mensagem);
                 }
             }
         }

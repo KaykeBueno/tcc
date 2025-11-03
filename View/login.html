@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/petite-vue" defer></script>
+
+    <script src="js/login.js" defer></script>
+
+    <title>IGYM - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-login">
+    <div class="login-container">
+
+        <div class="image-container">
+            <img src="../imagens/png halter.png" alt="peso IGYM">
+        </div>
+
+        <div class="form-container" v-scope="FormApp">
+
+            <h1 class="titulo">IGym</h1>
+
+            <form @submit.prevent="autenticar">
+
+                <div class="input-group">
+                    <label for="tipoPessoa">Selecione seu tipo de usuario:</label>
+
+                    <select id="tipoPessoa" v-model="formData.tipoUsuario">
+                        <option value="">Selecione</option>
+                        <option value="cpf">CPF</option>
+                        <option value="cnpj">CNPJ</option>
+                    </select>
+                </div>
+
+                <div id="cpfInputDiv" class="input-group" v-if="formData.tipoUsuario == 'cpf'">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" v-model="formData.cpf" placeholder="Digite seu CPF">
+                </div>
+
+                <div id="cnpjInputDiv" class="input-group" v-if="formData.tipoUsuario == 'cnpj'">
+                    <label for="cnpj">CNPJ:</label>
+                    <input type="text" id="cnpj" v-model="formData.cnpj" placeholder="Digite seu CNPJ">
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" v-model="formData.senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="login-button">Entrar</button>
+
+                <p class="signup-link"><a href="cadastroEmpresa.html">Cadastro de empresa.</a></p>
+                <p class="signup-link"><a href="cadastroUsuario.html">Cadastro de usuario.</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
