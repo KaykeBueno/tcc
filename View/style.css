@@ -12,7 +12,8 @@
     --cor-destaque: #A0FF00;
     --cor-texto-claro: #FFFFFF;
     --cor-texto-cinza: #adb5bd;
-    --navbar-height: 70px; /* Altura da navbar, para cálculo do hero */
+    --navbar-height: 70px;
+    /* Altura da navbar, para cálculo do hero */
 }
 
 * {
@@ -30,7 +31,8 @@ body.page-login {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     background-color: #f4f4f4;
-    display: flex; /* Centraliza o container */
+    display: flex;
+    /* Centraliza o container */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -43,21 +45,29 @@ body.page-login {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
-    width: 90%; /* Ajustado para mobile */
+    width: 90%;
+    /* Ajustado para mobile */
     max-width: 900px;
-    margin: 20px; /* Adiciona margem em telas menores */
+    margin: 20px;
+    /* Adiciona margem em telas menores */
 }
+
 .page-login .cadastro-container {
     align-items: stretch;
     justify-content: center;
-    flex-direction: column; /* Cadastro fica em coluna única */
-    max-width: 600px; /* Mais estreito para cadastro */
+    flex-direction: column;
+    /* Cadastro fica em coluna única */
+    max-width: 600px;
+    /* Mais estreito para cadastro */
 }
 
 .page-login .image-container {
-    background-color: #f0f0f0; /* Fundo mais claro */
-    color: #333; /* Texto escuro */
-    padding: 30px; /* Ajustado */
+    background-color: #f0f0f0;
+    /* Fundo mais claro */
+    color: #333;
+    /* Texto escuro */
+    padding: 30px;
+    /* Ajustado */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,31 +76,41 @@ body.page-login {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 400px; /* Ajustado */
+    min-height: 400px;
+    /* Ajustado */
 }
-.page-login .image-container img { /* Estilo para a imagem dentro */
+
+.page-login .image-container img {
+    /* Estilo para a imagem dentro */
     max-width: 80%;
     height: auto;
 }
 
 
 .page-login .form-container {
-    padding: 30px 40px; /* Ajustado */
+    padding: 30px 40px;
+    /* Ajustado */
     width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .page-login .form-containerCadastro {
-    padding: 30px 40px; /* Ajustado */
-    width: 100%; /* Ocupa container pai */
+    padding: 30px 40px;
+    /* Ajustado */
+    width: 100%;
+    /* Ocupa container pai */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Adicionado para centralizar */
+    justify-content: center;
+    /* Adicionado para centralizar */
 }
 
-.page-login .form-container h1, /* Afeta o H1 do form-container */
-.page-login .form-containerCadastro h1 { /* Afeta o H1 do form-containerCadastro */
+.page-login .form-container h1,
+/* Afeta o H1 do form-container */
+.page-login .form-containerCadastro h1 {
+    /* Afeta o H1 do form-containerCadastro */
     color: #333;
     text-align: center;
     margin-bottom: 30px;
@@ -109,18 +129,23 @@ body.page-login {
 
 .page-login .input-group input[type="password"],
 .page-login .input-group input[type="text"],
-.page-login .input-group input[type="date"], /* Adicionado date */
+.page-login .input-group input[type="date"],
+/* Adicionado date */
 .page-login .input-group select {
-    width: 100%; /* Simplificado e corrigido */
+    width: 100%;
+    /* Simplificado e corrigido */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-    box-sizing: border-box; /* Garante que padding não aumente o tamanho */
+    box-sizing: border-box;
+    /* Garante que padding não aumente o tamanho */
 }
 
-.page-login .login-button { /* Nome genérico para botões */
-    background-color: #2ecc71; /* Verde */
+.page-login .login-button {
+    /* Nome genérico para botões */
+    background-color: #2ecc71;
+    /* Verde */
     color: #fff;
     padding: 12px 20px;
     border: none;
@@ -159,32 +184,40 @@ body.page-login {
     margin-bottom: 25px;
     color: #333;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Garante centralização */
+    text-align: center;
+    /* Garante centralização */
 }
 
 @media (max-width: 768px) {
+
     .page-login .login-container,
     .page-login .cadastro-container {
         flex-direction: column;
         width: 95%;
-        margin: 10px; /* Reduz margem */
+        margin: 10px;
+        /* Reduz margem */
     }
 
     .page-login .image-container {
         width: 100%;
-        padding: 20px; /* Reduzido */
+        padding: 20px;
+        /* Reduzido */
         text-align: center;
-        min-height: 150px; /* Reduzido */
+        min-height: 150px;
+        /* Reduzido */
     }
 
     .page-login .form-container,
     .page-login .form-containerCadastro {
         width: 100%;
-        padding: 20px; /* Reduzido */
+        padding: 20px;
+        /* Reduzido */
     }
-     .page-login .titulo {
-        font-size: 30px; /* Reduzido */
-     }
+
+    .page-login .titulo {
+        font-size: 30px;
+        /* Reduzido */
+    }
 }
 
 /* =================================================================== */
@@ -198,13 +231,15 @@ body.page-landing {
     background-color: var(--cor-principal);
     color: var(--cor-texto-claro);
     margin: 0;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-x: hidden;
+    /* Evita scroll horizontal */
 }
 
 .wrapper {
     display: flex;
     width: 100%;
-    position: relative; /* Para posicionamento da sidebar */
+    position: relative;
+    /* Para posicionamento da sidebar */
 }
 
 #sidebar {
@@ -214,11 +249,15 @@ body.page-landing {
     color: #fff;
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Sidebar sempre ocupa a altura da tela */
-    position: sticky; /* Fica fixa ao rolar */
+    height: 100vh;
+    /* Sidebar sempre ocupa a altura da tela */
+    position: sticky;
+    /* Fica fixa ao rolar */
     top: 0;
-    transition: margin-left 0.3s ease; /* Transição suave */
-    z-index: 1000; /* Fica sobre o conteúdo em mobile */
+    transition: margin-left 0.3s ease;
+    /* Transição suave */
+    z-index: 1000;
+    /* Fica sobre o conteúdo em mobile */
 }
 
 .sidebar-header {
@@ -246,7 +285,8 @@ body.page-landing {
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
-    display: none; /* Só aparece em telas pequenas */
+    display: none;
+    /* Só aparece em telas pequenas */
 }
 
 .user-profile {
@@ -282,6 +322,7 @@ body.page-landing {
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
+
 .btn-login-sidebar {
     display: block;
     width: 100%;
@@ -294,13 +335,15 @@ body.page-landing {
     font-weight: 600;
     transition: background-color 0.3s ease;
 }
+
 .btn-login-sidebar:hover {
     background-color: #fff;
 }
 
 .sidebar-nav {
     padding: 20px 0;
-    flex-grow: 1; /* Empurra o footer para baixo */
+    flex-grow: 1;
+    /* Empurra o footer para baixo */
     list-style: none;
     margin: 0;
 }
@@ -335,7 +378,8 @@ body.page-landing {
 
 .sidebar-footer {
     padding-bottom: 20px;
-    margin-top: auto; /* Garante que fique no final */
+    margin-top: auto;
+    /* Garante que fique no final */
 }
 
 .sidebar-footer .nav-link {
@@ -354,9 +398,11 @@ body.page-landing {
 }
 
 #content {
-    flex-grow: 1; /* Ocupa o espaço restante */
+    flex-grow: 1;
+    /* Ocupa o espaço restante */
     /* Padding será definido por página específica */
-    overflow-y: auto; /* Permite scroll vertical */
+    overflow-y: auto;
+    /* Permite scroll vertical */
 }
 
 /* =================================================================== */
@@ -365,13 +411,19 @@ body.page-landing {
 /* Usados em View/perfil.php */
 
 body.page-dashboard {
-     height: 100vh; /* Dashboard não tem scroll */
-     overflow-y: hidden; /* Esconde scroll do body */
+    height: 100vh;
+    /* Dashboard não tem scroll */
+    overflow-y: hidden;
+    /* Esconde scroll do body */
 }
+
 .page-dashboard #content {
-    padding: 40px; /* Padding específico do dashboard */
-     overflow-y: auto; /* Scroll SÓ no conteúdo */
-     height: 100vh; /* Ocupa altura */
+    padding: 40px;
+    /* Padding específico do dashboard */
+    overflow-y: auto;
+    /* Scroll SÓ no conteúdo */
+    height: 100vh;
+    /* Ocupa altura */
 }
 
 .page-dashboard .dashboard-grid {
@@ -381,19 +433,22 @@ body.page-dashboard {
 }
 
 .page-dashboard .dashboard-card {
-    background-color: #E0E0E0; /* Fundo claro para cards */
+    background-color: #E0E0E0;
+    /* Fundo claro para cards */
     border-radius: 15px;
     padding: 25px;
     text-align: center;
     text-decoration: none;
-    color: #000000; /* Texto escuro */
+    color: #000000;
+    /* Texto escuro */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .page-dashboard .dashboard-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: #000000; /* Mantém cor escura no hover */
+    color: #000000;
+    /* Mantém cor escura no hover */
 }
 
 .page-dashboard .dashboard-card img {
@@ -406,12 +461,14 @@ body.page-dashboard {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #000000; /* Título escuro */
+    color: #000000;
+    /* Título escuro */
 }
 
 .page-dashboard .dashboard-card p {
     font-size: 0.9rem;
-    color: #333333; /* Texto de descrição escuro */
+    color: #333333;
+    /* Texto de descrição escuro */
     line-height: 1.6;
 }
 
@@ -428,21 +485,27 @@ body.page-dashboard {
 }
 
 .page-landing section {
-    padding: 60px 0; /* Padding padrão das seções */
+    padding: 60px 0;
+    /* Padding padrão das seções */
 }
 
 .page-landing h1,
 .page-landing h2,
 .page-landing h3 {
-     color: var(--cor-texto-claro); /* Garante cor clara para títulos */
+    color: var(--cor-texto-claro);
+    /* Garante cor clara para títulos */
 }
+
 .page-landing h2 {
-    font-size: 2.2rem; /* Ajustado */
+    font-size: 2.2rem;
+    /* Ajustado */
     color: var(--cor-destaque);
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.page-landing section p { /* Ajusta a cor do P geral da landing */
+
+.page-landing section p {
+    /* Ajusta a cor do P geral da landing */
     color: var(--cor-texto-cinza);
     line-height: 1.6;
 }
@@ -451,11 +514,14 @@ body.page-dashboard {
 
 .page-landing .navbar {
     background-color: var(--cor-principal);
-    padding: 15px 0; /* Reduzido padding */
+    padding: 15px 0;
+    /* Reduzido padding */
     border-bottom: 1px solid #333;
-    position: sticky; /* Fica fixo no topo ao rolar */
+    position: sticky;
+    /* Fica fixo no topo ao rolar */
     top: 0;
-    z-index: 999; /* Fica abaixo da sidebar */
+    z-index: 999;
+    /* Fica abaixo da sidebar */
 }
 
 .page-landing .navbar .container {
@@ -471,42 +537,51 @@ body.page-dashboard {
     color: var(--cor-texto-claro);
     font-size: 1.8rem;
     cursor: pointer;
-    display: none; /* Só aparece em telas pequenas */
-    padding: 5px; /* Área de clique */
+    display: none;
+    /* Só aparece em telas pequenas */
+    padding: 5px;
+    /* Área de clique */
 }
+
 /* Logo opcional no header */
 .page-landing .logo-header-only {
-     font-size: 1.8rem;
-     font-weight: 800;
-     color: var(--cor-destaque);
-     text-decoration: none;
-     display: none; /* Escondido por padrão, aparece em telas menores */
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--cor-destaque);
+    text-decoration: none;
+    display: none;
+    /* Escondido por padrão, aparece em telas menores */
 }
 
 .page-landing .search-bar {
-    width: 40%; /* Reduzido */
-    padding: 8px 12px; /* Reduzido */
+    width: 40%;
+    /* Reduzido */
+    padding: 8px 12px;
+    /* Reduzido */
     border: 1px solid #333;
     border-radius: 5px;
     background-color: var(--cor-secundaria);
     color: var(--cor-texto-claro);
-    font-size: 0.9rem; /* Reduzido */
+    font-size: 0.9rem;
+    /* Reduzido */
 }
 
 
 .page-landing .hero {
     /* Ajusta altura considerando a navbar */
     min-height: calc(100vh - var(--navbar-height));
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1920x800/333?text=Imagem+de+Fundo') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../imagens/pessoasTreinando.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 0; /* Adiciona padding vertical */
+    padding: 40px 0;
+    /* Adiciona padding vertical */
 }
 
 .page-landing .hero-content h1 {
-    font-size: 3.5rem; /* Ajustado */
+    font-size: 3.5rem;
+    /* Ajustado */
     font-weight: 800;
     text-transform: uppercase;
     color: var(--cor-texto-claro);
@@ -516,13 +591,15 @@ body.page-dashboard {
 .page-landing .btn-primary {
     background-color: var(--cor-destaque);
     color: var(--cor-principal);
-    padding: 12px 25px; /* Ajustado */
+    padding: 12px 25px;
+    /* Ajustado */
     border-radius: 5px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
+
 .page-landing .btn-primary:hover {
     background-color: #fff;
 }
@@ -532,7 +609,8 @@ body.page-dashboard {
     background-color: var(--cor-principal);
 }
 
-.page-landing .container-grid { /* Layout de 2 colunas */
+.page-landing .container-grid {
+    /* Layout de 2 colunas */
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -559,10 +637,12 @@ body.page-dashboard {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
 .page-landing .sobre-imagens img {
     width: 100%;
     border-radius: 8px;
-    display: block; /* Remove espaço extra */
+    display: block;
+    /* Remove espaço extra */
 }
 
 .page-landing .oferta {
@@ -573,14 +653,16 @@ body.page-dashboard {
 .page-landing .oferta .subtitulo {
     color: var(--cor-texto-cinza);
     margin-bottom: 40px;
-    max-width: 600px; /* Limita largura do subtítulo */
+    max-width: 600px;
+    /* Limita largura do subtítulo */
     margin-left: auto;
     margin-right: auto;
 }
 
 .page-landing .oferta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Responsivo */
     gap: 30px;
 }
 
@@ -596,18 +678,27 @@ body.page-dashboard {
     color: var(--cor-texto-claro);
     text-decoration: none;
     position: relative;
-    overflow: hidden; /* Garante que overlay não vaze */
+    overflow: hidden;
+    /* Garante que overlay não vaze */
 }
-.page-landing .oferta-card::after { /* Overlay escuro */
+
+.page-landing .oferta-card::after {
+    /* Overlay escuro */
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    z-index: 1; /* Fica abaixo do texto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 1;
+    /* Fica abaixo do texto */
 }
+
 .page-landing .oferta-card h3 {
     font-size: 1.5rem;
-    z-index: 2; /* Fica acima do overlay */
+    z-index: 2;
+    /* Fica acima do overlay */
     color: var(--cor-texto-claro);
 }
 
@@ -619,7 +710,8 @@ body.page-dashboard {
 
 .page-landing .depoimentos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsivo */
     gap: 30px;
     text-align: left;
 }
@@ -636,11 +728,13 @@ body.page-dashboard {
     padding: 25px;
     border-radius: 0 0 8px 8px;
 }
+
 .page-landing .depoimento-texto p {
     color: var(--cor-principal);
     font-weight: 500;
     margin-bottom: 15px;
 }
+
 .page-landing .depoimento-texto span {
     font-weight: 700;
     color: var(--cor-principal);
@@ -648,19 +742,23 @@ body.page-dashboard {
 
 
 .page-landing .contato-cta {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x400/333?text=Imagem+Contato') no-repeat center center/cover;
-    padding: 80px 0; /* Reduzido */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x400/333?text=Imagem+Contato') no-repeat center center/cover;
+    padding: 80px 0;
+    /* Reduzido */
     text-align: center;
 }
+
 .page-landing .contato-cta h2 {
-    font-size: 2.5rem; /* Ajustado */
+    font-size: 2.5rem;
+    /* Ajustado */
     color: var(--cor-texto-claro);
 }
 
 
 .page-landing .rodape {
     background-color: var(--cor-destaque);
-    padding: 30px 0; /* Reduzido */
+    padding: 30px 0;
+    /* Reduzido */
     color: var(--cor-principal);
 }
 
@@ -669,18 +767,24 @@ body.page-dashboard {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo */
-    gap: 20px; /* Reduzido */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Responsivo */
+    gap: 20px;
+    /* Reduzido */
 }
 
 .page-landing .rodape-info strong {
     display: block;
-    font-size: 1.1rem; /* Ajustado */
-    margin-bottom: 8px; /* Ajustado */
+    font-size: 1.1rem;
+    /* Ajustado */
+    margin-bottom: 8px;
+    /* Ajustado */
     color: var(--cor-principal);
 }
+
 .page-landing .rodape-info span {
-    color: #333; /* Cor ligeiramente mais clara */
+    color: #333;
+    /* Cor ligeiramente mais clara */
 }
 
 
@@ -689,98 +793,139 @@ body.page-dashboard {
 /* =================================================================== */
 
 @media (max-width: 992px) {
+
     /* Esconde a Sidebar e mostra o botão hamburguer da Sidebar */
     #sidebar {
-        margin-left: -280px; /* Esconde fora da tela */
-        position: fixed; /* Fixa para flutuar */
-        height: 100%; /* Garante altura total */
+        margin-left: -280px;
+        /* Esconde fora da tela */
+        position: fixed;
+        /* Fixa para flutuar */
+        height: 100%;
+        /* Garante altura total */
     }
+
     #sidebar.active {
-        margin-left: 0; /* Mostra */
+        margin-left: 0;
+        /* Mostra */
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
+
     #sidebar .hamburger-btn {
-        display: block; /* Mostra o botão da sidebar (para fechar) */
+        display: block;
+        /* Mostra o botão da sidebar (para fechar) */
     }
 
     /* Mostra o botão hamburguer do Header na Landing Page */
-     .page-landing .hamburger-btn-header {
-         display: block; /* Mostra botão do header (para abrir) */
-     }
-     /* Mostra logo menor no header em telas menores */
+    .page-landing .hamburger-btn-header {
+        display: block;
+        /* Mostra botão do header (para abrir) */
+    }
+
+    /* Mostra logo menor no header em telas menores */
     .page-landing .logo-header-only {
         display: block;
     }
 
     /* Ajusta padding do conteúdo principal quando sidebar está escondida */
     #content {
-        padding: 20px; /* Reduz padding geral em telas menores */
+        padding: 20px;
+        /* Reduz padding geral em telas menores */
     }
+
     .page-landing #content {
-         padding: 0; /* Landing page controla padding por seção */
+        padding: 0;
+        /* Landing page controla padding por seção */
     }
 
 
-     /* Ajustes de layout para landing page em tablet */
+    /* Ajustes de layout para landing page em tablet */
     .page-landing .container-grid {
-        grid-template-columns: 1fr; /* Coluna única */
+        grid-template-columns: 1fr;
+        /* Coluna única */
     }
-    .page-landing .sobre-texto { order: 2; } /* Texto abaixo da imagem */
-    .page-landing .sobre-imagens { order: 1; }
+
+    .page-landing .sobre-texto {
+        order: 2;
+    }
+
+    /* Texto abaixo da imagem */
+    .page-landing .sobre-imagens {
+        order: 1;
+    }
 
     .page-landing .oferta-grid,
     .page-landing .depoimentos-grid {
-        grid-template-columns: 1fr 1fr; /* 2 colunas */
+        grid-template-columns: 1fr 1fr;
+        /* 2 colunas */
     }
 
     /* Ajuste padding dashboard */
     .page-dashboard #content {
         padding: 20px;
     }
-     .page-dashboard .dashboard-grid {
+
+    .page-dashboard .dashboard-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
 }
 
 @media (max-width: 768px) {
-     /* Ajustes navbar landing page para mobile */
+
+    /* Ajustes navbar landing page para mobile */
     .page-landing .navbar {
-        padding: 10px 0; /* Menos padding */
+        padding: 10px 0;
+        /* Menos padding */
     }
+
     .page-landing .navbar .container {
         flex-wrap: wrap;
         justify-content: space-between;
     }
+
     .page-landing .search-bar {
         width: 100%;
-        margin-top: 10px; /* Menos espaço */
-        order: 3; /* Vai para baixo */
-        font-size: 0.85rem; /* Menor */
+        margin-top: 10px;
+        /* Menos espaço */
+        order: 3;
+        /* Vai para baixo */
+        font-size: 0.85rem;
+        /* Menor */
     }
-     .page-landing .logo-header-only {
-         order: 1; /* Esquerda */
-         font-size: 1.5rem; /* Menor */
-     }
-     .page-landing .hamburger-btn-header {
-         order: 2; /* Direita */
-         font-size: 1.5rem; /* Menor */
-     }
+
+    .page-landing .logo-header-only {
+        order: 1;
+        /* Esquerda */
+        font-size: 1.5rem;
+        /* Menor */
+    }
+
+    .page-landing .hamburger-btn-header {
+        order: 2;
+        /* Direita */
+        font-size: 1.5rem;
+        /* Menor */
+    }
 
 
     .page-landing .hero-content h1 {
-        font-size: 2.2rem; /* Reduzido */
+        font-size: 2.2rem;
+        /* Reduzido */
     }
+
     .page-landing .btn-primary {
-         padding: 10px 20px; /* Menor */
-         font-size: 0.9rem; /* Menor */
+        padding: 10px 20px;
+        /* Menor */
+        font-size: 0.9rem;
+        /* Menor */
     }
 
     .page-landing h2 {
-        font-size: 1.8rem; /* Reduzido */
+        font-size: 1.8rem;
+        /* Reduzido */
     }
 
-     /* Coluna única para grids menores em mobile */
+    /* Coluna única para grids menores em mobile */
     .page-landing .oferta-grid,
     .page-landing .depoimentos-grid,
     .page-landing .container-grid-footer {
@@ -788,30 +933,44 @@ body.page-dashboard {
     }
 
     .page-landing .sobre-imagens {
-        grid-template-columns: 1fr; /* Coluna única */
+        grid-template-columns: 1fr;
+        /* Coluna única */
     }
-     .page-landing section {
-         padding: 40px 0; /* Menos padding em mobile */
-     }
-     .page-landing .rodape {
-         padding: 20px 0; /* Menos padding */
-     }
-     .page-landing .container-grid-footer {
-         gap: 15px; /* Menos gap */
-     }
-     .page-landing .rodape-info strong {
-         font-size: 1rem; /* Menor */
-     }
-     .page-landing .rodape-info span {
-         font-size: 0.9rem; /* Menor */
-     }
 
-      /* Ajuste dashboard mobile */
-      .page-dashboard .dashboard-grid {
-          grid-template-columns: 1fr; /* Coluna única */
-      }
-      .page-dashboard #content {
-           padding: 15px; /* Menos padding */
-      }
+    .page-landing section {
+        padding: 40px 0;
+        /* Menos padding em mobile */
+    }
+
+    .page-landing .rodape {
+        padding: 20px 0;
+        /* Menos padding */
+    }
+
+    .page-landing .container-grid-footer {
+        gap: 15px;
+        /* Menos gap */
+    }
+
+    .page-landing .rodape-info strong {
+        font-size: 1rem;
+        /* Menor */
+    }
+
+    .page-landing .rodape-info span {
+        font-size: 0.9rem;
+        /* Menor */
+    }
+
+    /* Ajuste dashboard mobile */
+    .page-dashboard .dashboard-grid {
+        grid-template-columns: 1fr;
+        /* Coluna única */
+    }
+
+    .page-dashboard #content {
+        padding: 15px;
+        /* Menos padding */
+    }
 
 }
