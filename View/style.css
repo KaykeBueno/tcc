@@ -254,7 +254,8 @@ body.page-landing {
     position: sticky;
     /* Fica fixa ao rolar */
     top: 0;
-    transition: margin-left 0.3s ease;
+    transition: min-width 0.5s ease;
+
     /* Transição suave */
     z-index: 1000;
     /* Fica sobre o conteúdo em mobile */
@@ -348,6 +349,7 @@ body.page-landing {
     margin: 0;
 }
 
+
 .sidebar-nav .nav-link {
     font-size: 1.1rem;
     color: var(--cor-texto-cinza);
@@ -374,6 +376,19 @@ body.page-landing {
     background-color: #282828;
     border-left: 4px solid var(--cor-destaque);
     padding-left: 21px;
+}
+
+#sidebar.closed {
+    max-width: 80px;
+    min-width: 80px;
+
+    .sidebar-logo,
+    .user-profile,
+    .sidebar-nav,
+    .sidebar-footer span {
+        display: none;
+    }
+
 }
 
 .sidebar-footer {
@@ -977,32 +992,40 @@ body.page-dashboard {
 
 /* ===== BOTÃO HAMBURGUER FLUTUANTE (NOVO) ===== */
 .menu-hamburguer-flutuante {
-    position: fixed; /* Fica fixo na tela */
-    top: 20px;       /* 20px do topo */
-    left: 20px;      /* 20px da esquerda */
-    z-index: 1001; /* Fica acima de outros elementos */
-    
+    position: fixed;
+    /* Fica fixo na tela */
+    top: 20px;
+    /* 20px do topo */
+    left: 20px;
+    /* 20px da esquerda */
+    z-index: 1001;
+    /* Fica acima de outros elementos */
+
     background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 10px;
-    
+
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Espaço entre as barrinhas */
+    gap: 5px;
+    /* Espaço entre as barrinhas */
 }
 
 /* As 3 barrinhas */
 .menu-hamburguer-flutuante span {
     display: block;
-    width: 30px;  /* Largura da barra */
-    height: 4px;  /* Altura da barra */
+    width: 30px;
+    /* Largura da barra */
+    height: 4px;
+    /* Altura da barra */
     /* Cor das barras no tema escuro (baseado na imagem) */
-    background-color: #999; 
+    background-color: #999;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 .menu-hamburguer-flutuante:hover span {
-    background-color: #FFFFFF; /* Cor ao passar o mouse */
+    background-color: #FFFFFF;
+    /* Cor ao passar o mouse */
 }

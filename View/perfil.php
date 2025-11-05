@@ -11,7 +11,7 @@ require_once("validaLogin.php"); //
     <title>Meu Perfil - IGym</title>
 
     <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <script src="https://unpkg.com/petite-vue" defer init></script> <script src="js/inicial.js" defer></script> </head>
-
+    <script src="js/util.js"></script>
 <body class="page-dashboard"> <div class="wrapper"> <nav id="sidebar">
             <div class="sidebar-header">
                 <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a> <button class="hamburger-btn">&#9776;</button> </div>
@@ -37,7 +37,7 @@ require_once("validaLogin.php"); //
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="configuracoes.php">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
@@ -45,11 +45,11 @@ require_once("validaLogin.php"); //
             </ul>
 
             
-            <button class="menu-hamburguer-flutuante" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
-        </button>
+            <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            </button>
 
             <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>

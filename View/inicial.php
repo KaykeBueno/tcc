@@ -39,13 +39,19 @@
                 <?php endif; ?>
                 
                 <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="configuracoes.php">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
                     </a>
                 </li>
                 <?php endif; ?>
             </ul>
+
+            <button class="menu-hamburguer-flutuante" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </button>   
 
              <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
