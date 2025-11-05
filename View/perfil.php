@@ -44,6 +44,13 @@ require_once("validaLogin.php"); //
                 </li>
             </ul>
 
+            
+            <button class="menu-hamburguer-flutuante" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        </button>
+
             <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
             </div>

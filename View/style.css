@@ -974,3 +974,35 @@ body.page-dashboard {
     }
 
 }
+
+/* ===== BOTÃO HAMBURGUER FLUTUANTE (NOVO) ===== */
+.menu-hamburguer-flutuante {
+    position: fixed; /* Fica fixo na tela */
+    top: 20px;       /* 20px do topo */
+    left: 20px;      /* 20px da esquerda */
+    z-index: 1001; /* Fica acima de outros elementos */
+    
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espaço entre as barrinhas */
+}
+
+/* As 3 barrinhas */
+.menu-hamburguer-flutuante span {
+    display: block;
+    width: 30px;  /* Largura da barra */
+    height: 4px;  /* Altura da barra */
+    /* Cor das barras no tema escuro (baseado na imagem) */
+    background-color: #999; 
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-hamburguer-flutuante:hover span {
+    background-color: #FFFFFF; /* Cor ao passar o mouse */
+}
