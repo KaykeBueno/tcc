@@ -1,4 +1,4 @@
-<?php session_start(); // A sessão DEVE ser iniciada no topo da página principal ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IGYM - Seja Seu Melhor</title>
 
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <script src="https://unpkg.com/petite-vue" defer init></script> <script src="js/inicial.js" defer></script> </head>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <script src   ="https://unpkg.com/petite-vue" defer init></script> <script src="js/inicial.js" defer></script> </head>
 
 <body class="page-landing"> <div class="wrapper">
 
@@ -47,7 +47,7 @@
                 <?php endif; ?>
             </ul>
 
-            <button class="menu-hamburguer-flutuante" aria-label="Abrir menu">
+        <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
         <span></span>
         <span></span>
         <span></span>

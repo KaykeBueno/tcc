@@ -21,15 +21,22 @@ require_once("validaLogin.php"); //
         
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a> <button class="hamburger-btn">&#9776;</button> </div>
+                <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a>
+                <button class="hamburger-btn">&#9776;</button>
+            </div>
 
-            <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="user-profile">
-                    <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário"> <div class="user-info">
-                        <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6> <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span> </div>
+            <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
+            <div class="user-profile">
+                <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário">
+                <div class="user-info">
+                    <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6>
+                    <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span>
                 </div>
+            </div>
             <?php else: ?>
                 <div class="sidebar-login">
-                     <a href="login.html" class="btn-login-sidebar">Fazer Login</a> </div>
+                    <a href="login.html" class="btn-login-sidebar">Fazer Login</a>
+                </div>
             <?php endif; ?>
 
             <ul class="nav flex-column sidebar-nav">
@@ -40,14 +47,17 @@ require_once("validaLogin.php"); //
                     </a>
                 </li>
                 
-                <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <li class="nav-item">
-                    <a class="nav-link" href="perfil.php"> <i class="fas fa-user"></i>
+                <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="perfil.php">
+                        <i class="fas fa-user"></i>
                         <span>Meu Perfil</span>
                     </a>
                 </li>
                 <?php endif; ?>
                 
-                <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <li class="nav-item">
+                <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
+                <li class="nav-item">
                     <a class="nav-link active" href="configuracoes.php">
                         <i class="fas fa-cog"></i>
                         <span>Configurações</span>
@@ -56,19 +66,19 @@ require_once("validaLogin.php"); //
                 <?php endif; ?>
             </ul>
 
-            <button class="menu-hamburguer-flutuante" aria-label="Abrir menu">
-        <span></span>
-        <span></span>
-        <span></span>
-        </button>   
-
-             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="sidebar-footer">
+            <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
+            <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
             </div>
             <?php endif; ?>
         </nav>
+        
         <main id="content">
             
+            <header class="navbar">
+                <button class="hamburger-btn-header"><i class="fas fa-bars"></i></button>
+                <a href="#" class="logo-header-only">CONFIGURAÇÕES</a>
+            </header>
             
             <div class="config-container" v-scope="ConfigApp">
                 <h1 class="config-title">CONFIGURAÇÕES</h1>
@@ -96,7 +106,7 @@ require_once("validaLogin.php"); //
                     <div class="config-card">
                         <h3>ALTERAR SENHA</h3>
                         <form @submit.prevent="alterarSenha">
-                            <div class="form-grid">
+                            <div class="form-grid-senha"> 
                                 <input type="password" v-model="formData.senhaAtual" placeholder="Senha Atual" class="config-input">
                                 <input type="password" v-model="formData.novaSenha" placeholder="Nova Senha" class="config-input">
                                 <input type="password" v-model="formData.confirmarNovaSenha" placeholder="Redigite a nova senha" class="config-input">
@@ -110,11 +120,12 @@ require_once("validaLogin.php"); //
                 </section>
 
                 <section class="config-section-final">
-                    <a href="sair.php" class="config-link-sair">SAIR</a> <a href="#" @click.prevent="excluirConta" class="config-link-excluir">EXCLUIR CONTA</a>
+                    <a href="sair.php" class="config-link-sair">SAIR</a>
+                    <a href="#" @click.prevent="excluirConta" class="config-link-excluir">EXCLUIR CONTA</a>
                 </section>
 
-            </div> </main> 
+            </div> 
+        </main> 
     </div>
-    
-    </body>
+</body>
 </html>
