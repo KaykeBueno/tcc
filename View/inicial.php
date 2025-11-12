@@ -58,8 +58,11 @@
             </div>
             <?php endif; ?>
         </nav>
-        <main id="content"> <header class="navbar"> <div class="container">
-                    <button class="hamburger-btn-header"><i class="fas fa-bars"></i></button> <a href="inicial.php" class="logo-header-only">IGYM</a> <input type="search" class="search-bar" placeholder="Buscar..."> </div>
+        <main id="content"> 
+            <header class="navbar"> 
+                <div class="container">
+                    <button class="hamburger-btn-header"><i class="fas fa-bars"></i></button> <a href="inicial.php" class="logo-header-only">IGYM</a><input type="search" class="search-bar" placeholder="Buscar..."> 
+                </div>
             </header>
 
             <section class="hero"> <div class="hero-content">
