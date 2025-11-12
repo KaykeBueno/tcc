@@ -14,7 +14,7 @@
         private $porteEmpresarial;
 
 
-        public function jsonSerialize()
+        public function jsonSerialize(): mixed //Apresentava erro antes, adicionei ": mixed" para corrigir, pois a interface JsonSerializable exige essa assinatura. oque tambem corrigiu um erro na hora de cadastrar uma empresa.
         {
             return [
                 'id_empresa' => $this->id_empresa,
