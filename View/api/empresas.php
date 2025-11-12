@@ -19,9 +19,10 @@ try {
     // Se for pedido apenas 'meus' professores, retornamos empresas vinculadas
     // ao usuário logado via Treino_has_Usuario. Ex.: api/empresas.php?meus=1
     if (isset($_GET['meus']) && $_GET['meus'] == '1') {
-        if (!isset($_SESSION['id_usuario'])) {
+        // Apenas usuários (tipo 'usuario') podem pedir suas empresas vinculadas
+        if (!isset($_SESSION['tipoUsuario']) || $_SESSION['tipoUsuario'] !== 'usuario' || !isset($_SESSION['id_usuario'])) {
             http_response_code(401);
-            echo json_encode(['error' => 'Usuário não autenticado'], JSON_UNESCAPED_UNICODE);
+            echo json_encode(['error' => 'Usuário não autenticado ou tipo incorreto'], JSON_UNESCAPED_UNICODE);
             exit;
         }
 
