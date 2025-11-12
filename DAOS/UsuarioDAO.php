@@ -1,6 +1,8 @@
 <?php
-require_once('BaseDAO.php');
-require_once('../entities/Usuario.php');
+// uso __DIR__ para construir caminhos absolutos relativos a este arquivo. Isso evita
+// problemas quando o DAO for incluído a partir de diferentes diretórios.
+require_once(__DIR__ . '/BaseDAO.php');
+require_once(__DIR__ . '/../entities/Usuario.php');
 
 class UsuarioDAO extends BaseDAO
 {
@@ -107,6 +109,44 @@ class UsuarioDAO extends BaseDAO
                 $resultado['telefone']
             );
         }
+        return $usuarios;
+    }
+
+    /**
+     * Seleciona usuários vinculados a uma empresa através das tabelas
+     * ofertaTreino (ofertaTreino.empresa_id_empresa) e usuarioTreino
+     * (usuarioTreino.ofertaTreino_idOferta).
+     * Retorna um array de objetos Usuario.
+     */
+    public function selecionarPorEmpresa($id_empresa)
+    {
+        $sql = "SELECT DISTINCT u.*
+                FROM usuario u
+                INNER JOIN usuarioTreino ut ON ut.usuario_id_usuario = u.id_usuario
+                INNER JOIN ofertaTreino ot ON ot.idOferta = ut.ofertaTreino_idOferta
+                WHERE ot.empresa_id_empresa = :id_empresa";
+
+        $parametros = array(
+            ':id_empresa' => $id_empresa
+        );
+
+        $stmt = $this->executaComParametros($sql, $parametros);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $usuarios = [];
+        foreach ($resultados as $resultado) {
+            $usuarios[] = new Usuario(
+                $resultado['id_usuario'],
+                $resultado['cpf'],
+                $resultado['nome'],
+                $resultado['email'],
+                $resultado['senha'] ?? '',
+                $resultado['dataNascimento'] ?? '',
+                $resultado['sexo'] ?? '',
+                $resultado['telefone'] ?? ''
+            );
+        }
+
         return $usuarios;
     }
 }
