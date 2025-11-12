@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!grid) return; // nada a fazer se o container não existir
 
     /**
-     * Cria o elemento DOM de um card a partir dos dados da empresa.
-     * Espera um objeto com chaves: nomeFantasia, atividadeEconomica, telefone, email.
+     * Cria o elemento DOM de um card a partir dos dados retornados pela API.
+     * Suporta tanto objetos Empresa (nomeFantasia, atividadeEconomica...) quanto
+     * Usuario (nome, cpf, sexo, telefone, email...). A função escolhe campos
+     * relevantes dinamicamente.
      */
-    function criaCard(emp) {
+    function criaCard(item) {
         const card = document.createElement('div');
         card.className = 'card';
 
@@ -16,30 +18,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titulo = document.createElement('h5');
         titulo.className = 'card-title';
-        // Usa nomeFantasia se disponível, senão tenta 'nome'
-        titulo.innerText = emp.nomeFantasia || emp.nome || '';
-
+        // Prioriza nomeFantasia (empresa), senão nome (usuario)
+        titulo.innerText = item.nomeFantasia || item.nome || '';
         body.appendChild(titulo);
 
-        // Campos opcionais — adiciona apenas se existirem
-        if (emp.atividadeEconomica) {
+        // Campos adicionais dependem do tipo de item
+        // Empresa: atividadeEconomica
+        if (item.atividadeEconomica) {
             const p = document.createElement('p');
             p.className = 'card-text';
-            p.innerText = emp.atividadeEconomica;
+            p.innerText = item.atividadeEconomica;
             body.appendChild(p);
         }
 
-        if (emp.telefone) {
+        // Telefone
+        if (item.telefone) {
             const p = document.createElement('p');
             p.className = 'card-text';
-            p.innerHTML = '<strong>Telefone:</strong> ' + emp.telefone;
+            p.innerHTML = '<strong>Telefone:</strong> ' + item.telefone;
             body.appendChild(p);
         }
 
-        if (emp.email) {
+        // Email
+        if (item.email) {
             const p = document.createElement('p');
             p.className = 'card-text';
-            p.innerHTML = '<strong>Email:</strong> ' + emp.email;
+            p.innerHTML = '<strong>Email:</strong> ' + item.email;
+            body.appendChild(p);
+        }
+
+        // Campos específicos de usuário: sexo e cpf
+        if (item.sexo) {
+            const p = document.createElement('p');
+            p.className = 'card-text';
+            p.innerHTML = '<strong>Sexo:</strong> ' + item.sexo;
+            body.appendChild(p);
+        }
+
+        if (item.cpf) {
+            const p = document.createElement('p');
+            p.className = 'card-text';
+            p.innerHTML = '<strong>CPF:</strong> ' + item.cpf;
             body.appendChild(p);
         }
 
@@ -47,17 +66,21 @@ document.addEventListener('DOMContentLoaded', function () {
         return card;
     }
 
-    // Função que carrega empresas do backend. Se 'meus' for true, pede apenas
-    // as empresas vinculadas ao usuário logado (api/empresas.php?meus=1).
-    function loadEmpresas(meus = false) {
-        const url = meus ? 'api/empresas.php?meus=1' : 'api/empresas.php';
+    // Função que carrega itens do backend (empresas ou usuários). Detecta a
+    // página atual e chama a API adequada. Se 'meus' for true, adiciona ?meus=1.
+    function loadItems(meus = false) {
+        // Detecta se estamos na página de usuários (cardUsuario.php) ou empresas
+        const isUsuarioPage = location.pathname.includes('cardUsuario.php');
+        const apiBase = isUsuarioPage ? 'api/usuarios.php' : 'api/empresas.php';
+        const url = meus ? apiBase + '?meus=1' : apiBase;
 
         return fetch(url)
             .then(resp => {
                 // Se o servidor respondeu com status de erro, ainda tentamos ler o corpo
                 if (!resp.ok) {
                     return resp.text().then(text => {
-                        throw new Error('Falha ao buscar empresas: ' + resp.status + '\n' + text);
+                        // Mensagem mais genérica, inclui corpo do erro
+                        throw new Error('Falha ao buscar dados: ' + resp.status + '\n' + text);
                     });
                 }
 
@@ -79,17 +102,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Monta um card para cada item do array retornado
-                data.forEach(emp => {
-                    const card = criaCard(emp);
+                data.forEach(item => {
+                    const card = criaCard(item);
                     grid.appendChild(card);
                 });
             });
     }
 
     // Inicial: carrega todos os professores
-    loadEmpresas(false).catch(err => {
-        console.error('Erro ao carregar empresas:', err);
-        grid.innerHTML = '<p>Erro ao carregar empresas. Veja console para detalhes.</p>';
+    loadItems(false).catch(err => {
+        console.error('Erro ao carregar dados:', err);
+        grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
     });
 
     // Liga os botões de filtro (IDs adicionados em cardEmpresa.php)
@@ -98,18 +121,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (btnTodos) {
         btnTodos.addEventListener('click', function () {
-            loadEmpresas(false).catch(err => {
+            loadItems(false).catch(err => {
                 console.error(err);
-                grid.innerHTML = '<p>Erro ao carregar empresas. Veja console para detalhes.</p>';
+                grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
             });
         });
     }
 
     if (btnMeus) {
         btnMeus.addEventListener('click', function () {
-            loadEmpresas(true).catch(err => {
+            loadItems(true).catch(err => {
                 console.error(err);
-                grid.innerHTML = '<p>Erro ao carregar seus professores. Veja console para detalhes.</p>';
+                grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
             });
         });
     }
