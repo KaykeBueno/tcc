@@ -104,9 +104,7 @@ $controller = new EmpresaController();
 
 if ($acao == "inserir") {
     $controller->inserir();
-}
-
-if ($acao == "autenticar") {
+}elseif ($acao == "autenticar") {
     $controller->autenticar();
 }
 ?>
