@@ -2,7 +2,7 @@
 
         <main id="content">
             <div class="dashboard-grid">
-                <a href="#" class="dashboard-card">
+                <a href="cardUsuario.php" class="dashboard-card">
                     <img src="../imagens/alunosIcone.png" alt="Ícone Alunos">
                     <h5>Alunos</h5>
                     <p>Gerencie seus alunos e acompanhe o desempenho de cada um com facilidade.</p>
