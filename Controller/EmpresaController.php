@@ -82,6 +82,8 @@ class EmpresaController
             session_start();
             $_SESSION['id_empresa'] = $usuario->getId_empresa();
             $_SESSION['nomeFantasia'] = $usuario->getNomeFantasia();
+            // Tipo de sessão para facilitar verificações no frontend e APIs
+            $_SESSION['tipoUsuario'] = 'empresa';
 
             $retorno = array(
                 "mensagem" => "Usuário autenticado com sucesso"
