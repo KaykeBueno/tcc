@@ -32,7 +32,7 @@
                     <p>Acompanhe sua presença nas aulas e veja seu histórico de participação.</p>
                 </a>
 
-                <a href="#" class="dashboard-card">
+                <a href="https://wa.me/5543988223904" class="dashboard-card">
                     <img src="../imagens/SacIcone.png" alt="Ícone SAC">
                     <h5>SAC</h5>
                     <p>Entre em contato com o suporte para tirar dúvidas ou relatar problemas.</p>
