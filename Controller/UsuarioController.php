@@ -81,6 +81,8 @@ class UsuarioController
             session_start();
             $_SESSION['id_usuario'] = $usuario->getId_usuario();
             $_SESSION['nome'] = $usuario->getNome();
+            // Tipo de sessão para facilitar verificações no frontend e APIs
+            $_SESSION['tipoUsuario'] = 'usuario';
 
             $retorno = array(
                 "mensagem" => "Usuário autenticado com sucesso"
