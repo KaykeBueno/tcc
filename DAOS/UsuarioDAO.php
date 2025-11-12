@@ -89,5 +89,25 @@ class UsuarioDAO extends BaseDAO
             return null;
         }
 }
+    public function selecionarTodos(){
+        $sql = "SELECT * FROM usuario";
+        $stmt = $this->executar($sql);
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $usuarios = [];
+        foreach ($resultados as $resultado) {
+            $usuarios[] = new Usuario(
+                $resultado['id_usuario'],
+                $resultado['cpf'],
+                $resultado['nome'],
+                $resultado['email'],
+                $resultado['senha'], 
+                $resultado['dataNascimento'],
+                $resultado['sexo'],
+                $resultado['telefone']
+            );
+        }
+        return $usuarios;
+    }
 }
 ?>
