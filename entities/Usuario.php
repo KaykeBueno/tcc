@@ -14,7 +14,7 @@ class Usuario implements JsonSerializable
     private $sexo;
     private $telefone;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed //Apresentava erro antes, adicionei ": mixed" para corrigir, pois a interface JsonSerializable exige essa assinatura. Oque tambem corrigiu um erro na hora de cadastrar um usuario.
     {
         return [
             'id_usuario' => $this->id_usuario,
