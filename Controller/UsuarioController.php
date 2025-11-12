@@ -94,6 +94,12 @@ class UsuarioController
             echo json_encode($retorno);
         }
     }
+
+    function selecionarTodos(){
+        $usuarios = $this->dao->selecionarTodos();
+        header('Content-Type: application/json');
+        echo json_encode($usuarios);
+    }
 }
 
 
@@ -105,5 +111,9 @@ if ($acao == "inserir") {
 }
 else if ($acao == "autenticar") {
     $controller->autenticar();
+}
+elseif ($acao == "selecionarTodos"){
+    $controller->selecionarTodos();
+
 }
 ?>
