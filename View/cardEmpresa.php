@@ -68,8 +68,7 @@ require_once("validaLogin.php"); //
                 <!--
                     Container vazio onde os cards serão inseridos dinamicamente pelo
                     script `js/cardsDados.js`. Mantivemos a renderização via JS para
-                    UX dinâmica. Para suportar usuários sem JS, considere adicionar
-                    um fallback server-side que renderize uma lista básica.
+                    UX dinâmica.
                 -->
             </div>
     </div>
