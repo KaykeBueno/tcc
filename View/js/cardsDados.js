@@ -18,8 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titulo = document.createElement('h5');
         titulo.className = 'card-title';
-        // Prioriza nomeFantasia (empresa), senão nome (usuario)
-        titulo.innerText = item.nomeFantasia || item.nome || '';
+        // Se for um card de treino (portifólio) usamos item.nome (treino)
+        if (item.nome && !item.nomeFantasia) {
+            titulo.innerText = item.nome;
+        } else {
+            // Prioriza nomeFantasia (empresa), senão nome (usuario)
+            titulo.innerText = item.nomeFantasia || item.nome || '';
+        }
         body.appendChild(titulo);
 
         // Campos adicionais dependem do tipo de item
@@ -28,6 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const p = document.createElement('p');
             p.className = 'card-text';
             p.innerText = item.atividadeEconomica;
+            body.appendChild(p);
+        }
+
+        // Se o item tiver descrição (treino), exibe
+        if (item.descricao) {
+            const p = document.createElement('p');
+            p.className = 'card-text';
+            p.innerText = item.descricao;
             body.appendChild(p);
         }
 
@@ -69,9 +82,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Função que carrega itens do backend (empresas ou usuários). Detecta a
     // página atual e chama a API adequada. Se 'meus' for true, adiciona ?meus=1.
     function loadItems(meus = false) {
-        // Detecta se estamos na página de usuários (cardUsuario.php) ou empresas
-        const isUsuarioPage = location.pathname.includes('cardUsuario.php');
-        const apiBase = isUsuarioPage ? 'api/usuarios.php' : 'api/empresas.php';
+        // Detecta página atual: usuários, portifólio ou empresas
+        const path = location.pathname.toLowerCase();
+        const isUsuarioPage = path.includes('cardusuario.php');
+        const isPortifolioPage = path.includes('cardportifolio.php');
+        const apiBase = isUsuarioPage ? 'api/usuarios.php' : (isPortifolioPage ? 'api/portifolios.php' : 'api/empresas.php');
         const url = meus ? apiBase + '?meus=1' : apiBase;
 
         return fetch(url)
@@ -101,16 +116,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Monta um card para cada item do array retornado
-                data.forEach(item => {
-                    const card = criaCard(item);
-                    grid.appendChild(card);
-                });
+                        // Monta um card para cada item do array retornado
+                        data.forEach(item => {
+                            const card = criaCard(item);
+                            grid.appendChild(card);
+                        });
             });
     }
 
-    // Inicial: carrega todos os professores
-    loadItems(false).catch(err => {
+    // Inicial: se estivermos na página de portifólio, carregamos apenas 'meus', senão carregamos todos
+    const initialPath = location.pathname.toLowerCase();
+    const initialIsPortifolio = initialPath.includes('cardportifolio.php');
+    loadItems(initialIsPortifolio).catch(err => {
         console.error('Erro ao carregar dados:', err);
         grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
     });
