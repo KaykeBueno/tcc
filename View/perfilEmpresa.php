@@ -8,7 +8,7 @@
                     <p>Gerencie seus alunos e acompanhe o desempenho de cada um com facilidade.</p>
                 </a>
 
-                <a href="#" class="dashboard-card">
+                <a href="cardPortifolio.php" class="dashboard-card">
                     <img src="../imagens/portifolioIcone.png" alt="Ícone Portfólio">
                     <h5>Portfólio</h5>
                     <p>Organize seus treinos, certificados e materiais em um só lugar.</p>
