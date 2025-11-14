@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema tcc
+-- Schema igym
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema tcc
+-- Schema igym
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `tcc` DEFAULT CHARACTER SET utf8 ;
-USE `tcc` ;
+CREATE SCHEMA IF NOT EXISTS `igym` DEFAULT CHARACTER SET utf8 ;
+USE `igym` ;
 
 -- -----------------------------------------------------
--- Table `tcc`.`admin`
+-- Table `igym`.`admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`admin` (
+CREATE TABLE IF NOT EXISTS `igym`.`admin` (
   `idAdmin` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
@@ -28,9 +28,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`empresa`
+-- Table `igym`.`empresa`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`empresa` (
+CREATE TABLE IF NOT EXISTS `igym`.`empresa` (
   `id_empresa` INT(11) NOT NULL AUTO_INCREMENT,
   `cnpj` VARCHAR(18) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
@@ -41,16 +41,16 @@ CREATE TABLE IF NOT EXISTS `tcc`.`empresa` (
   `porteEmpresarial` VARCHAR(50) NOT NULL,
   `status` BIT(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id_empresa`),
-  UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC))
+  UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`usuario`
+-- Table `igym`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`usuario` (
+CREATE TABLE IF NOT EXISTS `igym`.`usuario` (
   `id_usuario` INT(11) NOT NULL AUTO_INCREMENT,
   `cpf` VARCHAR(14) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
@@ -60,16 +60,16 @@ CREATE TABLE IF NOT EXISTS `tcc`.`usuario` (
   `email` VARCHAR(100) NOT NULL,
   `sexo` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
+  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`avaliações`
+-- Table `igym`.`avaliações`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`avaliações` (
+CREATE TABLE IF NOT EXISTS `igym`.`avaliações` (
   `idAvaliações` INT(11) NOT NULL AUTO_INCREMENT,
   `nota` INT(11) NOT NULL,
   `comentario` VARCHAR(255) NULL DEFAULT NULL,
@@ -77,16 +77,16 @@ CREATE TABLE IF NOT EXISTS `tcc`.`avaliações` (
   `Usuario_id_usuario` INT(11) NOT NULL,
   `Empresa_id_empresa` INT(11) NOT NULL,
   PRIMARY KEY (`idAvaliações`),
-  INDEX `fk_Avaliações_Usuario_idx` (`Usuario_id_usuario` ASC),
-  INDEX `fk_Avaliações_Empresa1_idx` (`Empresa_id_empresa` ASC),
+  INDEX `fk_Avaliações_Usuario_idx` (`Usuario_id_usuario` ASC) ,
+  INDEX `fk_Avaliações_Empresa1_idx` (`Empresa_id_empresa` ASC) ,
   CONSTRAINT `fk_Avaliações_Empresa1`
     FOREIGN KEY (`Empresa_id_empresa`)
-    REFERENCES `tcc`.`empresa` (`id_empresa`)
+    REFERENCES `igym`.`empresa` (`id_empresa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Avaliações_Usuario`
     FOREIGN KEY (`Usuario_id_usuario`)
-    REFERENCES `tcc`.`usuario` (`id_usuario`)
+    REFERENCES `igym`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -94,24 +94,24 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`logacesso`
+-- Table `igym`.`logacesso`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`logacesso` (
+CREATE TABLE IF NOT EXISTS `igym`.`logacesso` (
   `idlogAcesso` INT(11) NOT NULL AUTO_INCREMENT,
   `dataAcesso` DATETIME NOT NULL,
   `Usuario_id_usuario` INT(11) NOT NULL,
   `Empresa_id_empresa` INT(11) NOT NULL,
   PRIMARY KEY (`idlogAcesso`),
-  INDEX `fk_logAcesso_Usuario1_idx` (`Usuario_id_usuario` ASC),
-  INDEX `fk_logAcesso_Empresa1_idx` (`Empresa_id_empresa` ASC),
+  INDEX `fk_logAcesso_Usuario1_idx` (`Usuario_id_usuario` ASC) ,
+  INDEX `fk_logAcesso_Empresa1_idx` (`Empresa_id_empresa` ASC) ,
   CONSTRAINT `fk_logAcesso_Empresa1`
     FOREIGN KEY (`Empresa_id_empresa`)
-    REFERENCES `tcc`.`empresa` (`id_empresa`)
+    REFERENCES `igym`.`empresa` (`id_empresa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_logAcesso_Usuario1`
     FOREIGN KEY (`Usuario_id_usuario`)
-    REFERENCES `tcc`.`usuario` (`id_usuario`)
+    REFERENCES `igym`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -119,9 +119,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`treino`
+-- Table `igym`.`treino`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`treino` (
+CREATE TABLE IF NOT EXISTS `igym`.`treino` (
   `idTreino` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `descricao` TEXT NOT NULL,
@@ -131,23 +131,23 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`ofertaTreino`
+-- Table `igym`.`portifolio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`ofertaTreino` (
-  `idOferta` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `igym`.`portifolio` (
+  `idPortifolio` INT(11) NOT NULL AUTO_INCREMENT,
   `empresa_id_empresa` INT(11) NOT NULL,
   `treino_idTreino` INT(11) NOT NULL,
-  INDEX `fk_empresa_has_treino_treino1_idx` (`treino_idTreino` ASC),
-  INDEX `fk_empresa_has_treino_empresa1_idx` (`empresa_id_empresa` ASC),
-  PRIMARY KEY (`idOferta`),
+  INDEX `fk_empresa_has_treino_treino1_idx` (`treino_idTreino` ASC) ,
+  INDEX `fk_empresa_has_treino_empresa1_idx` (`empresa_id_empresa` ASC) ,
+  PRIMARY KEY (`idPortifolio`),
   CONSTRAINT `fk_empresa_has_treino_empresa1`
     FOREIGN KEY (`empresa_id_empresa`)
-    REFERENCES `tcc`.`empresa` (`id_empresa`)
+    REFERENCES `igym`.`empresa` (`id_empresa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_empresa_has_treino_treino1`
     FOREIGN KEY (`treino_idTreino`)
-    REFERENCES `tcc`.`treino` (`idTreino`)
+    REFERENCES `igym`.`treino` (`idTreino`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -155,22 +155,23 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tcc`.`usuarioTreino`
+-- Table `igym`.`PlanoTreino`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tcc`.`usuarioTreino` (
+CREATE TABLE IF NOT EXISTS `igym`.`PlanoTreino` (
+  `idPlano` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `usuario_id_usuario` INT(11) NOT NULL,
-  `ofertaTreino_idOferta` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`usuario_id_usuario`, `ofertaTreino_idOferta`),
-  INDEX `fk_usuario_has_ofertaTreino_ofertaTreino1_idx` (`ofertaTreino_idOferta` ASC),
-  INDEX `fk_usuario_has_ofertaTreino_usuario1_idx` (`usuario_id_usuario` ASC),
+  `portifolio_idPortifolio` INT(11) NOT NULL,
+  INDEX `fk_usuario_has_ofertaTreino_ofertaTreino1_idx` (`portifolio_idPortifolio` ASC) ,
+  INDEX `fk_usuario_has_ofertaTreino_usuario1_idx` (`usuario_id_usuario` ASC) ,
+  PRIMARY KEY (`idPlano`),
   CONSTRAINT `fk_usuario_has_ofertaTreino_usuario1`
     FOREIGN KEY (`usuario_id_usuario`)
-    REFERENCES `tcc`.`usuario` (`id_usuario`)
+    REFERENCES `igym`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_has_ofertaTreino_ofertaTreino1`
-    FOREIGN KEY (`ofertaTreino_idOferta`)
-    REFERENCES `tcc`.`ofertaTreino` (`idOferta`)
+    FOREIGN KEY (`portifolio_idPortifolio`)
+    REFERENCES `igym`.`portifolio` (`idPortifolio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
