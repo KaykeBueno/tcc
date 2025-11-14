@@ -8,7 +8,7 @@ class BaseDAO
     {
 
     
-        $connection_string = "mysql:host=localhost;dbname=tcc;port=3306";
+        $connection_string = "mysql:host=localhost;dbname=igym;port=3306";
         
 
         $db_user = "root";
@@ -63,6 +63,14 @@ class BaseDAO
         
 
         return $stmt;
+    }
+
+    /**
+     * Retorna o último ID inserido na conexão PDO
+     */
+    public function lastInsertId()
+    {
+        return $this->connection->lastInsertId();
     }
 }
 ?>
