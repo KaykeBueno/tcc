@@ -138,11 +138,12 @@ class EmpresaDAO extends BaseDAO
     public function selecionarPorUsuario($id_usuario)
     {
         // O esquema definido em doc/sql03.sql liga usuario -> usuarioTreino -> ofertaTreino -> empresa
-        $sql = "SELECT DISTINCT e.*
-                FROM empresa e
-                INNER JOIN ofertaTreino ot ON ot.empresa_id_empresa = e.id_empresa
-                INNER JOIN usuarioTreino ut ON ut.ofertaTreino_idOferta = ot.idOferta
-                WHERE ut.usuario_id_usuario = :id_usuario";
+    // Atualizado para novo esquema (sql04.sql): usuario -> PlanoTreino -> portifolio -> empresa
+    $sql = "SELECT DISTINCT e.*
+        FROM empresa e
+        INNER JOIN portifolio p ON p.empresa_id_empresa = e.id_empresa
+        INNER JOIN PlanoTreino pt ON pt.portifolio_idPortifolio = p.idPortifolio
+        WHERE pt.usuario_id_usuario = :id_usuario";
 
         $parametros = array(
             ':id_usuario' => $id_usuario
