@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/petite-vue" defer></script>
+
+    <script src="/tcc/View/js/cadastroPlanoTreino.js" defer></script>
+
+    <title>IGYM - Cadastro de Plano de Treino</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-login">
+
+    <div class="cadastro-container">
+
+        <div class="form-containerCadastro">
+
+            <h1 class="titulo">Cadastrar Plano de Treino</h1>
+
+            <form @submit.prevent="cadastrarPlanoTreino" v-scope="formCadastroPlanoTreino">
+
+                <div class="input-group">
+                    <label for="treinoSelect">Selecione o Treino/Portifólio para vincular ao Plano de Treino:</label>
+                    <select id="treinoSelect" v-model="formData.portifolio_idPortifolio" required>
+                        <option value="">Carregando treinos...</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="descricao">Descrição (opcional):</label>
+                    <input type="text" id="descricao" v-model="formData.descricao" placeholder="Descrição do plano de treino">
+                </div>
+
+                <button type="submit" class="login-button">Cadastrar Plano de Treino</button>
+
+                <p class="signup-link"><a href="perfil.php">Voltar ao perfil</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    // Pequeno log inline para confirmar que a página HTML foi carregada e que o console está visível
+    console.log('cadastroPlanoTreino.html carregado');
+</script>
