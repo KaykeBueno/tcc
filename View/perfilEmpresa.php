@@ -20,7 +20,7 @@
                     <p>Registre avaliações e acompanhe a dos seus alunos.</p>
                 </a>
 
-                <a href="#" class="dashboard-card">
+                <a href="cardContatos.php" class="dashboard-card">
                     <img src="../imagens/chatIcone.png" alt="Ícone Chat">
                     <h5>Chat</h5>
                     <p>Comunique-se com seus professores de forma rápida e prática.</p>
