@@ -9,14 +9,16 @@ class UsuarioDAO extends BaseDAO
 
     public function inserir(Usuario $usuario)
     {
+        // Armazenar senha como hash para segurança
         $sql = "INSERT INTO usuario (cpf, nome, senha, telefone, dataNascimento, email, sexo)
         VALUES (:cpf, :nome, :senha, :telefone, :dataNascimento, :email, :sexo)";
-    
-        
+
+        $senhaHash = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
+
         $parametros = array(
             ":cpf"=> $usuario->getCpf(),
             ":nome" => $usuario->getNome(),
-            ":senha" => $usuario->getSenha(),
+            ":senha" => $senhaHash,
             ":telefone" => $usuario->getTelefone(),
             ":dataNascimento" => $usuario->getDataNascimento(),
             ":email" => $usuario->getEmail(),
@@ -67,29 +69,42 @@ class UsuarioDAO extends BaseDAO
 
     public function autenticar($cpf, $senha)
     {
-        $sql = "SELECT id_usuario, nome, cpf
-                FROM usuario 
-                WHERE cpf = :cpf AND senha = :senha";
+        // Buscar a senha armazenada e validar com password_verify
+        $sql = "SELECT id_usuario, nome, cpf, senha FROM usuario WHERE cpf = :cpf";
 
         $parametros = array(
-            ":cpf" => $cpf,
-            ":senha" => $senha
+            ":cpf" => $cpf
         );
 
         $stmt = $this->executaComParametros($sql, $parametros);
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
         if ($resultado) {
-            $cadastrado = new Usuario(
-                $resultado['id_usuario'],
-                $resultado['cpf'],
-                $resultado['nome']
-            );
-            return $cadastrado;
-        } else {
-            return null;
+            $senhaArmazenada = $resultado['senha'];
+            // Se estiver hashada, usa password_verify
+            if (password_verify($senha, $senhaArmazenada)) {
+                $cadastrado = new Usuario(
+                    $resultado['id_usuario'],
+                    $resultado['cpf'],
+                    $resultado['nome']
+                );
+                return $cadastrado;
+            }
+            // Compatibilidade: se a senha no banco for texto puro, aceita e migra para hash
+            if ($senha === $senhaArmazenada) {
+                // migrar para hash para segurança
+                $novoHash = password_hash($senha, PASSWORD_DEFAULT);
+                // atualizar o registro para usar hash (silencioso)
+                $this->atualizarSenha($resultado['id_usuario'], $novoHash);
+                $cadastrado = new Usuario(
+                    $resultado['id_usuario'],
+                    $resultado['cpf'],
+                    $resultado['nome']
+                );
+                return $cadastrado;
+            }
         }
+        return null;
 }
     public function selecionarTodos(){
         $sql = "SELECT * FROM usuario";
@@ -151,6 +166,60 @@ class UsuarioDAO extends BaseDAO
         }
 
         return $usuarios;
+    }
+
+    /**
+     * Seleciona um usuário pelo ID (inclui a senha para operações seguras).
+     */
+    public function selecionarPorId($id_usuario)
+    {
+        $sql = "SELECT * FROM usuario WHERE id_usuario = :id_usuario";
+        $parametros = array(':id_usuario' => $id_usuario);
+        $stmt = $this->executaComParametros($sql, $parametros);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado) {
+            return new Usuario(
+                $resultado['id_usuario'],
+                $resultado['cpf'],
+                $resultado['nome'],
+                $resultado['email'],
+                $resultado['senha'],
+                $resultado['dataNascimento'],
+                $resultado['sexo'],
+                $resultado['telefone']
+            );
+        }
+        return null;
+    }
+
+    /**
+     * Atualiza a senha do usuário (armazenar hash).
+     */
+    public function atualizarSenha($id_usuario, $senhaHash)
+    {
+        $sql = "UPDATE usuario SET senha = :senha WHERE id_usuario = :id_usuario";
+        $parametros = array(':senha' => $senhaHash, ':id_usuario' => $id_usuario);
+        $this->executaComParametros($sql, $parametros);
+    }
+
+    /**
+     * Atualiza email e telefone do usuário.
+     */
+    public function atualizarContato($id_usuario, $email, $telefone)
+    {
+        $sql = "UPDATE usuario SET email = :email, telefone = :telefone WHERE id_usuario = :id_usuario";
+        $parametros = array(':email' => $email, ':telefone' => $telefone, ':id_usuario' => $id_usuario);
+        $this->executaComParametros($sql, $parametros);
+    }
+
+    /**
+     * Exclui o usuário do banco (remoção física). Se preferir, altere para soft-delete.
+     */
+    public function excluir($id_usuario)
+    {
+        $sql = "DELETE FROM usuario WHERE id_usuario = :id_usuario";
+        $parametros = array(':id_usuario' => $id_usuario);
+        $this->executaComParametros($sql, $parametros);
     }
 }
 ?>
