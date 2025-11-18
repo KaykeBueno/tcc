@@ -19,10 +19,11 @@ class EmpresaDAO extends BaseDAO
 
     public function inserir(Empresa $empresa)
     {
-
+        // Hash da senha antes de armazenar
         $sql = "INSERT INTO Empresa (cnpj, nomeFantasia, telefone, atividadeEconomica, email, senha, porteEmpresarial)
             VALUES (:cnpj, :nomeFantasia, :telefone, :atividadeEconomica, :email, :senha, :porteEmpresarial)";
-        
+
+        $senhaHash = password_hash($empresa->getSenha(), PASSWORD_DEFAULT);
 
         $parametros = array(
             ":cnpj"=> $empresa->getCnpj(),
@@ -30,10 +31,9 @@ class EmpresaDAO extends BaseDAO
             ":telefone" => $empresa ->getTelefone(),
             ":atividadeEconomica" => $empresa->getAtividadeEconomica(),
             ":email" => $empresa->getEmail(),
-            ":senha" => $empresa->getSenha(), 
+            ":senha" => $senhaHash, 
             ":porteEmpresarial" => $empresa->getPorteEmpresarial(),
         );
-
 
         $this->executaComParametros($sql, $parametros);
     }
@@ -78,29 +78,39 @@ class EmpresaDAO extends BaseDAO
 
     public function autenticar($cnpj, $senha)
     {
-        $sql = "SELECT id_empresa, nomeFantasia, cnpj
-                FROM empresa
-                WHERE cnpj = :cnpj AND senha = :senha";
+        // Buscar senha armazenada e validar com password_verify
+        $sql = "SELECT id_empresa, nomeFantasia, cnpj, senha FROM empresa WHERE cnpj = :cnpj";
 
         $parametros = array(
-            ":cnpj" => $cnpj,
-            ":senha" => $senha
+            ":cnpj" => $cnpj
         );
 
         $stmt = $this->executaComParametros($sql, $parametros);
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
         if ($resultado) {
-            $cadastrado = new Empresa(
-                $resultado['id_empresa'],
-                $resultado['cnpj'],
-                $resultado['nomeFantasia']
-            );
-            return $cadastrado;
-        } else {
-            return null;
+            $senhaArmazenada = $resultado['senha'];
+            if (password_verify($senha, $senhaArmazenada)) {
+                $cadastrado = new Empresa(
+                    $resultado['id_empresa'],
+                    $resultado['cnpj'],
+                    $resultado['nomeFantasia']
+                );
+                return $cadastrado;
+            }
+            // Compatibilidade com senha em texto: aceita e migra para hash
+            if ($senha === $senhaArmazenada) {
+                $novoHash = password_hash($senha, PASSWORD_DEFAULT);
+                $this->atualizarSenha($resultado['id_empresa'], $novoHash);
+                $cadastrado = new Empresa(
+                    $resultado['id_empresa'],
+                    $resultado['cnpj'],
+                    $resultado['nomeFantasia']
+                );
+                return $cadastrado;
+            }
         }
+        return null;
     }
 
     public function selecionarTodos(){
@@ -167,6 +177,60 @@ class EmpresaDAO extends BaseDAO
         }
 
         return $empresas;
+    }
+
+    /**
+     * Seleciona empresa pelo ID (inclui a senha para operações seguras).
+     */
+    public function selecionarPorId($id_empresa)
+    {
+        $sql = "SELECT * FROM empresa WHERE id_empresa = :id_empresa";
+        $parametros = array(':id_empresa' => $id_empresa);
+        $stmt = $this->executaComParametros($sql, $parametros);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado) {
+            return new Empresa(
+                $resultado['id_empresa'],
+                $resultado['cnpj'],
+                $resultado['nomeFantasia'],
+                $resultado['telefone'],
+                $resultado['email'],
+                $resultado['senha'],
+                $resultado['atividadeEconomica'],
+                $resultado['porteEmpresarial']
+            );
+        }
+        return null;
+    }
+
+    /**
+     * Atualiza a senha da empresa (armazenar hash).
+     */
+    public function atualizarSenha($id_empresa, $senhaHash)
+    {
+        $sql = "UPDATE empresa SET senha = :senha WHERE id_empresa = :id_empresa";
+        $parametros = array(':senha' => $senhaHash, ':id_empresa' => $id_empresa);
+        $this->executaComParametros($sql, $parametros);
+    }
+
+    /**
+     * Atualiza email e telefone da empresa.
+     */
+    public function atualizarContato($id_empresa, $email, $telefone)
+    {
+        $sql = "UPDATE empresa SET email = :email, telefone = :telefone WHERE id_empresa = :id_empresa";
+        $parametros = array(':email' => $email, ':telefone' => $telefone, ':id_empresa' => $id_empresa);
+        $this->executaComParametros($sql, $parametros);
+    }
+
+    /**
+     * Exclui a empresa do banco (remoção física). Se preferir, altere para soft-delete.
+     */
+    public function excluir($id_empresa)
+    {
+        $sql = "DELETE FROM empresa WHERE id_empresa = :id_empresa";
+        $parametros = array(':id_empresa' => $id_empresa);
+        $this->executaComParametros($sql, $parametros);
     }
 
 }
