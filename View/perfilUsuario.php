@@ -8,7 +8,7 @@
                     <p>Visualize seus professores e acesse informações sobre seus responsáveis pelos treinos.</p>
                 </a>
 
-                <a href="#" class="dashboard-card">
+                <a href="cardPlanoTreino.php" class="dashboard-card">
                     <img src="../imagens/CalendarioTreinoIcone.png" alt="Ícone Treinos">
                     <h5>Treinos</h5>
                     <p>Acompanhe seus treinos e veja os exercícios recomendados para você.</p>
@@ -20,7 +20,7 @@
                     <p>Responda perguntas e receba indicações de esportes ideais para o seu perfil e estilo de vida.</p>
                 </a> --> 
 
-                <a href="#" class="dashboard-card">
+                <a href="cardContatos.php" class="dashboard-card">
                     <img src="../imagens/chatIcone.png" alt="Ícone Chat">
                     <h5>Chat</h5>
                     <p>Comunique-se com seus professores de forma rápida e prática.</p>
