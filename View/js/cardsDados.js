@@ -76,6 +76,51 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         card.appendChild(body);
+
+        // Rodapé do card com ações (ex.: Achar, Chat)
+        const footer = document.createElement('div');
+        footer.className = 'card-footer';
+
+        // Botão Achar: quando o item representa um usuário ou empresa, direciona para a página com o contato específico
+        if (item.id_usuario) {
+            const btnAchar = document.createElement('a');
+            btnAchar.className = 'card-btn';
+            btnAchar.href = '/tcc/View/contatos.php?user_id=' + encodeURIComponent(item.id_usuario);
+            btnAchar.innerText = 'Achar';
+            footer.appendChild(btnAchar);
+        } else if (item.id_empresa) {
+            const btnAchar = document.createElement('a');
+            btnAchar.className = 'card-btn';
+            btnAchar.href = '/tcc/View/contatos.php?empresa_id=' + encodeURIComponent(item.id_empresa);
+            btnAchar.innerText = 'Achar';
+            footer.appendChild(btnAchar);
+        }
+
+        // Se for card de portifólio, adiciona botão para usuário adicionar ao seu plano
+        const pagePath = location.pathname.toLowerCase();
+        const pageIsPortifolio = pagePath.includes('cardportifolio.php');
+        // API de portifólio retorna `idPortifolio` para cada item
+        if (pageIsPortifolio && item.idPortifolio) {
+            const btnAdd = document.createElement('button');
+            btnAdd.className = 'card-btn';
+            btnAdd.type = 'button';
+            btnAdd.innerText = 'Adicionar ao Plano';
+            btnAdd.addEventListener('click', function () {
+                // Redireciona para a tela de cadastro de plano, passando portifolio e treino
+                const portifolioId = item.idPortifolio || item.id_portifolio || item.idPortfólio || null;
+                const treinoId = item.id || item.idTreino || item.treino_idTreino || null;
+                const params = new URLSearchParams();
+                if (portifolioId) params.set('portifolio_id', portifolioId);
+                if (treinoId) params.set('treino_id', treinoId);
+                // caminho absoluto para evitar problemas de rota
+                window.location.href = '/tcc/View/cadastroPlanoTreino.html?' + params.toString();
+            });
+            footer.appendChild(btnAdd);
+        }
+
+        
+
+        card.appendChild(footer);
         return card;
     }
 
@@ -86,7 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const path = location.pathname.toLowerCase();
         const isUsuarioPage = path.includes('cardusuario.php');
         const isPortifolioPage = path.includes('cardportifolio.php');
-        const apiBase = isUsuarioPage ? 'api/usuarios.php' : (isPortifolioPage ? 'api/portifolios.php' : 'api/empresas.php');
+        const isPlanoPage = path.includes('cardplanotreino.php') || path.includes('cardplanotreino.php'.toLowerCase());
+        const apiBase = isUsuarioPage ? 'api/usuarios.php' : (isPortifolioPage ? 'api/portifolios.php' : (isPlanoPage ? 'api/planos.php' : 'api/empresas.php'));
         const url = meus ? apiBase + '?meus=1' : apiBase;
 
         return fetch(url)
@@ -127,7 +173,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicial: se estivermos na página de portifólio, carregamos apenas 'meus', senão carregamos todos
     const initialPath = location.pathname.toLowerCase();
     const initialIsPortifolio = initialPath.includes('cardportifolio.php');
-    loadItems(initialIsPortifolio).catch(err => {
+    const initialIsPlano = initialPath.includes('cardplanotreino.php');
+    // para página de planos queremos carregar apenas 'meus' por padrão
+    loadItems(initialIsPortifolio || initialIsPlano).catch(err => {
         console.error('Erro ao carregar dados:', err);
         grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
     });
@@ -151,6 +199,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error(err);
                 grid.innerHTML = '<p>Erro ao carregar os dados. Veja console para detalhes.</p>';
             });
+        });
+    }
+
+    // Botão 'Adicionar' específico para telas que possuem cadastro (ex: cardPlanoTreino)
+    const btnAdicionar = document.getElementById('btn-adicionar');
+    if (btnAdicionar) {
+        btnAdicionar.addEventListener('click', function () {
+            // redireciona para o formulário de cadastro de plano
+            window.location.href = '/tcc/View/cadastroPlanoTreino.html';
         });
     }
 });
