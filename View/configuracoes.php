@@ -2,6 +2,36 @@
 // Protege a página, exigindo login
 require_once("validaLogin.php"); //
 // O validaLogin.php já inicia a sessão
+// Carregar dados atualizados do banco para exibir nas configurações
+$contatoEmail = null;
+$contatoTelefone = null;
+$dataNascimento = null;
+
+if (isset($_SESSION['id_usuario'])) {
+    require_once(__DIR__ . '/../DAOS/UsuarioDAO.php');
+    $usuarioDao = new UsuarioDAO();
+    $usuario = $usuarioDao->selecionarPorId($_SESSION['id_usuario']);
+    if ($usuario) {
+        $contatoEmail = $usuario->getEmail();
+        $contatoTelefone = $usuario->getTelefone();
+        $dataNascimento = $usuario->getDataNascimento();
+        // opcional: sincronizar na sessão
+        $_SESSION['email'] = $contatoEmail;
+        $_SESSION['telefone'] = $contatoTelefone;
+        $_SESSION['dataNascimento'] = $dataNascimento;
+    }
+} elseif (isset($_SESSION['id_empresa'])) {
+    require_once(__DIR__ . '/../DAOS/EmpresaDAO.php');
+    $empresaDao = new EmpresaDAO();
+    $empresa = $empresaDao->selecionarPorId($_SESSION['id_empresa']);
+    if ($empresa) {
+        $contatoEmail = $empresa->getEmail();
+        $contatoTelefone = $empresa->getTelefone();
+        // empresas não têm dataNascimento
+        $_SESSION['email'] = $contatoEmail;
+        $_SESSION['telefone'] = $contatoTelefone;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,8 +42,9 @@ require_once("validaLogin.php"); //
 
     <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <script src="js/inicial.js" defer></script>
+    <script src="js/configuracoes.js" defer></script>
     <script src="https://unpkg.com/petite-vue" defer init></script>
-    <script src="js/inicial.js" defer></script> <script src="js/configuracoes.js" defer></script>
 </head>
 
 <body class="page-dashboard"> 
@@ -81,6 +112,14 @@ require_once("validaLogin.php"); //
             </header>
             
             <div class="config-container" v-scope="ConfigApp">
+                <script>
+                    // Expor dados mínimos de sessão para o frontend configurar o comportamento
+                    window.APP_SESSION = {
+                        tipoUsuario: <?= isset($_SESSION['tipoUsuario']) ? json_encode($_SESSION['tipoUsuario']) : 'null' ?>,
+                        idUsuario: <?= isset($_SESSION['id_usuario']) ? json_encode($_SESSION['id_usuario']) : 'null' ?>,
+                        idEmpresa: <?= isset($_SESSION['id_empresa']) ? json_encode($_SESSION['id_empresa']) : 'null' ?>
+                    };
+                </script>
                 <h1 class="config-title">CONFIGURAÇÕES</h1>
 
                 <section class="config-section">
@@ -89,14 +128,14 @@ require_once("validaLogin.php"); //
                         <div class="config-row">
                             <label>INFORMAÇÕES DE CONTATO</label>
                             <div class="info-box-group">
-                                <span class="info-box"><?= isset($_SESSION["email"]) ? $_SESSION["email"] : "igym123@gmail.com" ?></span>
-                                <span class="info-box"><?= isset($_SESSION["telefone"]) ? $_SESSION["telefone"] : "+5512345678910" ?></span>
+                                <span class="info-box"><?= $contatoEmail ?? "igym123@gmail.com" ?></span>
+                                <span class="info-box"><?= $contatoTelefone ?? "+5512345678910" ?></span>
                                 <a href="#" @click.prevent="alterarContato" class="config-link-alterar">ALTERAR</a>
                             </div>
                         </div>
                         <div class="config-row">
                             <label>DATA DE NASCIMENTO</label>
-                            <span class="info-text"><?= isset($_SESSION["dataNascimento"]) ? $_SESSION["dataNascimento"] : "01/01/2001" ?></span>
+                            <span class="info-text"><?= $dataNascimento ?? "01/01/2001" ?></span>
                         </div>
                     </div>
                 </section>
