@@ -18,21 +18,12 @@ try {
 
     if ($cnt === 0) {
         $defaults = [
-            ['nome' => 'Bíceps', 'descricao' => 'Treinos focados em desenvolvimento do bíceps e antebraço.'],
-            ['nome' => 'Tríceps', 'descricao' => 'Exercícios para fortalecer tríceps e estabilidade do braço.'],
-            ['nome' => 'Peito', 'descricao' => 'Séries para hipertrofia e força do peitoral.'],
-            ['nome' => 'Costas', 'descricao' => 'Treinos para latíssimos, trapézio e lombar.'],
-            ['nome' => 'Pernas', 'descricao' => 'Agachamentos, leg press e exercícios para quadríceps e posteriores.'],
-            ['nome' => 'Abdômen', 'descricao' => 'Exercícios localizados para core e estabilidade.'],
-            ['nome' => 'Cardio', 'descricao' => 'Sessões aeróbicas para condicionamento e queima de gordura.'],
-            ['nome' => 'Full Body', 'descricao' => 'Treinos compostos que trabalham todo o corpo.'],
-            ['nome' => 'HIIT', 'descricao' => 'Treinos intervalados de alta intensidade.'],
-            ['nome' => 'Alongamento', 'descricao' => 'Rotinas para flexibilidade e recuperação.']
+            'Bíceps', 'Tríceps', 'Peito', 'Costas', 'Pernas', 'Abdômen', 'Cardio', 'Full Body', 'HIIT', 'Alongamento'
         ];
 
-        $insertSql = "INSERT INTO treino (nome, descricao) VALUES (:nome, :descricao)";
-        foreach ($defaults as $d) {
-            $dao->executaComParametros($insertSql, [':nome' => $d['nome'], ':descricao' => $d['descricao']]);
+        $insertSql = "INSERT INTO treino (nome) VALUES (:nome)";
+        foreach ($defaults as $name) {
+            $dao->executaComParametros($insertSql, [':nome' => $name]);
         }
     }
 
