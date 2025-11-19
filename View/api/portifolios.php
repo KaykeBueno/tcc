@@ -23,14 +23,14 @@ try {
             }
             // Retorna os treinos que estão no portifólio desta empresa
             $empresaId = $_SESSION['id_empresa'];
-            $sql = "SELECT p.idPortifolio, t.idTreino AS id, t.nome, t.descricao
+                $sql = "SELECT p.idPortifolio, t.idTreino AS id, t.nome, p.descricao AS descricao
                     FROM portifolio p
                     INNER JOIN treino t ON t.idTreino = p.treino_idTreino
                     WHERE p.empresa_id_empresa = :empresaId";
             $stmt = $base->executaComParametros($sql, [':empresaId' => $empresaId]);
         } else {
             // Lista geral: mantemos informação completa (empresa + treino)
-            $sql = "SELECT p.idPortifolio, t.idTreino AS id, t.nome AS treinoNome, t.descricao, e.nomeFantasia, e.atividadeEconomica, e.telefone, e.email
+                $sql = "SELECT p.idPortifolio, t.idTreino AS id, t.nome AS treinoNome, p.descricao AS descricao, e.nomeFantasia, e.atividadeEconomica, e.telefone, e.email
                     FROM portifolio p
                     INNER JOIN treino t ON t.idTreino = p.treino_idTreino
                     INNER JOIN empresa e ON e.id_empresa = p.empresa_id_empresa";
@@ -60,8 +60,9 @@ try {
 
         $empresaId = $_SESSION['id_empresa'];
         $treinoId = $input['treino_idTreino'];
+        $descricao = isset($input['descricao']) ? $input['descricao'] : '';
 
-        $portifolio = new Portifolio(null, $empresaId, $treinoId);
+        $portifolio = new Portifolio(null, $empresaId, $treinoId, $descricao);
         $dao = new PortifolioDAO();
         $newId = $dao->inserir($portifolio);
 
