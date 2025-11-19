@@ -24,7 +24,7 @@
 
             <h1 class="titulo">Cadastrar Plano de Treino</h1>
 
-            <form @submit.prevent="cadastrarPlanoTreino" v-scope="formCadastroPlanoTreino">
+            <form @submit.prevent="cadastrarPlanoTreino" v-scope="formCadastroPlanoTreino" aria-live="polite">
 
                 <div class="input-group">
                     <label for="treinoSelect">Selecione o Treino/Portifólio para vincular ao Plano de Treino:</label>
@@ -34,11 +34,19 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="descricao">Descrição (opcional):</label>
+                    <label for="descricao">Descrição :</label>
                     <input type="text" id="descricao" v-model="formData.descricao" placeholder="Descrição do plano de treino">
                 </div>
 
-                <button type="submit" class="login-button">Cadastrar Plano de Treino</button>
+                <div class="input-group">
+                    <button type="submit" class="login-button" :disabled="loading">
+                        <span v-if="loading">Enviando...</span>
+                        <span v-else>Cadastrar Plano de Treino</span>
+                    </button>
+                </div>
+
+                <div class="form-message" v-if="mensagens" role="status">{{ mensagens }}</div>
+                <div class="form-success" v-if="successMessage" role="status">{{ successMessage }}</div>
 
                 <p class="signup-link"><a href="perfil.php">Voltar ao perfil</a></p>
             </form>
