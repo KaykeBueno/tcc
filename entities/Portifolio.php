@@ -5,6 +5,7 @@ class Portifolio implements JsonSerializable
     private $idPortifolio;
     private $empresa_id_empresa;
     private $treino_idTreino;
+    private $descricao;
 
     public function jsonSerialize(): mixed
     {
@@ -12,14 +13,15 @@ class Portifolio implements JsonSerializable
             'idPortifolio' => $this->idPortifolio,
             'empresa_id_empresa' => $this->empresa_id_empresa,
             'treino_idTreino' => $this->treino_idTreino,
+            'descricao' => $this->descricao,
         ];
     }
-
-    function __construct($idPortifolio = "", $empresa_id_empresa = "", $treino_idTreino = "")
+    function __construct($idPortifolio = "", $empresa_id_empresa = "", $treino_idTreino = "", $descricao = "")
     {
         $this->idPortifolio = $idPortifolio;
         $this->empresa_id_empresa = $empresa_id_empresa;
         $this->treino_idTreino = $treino_idTreino;
+        $this->descricao = $descricao;
     }
 
     // Getters / Setters
@@ -51,6 +53,16 @@ class Portifolio implements JsonSerializable
     public function setTreino_idTreino($treino_idTreino)
     {
         $this->treino_idTreino = $treino_idTreino;
+    }
+
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
     }
 }
 ?>
