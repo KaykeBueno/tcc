@@ -14,7 +14,12 @@ require_once("validaLogin.php"); //
     <script src="js/util.js"></script>
 <body class="page-dashboard"> <div class="wrapper"> <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a> <button class="hamburger-btn">&#9776;</button> </div>
+                <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            </button>
+            </div>
 
             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="user-profile">
                     <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário"> <div class="user-info">
@@ -45,12 +50,6 @@ require_once("validaLogin.php"); //
             </ul>
 
             
-            <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-            </button>
-
             <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
             </div>

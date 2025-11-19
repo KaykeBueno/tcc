@@ -44,6 +44,7 @@ if (isset($_SESSION['id_usuario'])) {
     
     <script src="js/inicial.js" defer></script>
     <script src="js/configuracoes.js" defer></script>
+    <script src="js/util.js" defer></script>
     <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
 
@@ -52,8 +53,12 @@ if (isset($_SESSION['id_usuario'])) {
         
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a>
-                <button class="hamburger-btn">&#9776;</button>
+                <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            </button>
+
             </div>
 
             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>

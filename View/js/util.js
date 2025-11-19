@@ -1,10 +1,5 @@
 function exibeMenu() {
     const sidebar = document.getElementById("sidebar");
-
-    if (sidebar.classList.contains("closed")) {
-        sidebar.classList.remove("closed");
-    }
-    else {
-        sidebar.classList.add("closed");
-    }
+    // Alterna a classe 'active' para mostrar/esconder a sidebar
+    sidebar.classList.toggle("active");
 }

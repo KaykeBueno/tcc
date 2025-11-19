@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IGYM - Seja Seu Melhor</title>
 
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <script src   ="https://unpkg.com/petite-vue" defer init></script> <script src="js/inicial.js" defer></script> </head>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/petite-vue" defer init></script> 
+    <script src="js/inicial.js" defer></script> 
+    <script src="js/util.js" defer></script> 
+    </head>
+    
 
 <body class="page-landing"> <div class="wrapper">
 
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="inicial.php" class="sidebar-logo"><span>?</span> IGym</a> <button class="hamburger-btn">&#9776;</button> </div>
+                <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            </button>
+        </div>
 
             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="user-profile">
                     <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário"> <div class="user-info">
@@ -47,24 +57,12 @@
                 <?php endif; ?>
             </ul>
 
-        <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-        </button>   
-
              <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
             </div>
             <?php endif; ?>
         </nav>
         <main id="content"> 
-            <header class="navbar"> 
-                <div class="container">
-                    <button class="hamburger-btn-header"><i class="fas fa-bars"></i></button> <a href="inicial.php" class="logo-header-only">IGYM</a><input type="search" class="search-bar" placeholder="Buscar..."> 
-                </div>
-            </header>
-
             <section class="hero"> <div class="hero-content">
                     <h1>SEJA SEU MELHOR</h1> <a class="">COMECE AGORA</a> </div>
             </section>
