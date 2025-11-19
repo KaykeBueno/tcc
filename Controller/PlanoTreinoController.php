@@ -66,6 +66,8 @@ class PlanoTreinoController
         }
 
         $json = file_get_contents('php://input');
+        // log para depuração: registra o payload recebido
+        error_log('PlanoTreinoController::inserir payload: ' . $json);
         $data = json_decode($json, true);
 
         $usuarioId = $data['usuario_id_usuario'] ?? $_SESSION['id_usuario'];
