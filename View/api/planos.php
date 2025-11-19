@@ -20,7 +20,7 @@ try {
             exit;
         }
         $usuarioId = $_SESSION['id_usuario'];
-        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, t.descricao, e.id_empresa, e.nomeFantasia, e.telefone, e.email
+        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, e.id_empresa, e.nomeFantasia, e.telefone, e.email
                 FROM PlanoTreino pt
                 INNER JOIN portifolio p ON pt.portifolio_idPortifolio = p.idPortifolio
                 INNER JOIN treino t ON p.treino_idTreino = t.idTreino
@@ -29,7 +29,7 @@ try {
         $stmt = $base->executaComParametros($sql, [':usuarioId' => $usuarioId]);
     } else if (isset($_GET['usuario_id'])) {
         $usuarioId = intval($_GET['usuario_id']);
-        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, t.descricao, e.id_empresa, e.nomeFantasia, e.telefone, e.email
+        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, e.id_empresa, e.nomeFantasia, e.telefone, e.email
                 FROM PlanoTreino pt
                 INNER JOIN portifolio p ON pt.portifolio_idPortifolio = p.idPortifolio
                 INNER JOIN treino t ON p.treino_idTreino = t.idTreino
@@ -38,7 +38,7 @@ try {
         $stmt = $base->executaComParametros($sql, [':usuarioId' => $usuarioId]);
     } else {
         // lista todos os planos com informação básica
-        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, t.descricao, e.id_empresa, e.nomeFantasia, e.telefone, e.email
+        $sql = "SELECT pt.idPlano, p.idPortifolio, t.idTreino AS idTreino, t.nome AS nome, e.id_empresa, e.nomeFantasia, e.telefone, e.email
                 FROM PlanoTreino pt
                 INNER JOIN portifolio p ON pt.portifolio_idPortifolio = p.idPortifolio
                 INNER JOIN treino t ON p.treino_idTreino = t.idTreino
