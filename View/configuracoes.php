@@ -111,11 +111,6 @@ if (isset($_SESSION['id_usuario'])) {
         
         <main id="content">
             
-            <header class="navbar">
-                <button class="hamburger-btn-header"><i class="fas fa-bars"></i></button>
-                <a href="#" class="logo-header-only">CONFIGURAÇÕES</a>
-            </header>
-            
             <div class="config-container" v-scope="ConfigApp">
                 <script>
                     // Expor dados mínimos de sessão para o frontend configurar o comportamento
@@ -156,7 +151,7 @@ if (isset($_SESSION['id_usuario'])) {
                                 <input type="password" v-model="formData.confirmarNovaSenha" placeholder="Redigite a nova senha" class="config-input">
                             </div>
                             <div class="form-footer">
-                                <a href="#" class="config-link">esqueceu a senha?</a>
+                                <a href="esqueciSenha.php" class="config-link">esqueceu a senha?</a>
                                 <button type="submit" class="config-btn-salvar">ALTERAR SENHA</button>
                             </div>
                         </form>

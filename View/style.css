@@ -34,6 +34,7 @@ body.page-login {
     align-items: center;
     min-height: 100vh;
 }
+
 .page-login .login-container,
 .page-login .cadastro-container {
     background-color: #fff;
@@ -45,12 +46,14 @@ body.page-login {
     max-width: 900px;
     margin: 20px;
 }
+
 .page-login .cadastro-container {
     align-items: stretch;
     justify-content: center;
     flex-direction: column;
     max-width: 600px;
 }
+
 .page-login .image-container {
     background-color: #f0f0f0;
     color: #333;
@@ -65,10 +68,12 @@ body.page-login {
     background-position: center;
     min-height: 400px;
 }
+
 .page-login .image-container img {
     max-width: 80%;
     height: auto;
 }
+
 .page-login .form-container {
     padding: 30px 40px;
     width: 55%;
@@ -76,6 +81,7 @@ body.page-login {
     flex-direction: column;
     justify-content: center;
 }
+
 .page-login .form-containerCadastro {
     padding: 30px 40px;
     width: 100%;
@@ -83,21 +89,25 @@ body.page-login {
     flex-direction: column;
     justify-content: center;
 }
+
 .page-login .form-container h1,
 .page-login .form-containerCadastro h1 {
     color: #333;
     text-align: center;
     margin-bottom: 30px;
 }
+
 .page-login .input-group {
     margin-bottom: 20px;
 }
+
 .page-login .input-group label {
     display: block;
     margin-bottom: 8px;
     color: #555;
     font-weight: bold;
 }
+
 .page-login .input-group input[type="password"],
 .page-login .input-group input[type="text"],
 .page-login .input-group input[type="date"],
@@ -109,6 +119,7 @@ body.page-login {
     font-size: 16px;
     box-sizing: border-box;
 }
+
 .page-login .login-button {
     background-color: #2ecc71;
     color: #fff;
@@ -120,22 +131,27 @@ body.page-login {
     transition: background-color 0.3s ease;
     width: 100%;
 }
+
 .page-login .login-button:hover {
     background-color: #27ae60;
 }
+
 .page-login .signup-link {
     margin-top: 20px;
     text-align: center;
     color: #777;
 }
+
 .page-login .signup-link a {
     color: #3498db;
     text-decoration: none;
     font-weight: bold;
 }
+
 .page-login .signup-link a:hover {
     text-decoration: underline;
 }
+
 .page-login .titulo {
     font-family: "Patua One", serif;
     font-weight: 400;
@@ -177,66 +193,64 @@ body.page-landing {
     height: 100vh;
     transition: margin-left 0.3s ease;
     z-index: 1000;
-    
-    /* ESCONDIDA POR PADRÃO */
+
+    /* ESTADO PADRÃO: FECHADO (Escondido) */
     margin-left: -280px;
     position: fixed;
-    height: 100%;
+    top: 0;
+    left: 0;
 }
 
-/* Aparece quando tem a classe .active */
+/* ESTADO ATIVO: ABERTO (Visível quando tem a classe .active) */
 #sidebar.active {
     margin-left: 0;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-/* --- CORREÇÃO DO LAYOUT INTERNO DA SIDEBAR --- */
+/* Espaço reservado no topo da sidebar para o botão não cobrir o perfil */
 .sidebar-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    /* CORREÇÃO 1: Removemos a borda (a linha que você não queria) */
-    border-bottom: none; 
-    
-    /* CORREÇÃO 2: Altura fixa para empurrar o perfil para baixo */
-    min-height: 80px; 
-}
-
-/* Botão interno (caso exista, escondemos pois usaremos o flutuante) */
-#sidebar .hamburger-btn {
-    display: none; 
+    padding: 0;
+    /* Remove a borda que estava criando a linha */
+    border-bottom: none;
+    /* Altura suficiente para empurrar o perfil para baixo das barrinhas */
+    min-height: 70px;
+    display: block;
+    /* Garante que ocupe espaço */
 }
 
 .user-profile {
     display: flex;
     align-items: center;
     padding: 20px 25px;
-    border-top: 1px solid #333; /* Mantemos a borda do perfil */
+    border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
+
 .user-profile img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 15px;
 }
+
 .user-profile .user-info h6 {
     margin: 0;
     font-weight: 600;
     font-size: 1rem;
     color: var(--cor-texto-claro);
 }
+
 .user-profile .user-info span {
     font-size: 0.85rem;
     color: var(--cor-texto-cinza);
 }
+
 .sidebar-login {
     padding: 20px 25px;
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
+
 .btn-login-sidebar {
     display: block;
     width: 100%;
@@ -249,15 +263,18 @@ body.page-landing {
     font-weight: 600;
     transition: background-color 0.3s ease;
 }
+
 .btn-login-sidebar:hover {
     background-color: #fff;
 }
+
 .sidebar-nav {
     padding: 20px 0;
     flex-grow: 1;
     list-style: none;
     margin: 0;
 }
+
 .sidebar-nav .nav-link {
     font-size: 1.1rem;
     color: var(--cor-texto-cinza);
@@ -267,25 +284,30 @@ body.page-landing {
     text-decoration: none;
     transition: all 0.3s;
 }
+
 .sidebar-nav .nav-link i {
     margin-right: 15px;
     width: 25px;
     text-align: center;
 }
+
 .sidebar-nav .nav-link:hover {
     background-color: #333;
     color: #fff;
 }
+
 .sidebar-nav .nav-link.active {
     color: var(--cor-destaque);
     background-color: #282828;
     border-left: 4px solid var(--cor-destaque);
     padding-left: 21px;
 }
+
 .sidebar-footer {
     padding-bottom: 20px;
     margin-top: auto;
 }
+
 .sidebar-footer .nav-link {
     font-size: 1.1rem;
     color: var(--cor-texto-cinza);
@@ -295,16 +317,27 @@ body.page-landing {
     text-decoration: none;
     transition: all 0.3s;
 }
+
 .sidebar-footer .nav-link:hover {
     background-color: #333;
     color: #fff;
 }
 
+/* CONTEÚDO */
 #content {
     flex-grow: 1;
-    overflow-y: auto;
-    margin-left: 0;
     width: 100%;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    margin-left: 0;
+}
+
+/* Quando a sidebar abre no DESKTOP, empurra o conteúdo */
+@media (min-width: 993px) {
+    #sidebar.active+#content {
+        margin-left: 280px;
+        width: calc(100% - 280px);
+    }
 }
 
 /* =================================================================== */
@@ -312,29 +345,44 @@ body.page-landing {
 /* =================================================================== */
 
 body.page-dashboard {
-     height: 100vh;
-     overflow-y: hidden;
+    height: 100vh;
+    overflow-y: hidden;
 }
+
 .page-dashboard #content {
-    padding: 0; 
+    padding: 0;
     overflow-y: auto;
     height: 100vh;
 }
 
-/* Removemos o header padrão pois usamos o botão flutuante */
 .page-dashboard .navbar {
-    display: none; 
+    background-color: var(--cor-principal);
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
 }
 
-/* Grid do Dashboard */
+.page-dashboard .logo-header-only {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--cor-destaque);
+    text-decoration: none;
+    display: block;
+    margin-left: 60px;
+}
+
 .page-dashboard .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    padding: 40px; 
-    /* Adicionamos margem no topo para não ficar atrás do botão flutuante */
-    padding-top: 80px; 
+    padding: 40px;
+    padding-top: 80px;
 }
+
 .page-dashboard .dashboard-card {
     background-color: #E0E0E0;
     border-radius: 15px;
@@ -344,36 +392,40 @@ body.page-dashboard {
     color: #000000;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .page-dashboard .dashboard-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     color: #000000;
 }
+
 .page-dashboard .dashboard-card img {
     width: 80px;
     height: 80px;
     margin-bottom: 20px;
 }
+
 .page-dashboard .dashboard-card h5 {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 10px;
     color: #000000;
 }
+
 .page-dashboard .dashboard-card p {
     font-size: 0.9rem;
     color: #333333;
     line-height: 1.5;
 }
 
-/* ===== ESTILOS CONFIGURAÇÕES ===== */
+/* CONFIGURAÇÕES */
 .config-container {
     padding: 40px;
     max-width: 1000px;
     margin: 0 auto;
-    /* Adicionamos margem no topo para não ficar atrás do botão flutuante */
     padding-top: 80px;
 }
+
 .config-title {
     font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
@@ -382,6 +434,7 @@ body.page-dashboard {
     margin-bottom: 30px;
     text-transform: uppercase;
 }
+
 .config-subtitle {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
@@ -392,13 +445,22 @@ body.page-dashboard {
     align-items: center;
     gap: 10px;
 }
-.config-subtitle i { font-size: 1.1em; color: var(--cor-texto-claro); }
-.config-section { margin-bottom: 40px; }
+
+.config-subtitle i {
+    font-size: 1.1em;
+    color: var(--cor-texto-claro);
+}
+
+.config-section {
+    margin-bottom: 40px;
+}
+
 .config-card {
     background-color: #2a2a2a;
     border-radius: 12px;
     padding: 30px;
 }
+
 .config-card h3 {
     color: var(--cor-texto-claro);
     font-size: 1rem;
@@ -408,6 +470,7 @@ body.page-dashboard {
     padding-bottom: 10px;
     border-bottom: 1px solid #444;
 }
+
 .config-row {
     display: flex;
     justify-content: space-between;
@@ -415,7 +478,11 @@ body.page-dashboard {
     padding: 20px 0;
     border-bottom: 1px solid #444;
 }
-.config-row:last-child { border-bottom: none; }
+
+.config-row:last-child {
+    border-bottom: none;
+}
+
 .config-row label {
     font-size: 0.9rem;
     color: var(--cor-texto-cinza);
@@ -423,12 +490,14 @@ body.page-dashboard {
     text-transform: uppercase;
     min-width: 180px;
 }
+
 .info-box-group {
     display: flex;
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
+
 .info-box {
     background-color: #444;
     padding: 8px 15px;
@@ -437,6 +506,7 @@ body.page-dashboard {
     color: var(--cor-texto-claro);
     border: 1px solid #555;
 }
+
 .config-link-alterar {
     font-size: 0.9rem;
     font-weight: 700;
@@ -445,17 +515,20 @@ body.page-dashboard {
     text-transform: uppercase;
     padding: 10px 0;
 }
+
 .info-text {
     font-size: 1rem;
     font-weight: 600;
     color: var(--cor-texto-claro);
 }
+
 .form-grid-senha {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     margin-bottom: 20px;
 }
+
 .config-input {
     width: 100%;
     padding: 12px 15px;
@@ -465,19 +538,28 @@ body.page-dashboard {
     color: var(--cor-texto-claro);
     font-size: 0.95rem;
 }
-.config-input::placeholder { color: #888; }
+
+.config-input::placeholder {
+    color: #888;
+}
+
 .form-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
 }
+
 .config-link {
     font-size: 0.9rem;
     color: #5d9cec;
     text-decoration: none;
 }
-.config-link:hover { text-decoration: underline; }
+
+.config-link:hover {
+    text-decoration: underline;
+}
+
 .config-btn-salvar {
     background-color: var(--cor-destaque);
     color: var(--cor-principal);
@@ -488,19 +570,25 @@ body.page-dashboard {
     text-transform: uppercase;
     cursor: pointer;
 }
-.config-btn-salvar:hover { background-color: #fff; }
+
+.config-btn-salvar:hover {
+    background-color: #fff;
+}
+
 .config-section-final {
     margin-top: 40px;
     display: flex;
     gap: 30px;
     padding-left: 5px;
 }
+
 .config-link-sair {
     color: var(--cor-texto-claro);
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
 }
+
 .config-link-excluir {
     color: var(--cor-vermelho);
     font-weight: 700;
@@ -509,7 +597,7 @@ body.page-dashboard {
 }
 
 /* =================================================================== */
-/* === 5. ESTILOS ESPECÍFICOS DA LANDING PAGE === */
+/* === 5. LANDING PAGE === */
 /* =================================================================== */
 
 .page-landing .container {
@@ -517,10 +605,78 @@ body.page-dashboard {
     max-width: 1200px;
     margin: 0 auto;
 }
-.page-landing section { padding: 60px 0; }
-.page-landing h1, .page-landing h2, .page-landing h3 { color: var(--cor-texto-claro); }
-.page-landing h2 { font-size: 2.2rem; color: var(--cor-destaque); text-transform: uppercase; margin-bottom: 20px; }
-.page-landing section p { color: var(--cor-texto-cinza); line-height: 1.6; }
+
+.page-landing section {
+    padding: 60px 0;
+}
+
+.page-landing h1,
+.page-landing h2,
+.page-landing h3 {
+    color: var(--cor-texto-claro);
+}
+
+.page-landing h2 {
+    font-size: 2.2rem;
+    color: var(--cor-destaque);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* ESTILOS NOVOS DA BARRA DE PESQUISA DA INICIAL */
+.landing-header {
+    background-color: var(--cor-principal);
+    /* Fundo preto igual ao site */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    /* Se quiser que a barra fique fixa ao rolar, descomente as linhas abaixo: */
+    /* position: sticky; top: 0; z-index: 900; */
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    /* Largura máxima da barra */
+}
+
+.landing-search-bar {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    /* Espaço à esquerda para o ícone */
+    border-radius: 30px;
+    /* Borda bem arredondada */
+    border: 1px solid #333;
+    background-color: var(--cor-secundaria);
+    /* Fundo cinza */
+    color: var(--cor-texto-claro);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.landing-search-bar:focus {
+    border-color: var(--cor-destaque);
+    /* Borda verde ao clicar */
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cor-texto-cinza);
+    font-size: 1.1rem;
+}
+
+.page-landing section p {
+    color: var(--cor-texto-cinza);
+    line-height: 1.6;
+}
+
 .page-landing .navbar {
     background-color: var(--cor-principal);
     padding: 15px 0;
@@ -529,20 +685,22 @@ body.page-dashboard {
     top: 0;
     z-index: 999;
 }
+
 .page-landing .navbar .container {
     display: flex;
     align-items: center;
-    /* Adicionado padding-left para não colar no botão flutuante */
-    padding-left: 60px; 
+    padding-left: 60px;
 }
+
 .page-landing .logo-header-only {
-     font-size: 1.8rem;
-     font-weight: 800;
-     color: var(--cor-destaque);
-     text-decoration: none;
-     display: block; 
-     margin-right: auto;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--cor-destaque);
+    text-decoration: none;
+    display: block;
+    margin-right: auto;
 }
+
 .page-landing .search-bar {
     width: 40%;
     max-width: 400px;
@@ -554,42 +712,203 @@ body.page-dashboard {
     font-size: 0.9rem;
     margin-left: auto;
 }
+
 .page-landing .hero {
     min-height: calc(100vh - var(--navbar-height));
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../imagens/pessoasTreinando.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../imagens/pessoasTreinando.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 40px 0;
 }
-.page-landing .hero-content h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; color: var(--cor-texto-claro); margin-bottom: 30px; }
-.page-landing .btn-primary { background-color: var(--cor-destaque); color: var(--cor-principal); padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: background-color 0.3s ease; }
-.page-landing .btn-primary:hover { background-color: #fff; }
-.page-landing .sobre { background-color: var(--cor-principal); }
-.page-landing .container-grid { width: 90%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.page-landing .sobre-texto p { margin-bottom: 20px; font-size: 1rem; color: var(--cor-texto-cinza); }
-.page-landing .link-mais { color: var(--cor-destaque); text-decoration: none; font-weight: 600; }
-.page-landing .sobre-imagens { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.page-landing .sobre-imagens img { width: 100%; border-radius: 8px; display: block; }
-.page-landing .oferta { background-color: var(--cor-secundaria); text-align: center; }
-.page-landing .oferta .subtitulo { color: var(--cor-texto-cinza); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-.page-landing .oferta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.page-landing .oferta-card { height: 250px; border-radius: 8px; background-size: cover; background-position: center; display: flex; justify-content: center; align-items: flex-end; padding: 20px; color: var(--cor-texto-claro); text-decoration: none; position: relative; overflow: hidden; }
-.page-landing .oferta-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1; }
-.page-landing .oferta-card h3 { font-size: 1.5rem; z-index: 2; color: var(--cor-texto-claro); }
-.page-landing .depoimentos { background-color: var(--cor-principal); text-align: center; }
-.page-landing .depoimentos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left; }
-.page-landing .depoimento-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px 8px 0 0; display: block; }
-.page-landing .depoimento-texto { background-color: var(--cor-destaque); color: var(--cor-principal); padding: 25px; border-radius: 0 0 8px 8px; }
-.page-landing .depoimento-texto p { color: var(--cor-principal); font-weight: 500; margin-bottom: 15px; }
-.page-landing .depoimento-texto span { font-weight: 700; color: var(--cor-principal); }
-.page-landing .contato-cta { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../imagens/pessoasTreinando.png') no-repeat center center/cover; padding: 80px 0; text-align: center; }
-.page-landing .contato-cta h2 { font-size: 2.5rem; color: var(--cor-texto-claro); }
-.page-landing .rodape { background-color: var(--cor-destaque); padding: 30px 0; color: var(--cor-principal); }
-.page-landing .container-grid-footer { width: 90%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.page-landing .rodape-info strong { display: block; font-size: 1.1rem; margin-bottom: 8px; color: var(--cor-principal); }
-.page-landing .rodape-info span { color: #333; }
+
+.page-landing .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--cor-texto-claro);
+    margin-bottom: 30px;
+}
+
+.page-landing .btn-primary {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.page-landing .btn-primary:hover {
+    background-color: #fff;
+}
+
+.page-landing .sobre {
+    background-color: var(--cor-principal);
+}
+
+.page-landing .container-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.page-landing .sobre-texto p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: var(--cor-texto-cinza);
+}
+
+.page-landing .link-mais {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-landing .sobre-imagens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.page-landing .sobre-imagens img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+.page-landing .oferta {
+    background-color: var(--cor-secundaria);
+    text-align: center;
+}
+
+.page-landing .oferta .subtitulo {
+    color: var(--cor-texto-cinza);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-landing .oferta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.page-landing .oferta-card {
+    height: 250px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-landing .oferta-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 1;
+}
+
+.page-landing .oferta-card h3 {
+    font-size: 1.5rem;
+    z-index: 2;
+    color: var(--cor-texto-claro);
+}
+
+.page-landing .depoimentos {
+    background-color: var(--cor-principal);
+    text-align: center;
+}
+
+.page-landing .depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.page-landing .depoimento-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+.page-landing .depoimento-texto {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    padding: 25px;
+    border-radius: 0 0 8px 8px;
+}
+
+.page-landing .depoimento-texto p {
+    color: var(--cor-principal);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.page-landing .depoimento-texto span {
+    font-weight: 700;
+    color: var(--cor-principal);
+}
+
+.page-landing .contato-cta {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imagens/pessoasTreinando.png') no-repeat center center/cover;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.page-landing .contato-cta h2 {
+    font-size: 2.5rem;
+    color: var(--cor-texto-claro);
+}
+
+.page-landing .rodape {
+    background-color: var(--cor-destaque);
+    padding: 30px 0;
+    color: var(--cor-principal);
+}
+
+.page-landing .container-grid-footer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.page-landing .rodape-info strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--cor-principal);
+}
+
+.page-landing .rodape-info span {
+    color: #333;
+}
 
 
 /* =================================================================== */
@@ -597,61 +916,215 @@ body.page-dashboard {
 /* =================================================================== */
 
 @media (max-width: 992px) {
-    .page-landing .logo-header-only { display: block; }
-    #content { padding: 0; }
+    .page-landing .logo-header-only {
+        display: block;
+    }
 
-    .page-landing .container-grid { grid-template-columns: 1fr; }
-    .page-landing .sobre-texto { order: 2; }
-    .page-landing .sobre-imagens { order: 1; }
-    .page-landing .oferta-grid, .page-landing .depoimentos-grid { grid-template-columns: 1fr 1fr; }
-    .page-landing .navbar .container { flex-wrap: wrap; justify-content: space-between; padding-left: 0; /* Remove recuo no mobile */ }
-    .page-landing .search-bar { width: 100%; margin-top: 10px; order: 3; }
-    /* Botão do header aparece no mobile (opcional se usar o flutuante) */
-    .page-landing .hamburger-btn-header { display: none; } 
+    #content {
+        padding: 0;
+        width: 100%;
+        margin-left: 0;
+    }
 
-    .page-dashboard #content { padding: 0; }
-    .page-dashboard .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 20px; }
-    
-    .config-container { padding: 20px; }
-    .config-row { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .info-box-group { flex-wrap: wrap; }
-    .form-grid-senha { grid-template-columns: 1fr; }
+    /* Sidebar Overlay no Mobile */
+    #sidebar.active+#content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .page-landing .container-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-landing .sobre-texto {
+        order: 2;
+    }
+
+    .page-landing .sobre-imagens {
+        order: 1;
+    }
+
+    .page-landing .oferta-grid,
+    .page-landing .depoimentos-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .page-landing .navbar .container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-left: 0;
+    }
+
+    .page-landing .search-bar {
+        width: 100%;
+        margin-top: 10px;
+        order: 3;
+    }
+
+    .page-dashboard .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 20px;
+    }
+
+    .config-container {
+        padding: 20px;
+    }
+
+    .config-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .info-box-group {
+        flex-wrap: wrap;
+    }
+
+    .form-grid-senha {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
-    .page-login .login-container, .page-login .cadastro-container { flex-direction: column; width: 95%; margin: 10px; }
-    .page-login .image-container { width: 100%; padding: 20px; text-align: center; min-height: 150px; }
-    .page-login .form-container, .page-login .form-containerCadastro { width: 100%; padding: 20px; }
-    .page-login .titulo { font-size: 30px; }
-    
-    .page-landing .navbar { padding: 10px 0; }
-    .page-landing .search-bar { font-size: 0.85rem; }
-    .page-landing .logo-header-only { order: 1; font-size: 1.5rem; }
-    
-    .page-landing .hero-content h1 { font-size: 2.2rem; }
-    .page-landing .btn-primary { padding: 10px 20px; font-size: 0.9rem; }
-    .page-landing h2 { font-size: 1.8rem; }
-    .page-landing .oferta-grid, .page-landing .depoimentos-grid, .page-landing .container-grid-footer { grid-template-columns: 1fr; }
-    .page-landing .sobre-imagens { grid-template-columns: 1fr; }
-    .page-landing section { padding: 40px 0; }
-    .page-landing .rodape { padding: 20px 0; }
-    .page-landing .container-grid-footer { gap: 15px; }
-    .page-landing .rodape-info strong { font-size: 1rem; }
-    .page-landing .rodape-info span { font-size: 0.9rem; }
 
-    .page-dashboard .dashboard-grid { grid-template-columns: 1fr; padding: 15px; }
-    
-    .config-container { padding: 15px; }
-    .config-title { font-size: 2rem; text-align: center; }
-    .config-subtitle { font-size: 1.2rem; }
-    .config-card { padding: 20px; }
-    .form-footer { flex-direction: column; align-items: stretch; gap: 15px; }
-    .config-btn-salvar { text-align: center; }
-    .config-link { text-align: center; }
-    .config-section-final { flex-direction: column; gap: 15px; align-items: stretch; padding: 0; }
-    .config-link-sair, .config-link-excluir { text-align: center; padding: 10px; border-radius: 6px; }
-    .config-link-sair { background-color: #444; }
-    .config-link-excluir { background-color: var(--cor-vermelho); color: var(--cor-texto-claro); }
+    .page-login .login-container,
+    .page-login .cadastro-container {
+        flex-direction: column;
+        width: 95%;
+        margin: 10px;
+    }
+
+    .page-login .image-container {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        min-height: 150px;
+    }
+
+    .page-login .form-container,
+    .page-login .form-containerCadastro {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .page-login .titulo {
+        font-size: 30px;
+    }
+
+    .page-landing .navbar {
+        padding: 10px 0;
+    }
+
+    .page-landing .search-bar {
+        font-size: 0.85rem;
+    }
+
+    .page-landing .logo-header-only {
+        order: 1;
+        font-size: 1.5rem;
+    }
+
+    .page-landing .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .page-landing .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .page-landing h2 {
+        font-size: 1.8rem;
+    }
+
+    .page-landing .oferta-grid,
+    .page-landing .depoimentos-grid,
+    .page-landing .container-grid-footer {
+        grid-template-columns: 1fr;
+    }
+
+    .page-landing .sobre-imagens {
+        grid-template-columns: 1fr;
+    }
+
+    .page-landing section {
+        padding: 40px 0;
+    }
+
+    .page-landing .rodape {
+        padding: 20px 0;
+    }
+
+    .page-landing .container-grid-footer {
+        gap: 15px;
+    }
+
+    .page-landing .rodape-info strong {
+        font-size: 1rem;
+    }
+
+    .page-landing .rodape-info span {
+        font-size: 0.9rem;
+    }
+
+    .page-dashboard .dashboard-grid {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .config-container {
+        padding: 15px;
+    }
+
+    .config-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .config-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .config-card {
+        padding: 20px;
+    }
+
+    .form-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .config-btn-salvar {
+        text-align: center;
+    }
+
+    .config-link {
+        text-align: center;
+    }
+
+    .config-section-final {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+        padding: 0;
+    }
+
+    .config-link-sair,
+    .config-link-excluir {
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    .config-link-sair {
+        background-color: #444;
+    }
+
+    .config-link-excluir {
+        background-color: var(--cor-vermelho);
+        color: var(--cor-texto-claro);
+    }
 }
 
 /* ===== BOTÃO HAMBURGUER FLUTUANTE (CORRIGIDO) ===== */
@@ -659,25 +1132,23 @@ body.page-dashboard {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 2000; /* Z-index alto para ficar sobre tudo */
-    
-    /* CORREÇÃO: Fundo TRANSPARENTE como você pediu */
-    background-color: transparent;
+    z-index: 2000;
+    /* Fundo OPACO para esconder linhas que passam por baixo */
+    background-color: var(--cor-principal);
     border: none;
     cursor: pointer;
     padding: 10px;
-    
     display: flex;
     flex-direction: column;
     gap: 5px;
+    /* Borda arredondada para ficar bonito */
+    border-radius: 4px;
 }
 
-/* As 3 barrinhas */
 .menu-hamburguer-flutuante span {
     display: block;
     width: 30px;
     height: 4px;
-    /* Cor cinza clara para destacar no fundo escuro */
     background-color: #999;
     border-radius: 2px;
     transition: all 0.3s ease;

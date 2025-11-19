@@ -39,7 +39,6 @@ require_once('validaLogin.php');
 
         <main id="content">
             <header class="navbar">
-                <a href="perfil.php">&larr; Voltar</a>
                 <h2 style="display:inline-block;margin-left:20px;">Contatos</h2>
             </header>
 
