@@ -12,12 +12,13 @@ class PortifolioDAO extends BaseDAO
 {
     public function inserir(Portifolio $portifolio)
     {
-        $sql = "INSERT INTO portifolio (empresa_id_empresa, treino_idTreino)
-                VALUES (:empresa_id_empresa, :treino_idTreino)";
+        $sql = "INSERT INTO portifolio (empresa_id_empresa, treino_idTreino, descricao)
+                VALUES (:empresa_id_empresa, :treino_idTreino, :descricao)";
 
         $parametros = array(
             ":empresa_id_empresa" => $portifolio->getEmpresa_id_empresa(),
             ":treino_idTreino" => $portifolio->getTreino_idTreino(),
+            ":descricao" => $portifolio->getDescricao(),
         );
 
         $this->executaComParametros($sql, $parametros);
@@ -37,7 +38,8 @@ class PortifolioDAO extends BaseDAO
             return new Portifolio(
                 $resultado['idPortifolio'],
                 $resultado['empresa_id_empresa'],
-                $resultado['treino_idTreino']
+                $resultado['treino_idTreino'],
+                $resultado['descricao'] ?? ''
             );
         }
 
@@ -56,7 +58,8 @@ class PortifolioDAO extends BaseDAO
             $lista[] = new Portifolio(
                 $r['idPortifolio'],
                 $r['empresa_id_empresa'],
-                $r['treino_idTreino']
+                $r['treino_idTreino'],
+                $r['descricao'] ?? ''
             );
         }
 
@@ -74,7 +77,8 @@ class PortifolioDAO extends BaseDAO
             $lista[] = new Portifolio(
                 $r['idPortifolio'],
                 $r['empresa_id_empresa'],
-                $r['treino_idTreino']
+                $r['treino_idTreino'],
+                $r['descricao'] ?? ''
             );
         }
 
