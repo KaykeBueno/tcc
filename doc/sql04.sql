@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `igym`.`empresa` (
   `porteEmpresarial` VARCHAR(50) NOT NULL,
   `status` BIT(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id_empresa`),
-  UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC) )
+  UNIQUE INDEX `cnpj_UNIQUE` (`cnpj` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `igym`.`usuario` (
   `email` VARCHAR(100) NOT NULL,
   `sexo` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) )
+  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `igym`.`avaliações` (
   `Usuario_id_usuario` INT(11) NOT NULL,
   `Empresa_id_empresa` INT(11) NOT NULL,
   PRIMARY KEY (`idAvaliações`),
-  INDEX `fk_Avaliações_Usuario_idx` (`Usuario_id_usuario` ASC) ,
-  INDEX `fk_Avaliações_Empresa1_idx` (`Empresa_id_empresa` ASC) ,
+  INDEX `fk_Avaliações_Usuario_idx` (`Usuario_id_usuario` ASC),
+  INDEX `fk_Avaliações_Empresa1_idx` (`Empresa_id_empresa` ASC),
   CONSTRAINT `fk_Avaliações_Empresa1`
     FOREIGN KEY (`Empresa_id_empresa`)
     REFERENCES `igym`.`empresa` (`id_empresa`)
@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `igym`.`logacesso` (
   `Usuario_id_usuario` INT(11) NOT NULL,
   `Empresa_id_empresa` INT(11) NOT NULL,
   PRIMARY KEY (`idlogAcesso`),
-  INDEX `fk_logAcesso_Usuario1_idx` (`Usuario_id_usuario` ASC) ,
-  INDEX `fk_logAcesso_Empresa1_idx` (`Empresa_id_empresa` ASC) ,
+  INDEX `fk_logAcesso_Usuario1_idx` (`Usuario_id_usuario` ASC),
+  INDEX `fk_logAcesso_Empresa1_idx` (`Empresa_id_empresa` ASC),
   CONSTRAINT `fk_logAcesso_Empresa1`
     FOREIGN KEY (`Empresa_id_empresa`)
     REFERENCES `igym`.`empresa` (`id_empresa`)
@@ -124,7 +124,6 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `igym`.`treino` (
   `idTreino` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
-  `descricao` TEXT NOT NULL,
   PRIMARY KEY (`idTreino`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -137,8 +136,9 @@ CREATE TABLE IF NOT EXISTS `igym`.`portifolio` (
   `idPortifolio` INT(11) NOT NULL AUTO_INCREMENT,
   `empresa_id_empresa` INT(11) NOT NULL,
   `treino_idTreino` INT(11) NOT NULL,
-  INDEX `fk_empresa_has_treino_treino1_idx` (`treino_idTreino` ASC) ,
-  INDEX `fk_empresa_has_treino_empresa1_idx` (`empresa_id_empresa` ASC) ,
+  `descricao` VARCHAR(45) NOT NULL,
+  INDEX `fk_empresa_has_treino_treino1_idx` (`treino_idTreino` ASC),
+  INDEX `fk_empresa_has_treino_empresa1_idx` (`empresa_id_empresa` ASC),
   PRIMARY KEY (`idPortifolio`),
   CONSTRAINT `fk_empresa_has_treino_empresa1`
     FOREIGN KEY (`empresa_id_empresa`)
@@ -161,8 +161,8 @@ CREATE TABLE IF NOT EXISTS `igym`.`PlanoTreino` (
   `idPlano` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `usuario_id_usuario` INT(11) NOT NULL,
   `portifolio_idPortifolio` INT(11) NOT NULL,
-  INDEX `fk_usuario_has_ofertaTreino_ofertaTreino1_idx` (`portifolio_idPortifolio` ASC) ,
-  INDEX `fk_usuario_has_ofertaTreino_usuario1_idx` (`usuario_id_usuario` ASC) ,
+  INDEX `fk_usuario_has_ofertaTreino_ofertaTreino1_idx` (`portifolio_idPortifolio` ASC),
+  INDEX `fk_usuario_has_ofertaTreino_usuario1_idx` (`usuario_id_usuario` ASC),
   PRIMARY KEY (`idPlano`),
   CONSTRAINT `fk_usuario_has_ofertaTreino_usuario1`
     FOREIGN KEY (`usuario_id_usuario`)
