@@ -94,12 +94,12 @@ class Usuario implements JsonSerializable
         $this->dataNascimento = $dataNascimento;
     }
 
-    public function getcpf()
+    public function getCpf()
     {
         return $this->cpf;
     }
 
-    public function setcpf($cpf)
+    public function setCpf($cpf)
     {
         $this->cpf = $cpf;
     }
