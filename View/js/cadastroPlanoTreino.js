@@ -85,10 +85,19 @@ window.formCadastroPlanoTreino = {
                 body: JSON.stringify(payload)
             });
 
-            const data = await resp.json().catch(() => ({}));
+            // tenta ler JSON; se não for JSON, pega o texto cru para melhor depuração
+            let respText = '';
+            let data = {};
+            try {
+                data = await resp.json();
+            } catch (e) {
+                respText = await resp.text().catch(() => '');
+            }
+
             if (!resp.ok) {
-                const msg = data && (data.error || data.mensagem) ? (data.error || data.mensagem) : 'Erro ao criar plano';
-                alert(msg);
+                const msg = (data && (data.error || data.mensagem)) ? (data.error || data.mensagem) : (respText || ('Erro ao criar plano, status ' + resp.status));
+                alert('Erro ao criar plano: ' + msg);
+                console.error('Resposta do servidor:', resp.status, respText || data);
                 return;
             }
 
