@@ -16,14 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const body = document.createElement('div');
         body.className = 'card-body';
 
+        const pagePath = location.pathname.toLowerCase();
+        const pageIsPlano = pagePath.includes('cardplanotreino.php');
+
         const titulo = document.createElement('h5');
         titulo.className = 'card-title';
-        // Se for um card de treino (portifólio) usamos item.nome (treino)
-        if (item.nome && !item.nomeFantasia) {
-            titulo.innerText = item.nome;
+        // Se estivermos na página de planos, o título deve ser o nome do treino
+        if (pageIsPlano) {
+            titulo.innerText = item.nome || '';
         } else {
-            // Prioriza nomeFantasia (empresa), senão nome (usuario)
-            titulo.innerText = item.nomeFantasia || item.nome || '';
+            // Se for um card de treino (portifólio) usamos item.nome (treino)
+            if (item.nome && !item.nomeFantasia) {
+                titulo.innerText = item.nome;
+            } else {
+                // Prioriza nomeFantasia (empresa), senão nome (usuario)
+                titulo.innerText = item.nomeFantasia || item.nome || '';
+            }
         }
         body.appendChild(titulo);
 
@@ -36,12 +44,28 @@ document.addEventListener('DOMContentLoaded', function () {
             body.appendChild(p);
         }
 
-        // Se o item tiver descrição (treino), exibe
-        if (item.descricao) {
-            const p = document.createElement('p');
-            p.className = 'card-text';
-            p.innerText = item.descricao;
-            body.appendChild(p);
+        // Se estivermos na página de planos, mostre quem oferece (professor/empresa) e a descrição
+        if (pageIsPlano) {
+            if (item.nomeFantasia) {
+                const pProf = document.createElement('p');
+                pProf.className = 'card-text';
+                pProf.innerHTML = '<strong>Professor:</strong> ' + item.nomeFantasia;
+                body.appendChild(pProf);
+            }
+            if (item.descricao) {
+                const p = document.createElement('p');
+                p.className = 'card-text';
+                p.innerText = item.descricao;
+                body.appendChild(p);
+            }
+        } else {
+            // Se o item tiver descrição (treino/empresa), exibe
+            if (item.descricao) {
+                const p = document.createElement('p');
+                p.className = 'card-text';
+                p.innerText = item.descricao;
+                body.appendChild(p);
+            }
         }
 
         // Telefone
@@ -80,45 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Rodapé do card com ações (ex.: Achar, Chat)
         const footer = document.createElement('div');
         footer.className = 'card-footer';
-
-        // Botão Achar: quando o item representa um usuário ou empresa, direciona para a página com o contato específico
-        if (item.id_usuario) {
-            const btnAchar = document.createElement('a');
-            btnAchar.className = 'card-btn';
-            btnAchar.href = '/tcc/View/contatos.php?user_id=' + encodeURIComponent(item.id_usuario);
-            btnAchar.innerText = 'Achar';
-            footer.appendChild(btnAchar);
-        } else if (item.id_empresa) {
-            const btnAchar = document.createElement('a');
-            btnAchar.className = 'card-btn';
-            btnAchar.href = '/tcc/View/contatos.php?empresa_id=' + encodeURIComponent(item.id_empresa);
-            btnAchar.innerText = 'Achar';
-            footer.appendChild(btnAchar);
-        }
-
-        // Se for card de portifólio, adiciona botão para usuário adicionar ao seu plano
-        const pagePath = location.pathname.toLowerCase();
-        const pageIsPortifolio = pagePath.includes('cardportifolio.php');
-        // API de portifólio retorna `idPortifolio` para cada item
-        if (pageIsPortifolio && item.idPortifolio) {
-            const btnAdd = document.createElement('button');
-            btnAdd.className = 'card-btn';
-            btnAdd.type = 'button';
-            btnAdd.innerText = 'Adicionar ao Plano';
-            btnAdd.addEventListener('click', function () {
-                // Redireciona para a tela de cadastro de plano, passando portifolio e treino
-                const portifolioId = item.idPortifolio || item.id_portifolio || item.idPortfólio || null;
-                const treinoId = item.id || item.idTreino || item.treino_idTreino || null;
-                const params = new URLSearchParams();
-                if (portifolioId) params.set('portifolio_id', portifolioId);
-                if (treinoId) params.set('treino_id', treinoId);
-                // caminho absoluto para evitar problemas de rota
-                window.location.href = '/tcc/View/cadastroPlanoTreino.html?' + params.toString();
-            });
-            footer.appendChild(btnAdd);
-        }
-
-        
 
         card.appendChild(footer);
         return card;
