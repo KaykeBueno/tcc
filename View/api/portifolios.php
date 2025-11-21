@@ -45,16 +45,24 @@ try {
 
     // Caso contrário (POST), criamos um novo portifólio
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Verificação básica de sessão
         if (!isset($_SESSION['id_empresa'])) {
             http_response_code(401);
-            echo json_encode(['error' => 'Empresa não autenticada'], JSON_UNESCAPED_UNICODE);
+            $resp = ['error' => 'Empresa não autenticada', 'session' => $_SESSION];
+            // grava log temporário para diagnóstico
+            @file_put_contents(__DIR__ . '/../../debug_portifolio.log', date('c') . " - 401 no POST - " . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+            echo json_encode($resp, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
-        $input = json_decode(file_get_contents('php://input'), true);
+        $inputRaw = file_get_contents('php://input');
+        $input = json_decode($inputRaw, true);
+
         if (!$input || !isset($input['treino_idTreino'])) {
             http_response_code(400);
-            echo json_encode(['error' => 'treino_idTreino é obrigatório'], JSON_UNESCAPED_UNICODE);
+            $resp = ['error' => 'treino_idTreino é obrigatório', 'payload_raw' => $inputRaw, 'payload' => $input, 'session' => $_SESSION];
+            @file_put_contents(__DIR__ . '/../../debug_portifolio.log', date('c') . " - 400 payload inválido - " . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+            echo json_encode($resp, JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -62,12 +70,22 @@ try {
         $treinoId = $input['treino_idTreino'];
         $descricao = isset($input['descricao']) ? $input['descricao'] : '';
 
-        $portifolio = new Portifolio(null, $empresaId, $treinoId, $descricao);
-        $dao = new PortifolioDAO();
-        $newId = $dao->inserir($portifolio);
+        try {
+            $portifolio = new Portifolio(null, $empresaId, $treinoId, $descricao);
+            $dao = new PortifolioDAO();
+            $newId = $dao->inserir($portifolio);
 
-        echo json_encode(['success' => true, 'id' => $newId], JSON_UNESCAPED_UNICODE);
-        exit;
+            $resp = ['success' => true, 'id' => $newId, 'session' => $_SESSION, 'payload' => $input];
+            @file_put_contents(__DIR__ . '/../../debug_portifolio.log', date('c') . " - INSERT OK - " . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+            echo json_encode($resp, JSON_UNESCAPED_UNICODE);
+            exit;
+        } catch (Throwable $e) {
+            http_response_code(500);
+            $resp = ['error' => 'Erro ao inserir portifolio', 'message' => $e->getMessage(), 'session' => $_SESSION, 'payload' => $input];
+            @file_put_contents(__DIR__ . '/../../debug_portifolio.log', date('c') . " - INSERT ERROR - " . json_encode($resp, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+            echo json_encode($resp, JSON_UNESCAPED_UNICODE);
+            exit;
+        }
     }
 } catch (Throwable $e) {
     http_response_code(500);
