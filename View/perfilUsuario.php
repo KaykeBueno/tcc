@@ -14,22 +14,12 @@
                     <p>Acompanhe seus treinos e veja os exercícios recomendados para você.</p>
                 </a>
 
-               <!-- <a href="#" class="dashboard-card">
-                    <img src="../imagens/quizIcone.png" alt="Ícone Quiz">
-                    <h5>Quiz</h5>
-                    <p>Responda perguntas e receba indicações de esportes ideais para o seu perfil e estilo de vida.</p>
-                </a> --> 
+            
 
                 <a href="cardContatos.php" class="dashboard-card">
                     <img src="../imagens/chatIcone.png" alt="Ícone Chat">
                     <h5>Chat</h5>
                     <p>Comunique-se com seus professores de forma rápida e prática.</p>
-                </a>
-
-                <a href="#" class="dashboard-card">
-                    <img src="../imagens/calendarioFrequenciaIcone.png" alt="Ícone Frequência">
-                    <h5>Frequência</h5>
-                    <p>Acompanhe sua presença nas aulas e veja seu histórico de participação.</p>
                 </a>
 
                 <a href="https://wa.me/5543988223904" class="dashboard-card">
