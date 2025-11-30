@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const pagePath = location.pathname.toLowerCase();
         const pageIsPlano = pagePath.includes('cardplanotreino.php');
+        const pageIsEmpresa = pagePath.includes('cardempresa.php');
 
         const titulo = document.createElement('h5');
         titulo.className = 'card-title';
@@ -36,12 +37,24 @@ document.addEventListener('DOMContentLoaded', function () {
         body.appendChild(titulo);
 
         // Campos adicionais dependem do tipo de item
-        // Empresa: atividadeEconomica
+        // Empresa: atividadeEconomica, CNPJ, porteEmpresarial
         if (item.atividadeEconomica) {
             const p = document.createElement('p');
             p.className = 'card-text';
             p.innerText = item.atividadeEconomica;
             body.appendChild(p);
+        }
+        if (item.cnpj) {
+            const pCnpj = document.createElement('p');
+            pCnpj.className = 'card-text';
+            pCnpj.innerHTML = '<strong>CNPJ:</strong> ' + item.cnpj;
+            body.appendChild(pCnpj);
+        }
+        if (item.porteEmpresarial) {
+            const pP = document.createElement('p');
+            pP.className = 'card-text';
+            pP.innerHTML = '<strong>Porte:</strong> ' + item.porteEmpresarial;
+            body.appendChild(pP);
         }
 
         // Se estivermos na página de planos, mostre quem oferece (professor/empresa) e a descrição
@@ -58,6 +71,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 p.innerText = item.descricao;
                 body.appendChild(p);
             }
+            if (item.metodologia) {
+                const pMet = document.createElement('p');
+                pMet.className = 'card-text';
+                pMet.innerHTML = '<strong>Metodologia:</strong> ' + item.metodologia;
+                body.appendChild(pMet);
+            }
+            if (item.dificuldade) {
+                const pDif = document.createElement('p');
+                pDif.className = 'card-text';
+                pDif.innerHTML = '<strong>Dificuldade:</strong> ' + item.dificuldade;
+                body.appendChild(pDif);
+            }
         } else {
             // Se o item tiver descrição (treino/empresa), exibe
             if (item.descricao) {
@@ -66,10 +91,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 p.innerText = item.descricao;
                 body.appendChild(p);
             }
+            if (item.metodologia) {
+                const pMet = document.createElement('p');
+                pMet.className = 'card-text';
+                pMet.innerHTML = '<strong>Metodologia:</strong> ' + item.metodologia;
+                body.appendChild(pMet);
+            }
+            if (item.dificuldade) {
+                const pDif = document.createElement('p');
+                pDif.className = 'card-text';
+                pDif.innerHTML = '<strong>Dificuldade:</strong> ' + item.dificuldade;
+                body.appendChild(pDif);
+            }
         }
 
-        // Telefone
-        if (item.telefone) {
+        // Telefone: não mostrar na página de usuários (cardUsuario.php)
+        const pageIsUsuario = pagePath.includes('cardusuario.php');
+        if (item.telefone && !pageIsUsuario) {
             const p = document.createElement('p');
             p.className = 'card-text';
             p.innerHTML = '<strong>Telefone:</strong> ' + item.telefone;
