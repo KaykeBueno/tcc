@@ -34,8 +34,23 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="descricao">Descrição (opcional):</label>
-                    <input type="text" id="descricao" v-model="formData.descricao" placeholder="Descrição do portfólio">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" v-model="formData.descricao" placeholder="Descrição do portfólio" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="metodologia">Metodologia :</label>
+                    <input type="text" id="metodologia" v-model="formData.metodologia" placeholder="Ex: Treino funcional, hipertrofia..." required>
+                </div>
+
+                <div class="input-group">
+                    <label for="dificuldade">Dificuldade:</label>
+                    <select id="dificuldade" v-model="formData.dificuldade" required>
+                        <option value="">-- selecione --</option>
+                        <option value="Iniciante">Iniciante</option>
+                        <option value="Intermediario">Intermediario</option>
+                        <option value="Avançado">Avançado</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="login-button">Cadastrar Portfólio</button>

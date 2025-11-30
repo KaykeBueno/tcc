@@ -12,13 +12,15 @@ class PortifolioDAO extends BaseDAO
 {
     public function inserir(Portifolio $portifolio)
     {
-        $sql = "INSERT INTO portifolio (empresa_id_empresa, treino_idTreino, descricao)
-                VALUES (:empresa_id_empresa, :treino_idTreino, :descricao)";
+        $sql = "INSERT INTO portifolio (empresa_id_empresa, treino_idTreino, descricao, metodologia, dificuldade)
+                VALUES (:empresa_id_empresa, :treino_idTreino, :descricao, :metodologia, :dificuldade)";
 
         $parametros = array(
             ":empresa_id_empresa" => $portifolio->getEmpresa_id_empresa(),
             ":treino_idTreino" => $portifolio->getTreino_idTreino(),
             ":descricao" => $portifolio->getDescricao(),
+            ":metodologia" => $portifolio->getMetodologia(),
+            ":dificuldade" => $portifolio->getDificuldade(),
         );
 
         $this->executaComParametros($sql, $parametros);
@@ -39,7 +41,9 @@ class PortifolioDAO extends BaseDAO
                 $resultado['idPortifolio'],
                 $resultado['empresa_id_empresa'],
                 $resultado['treino_idTreino'],
-                $resultado['descricao'] ?? ''
+                $resultado['descricao'] ?? '',
+                $resultado['metodologia'] ?? '',
+                $resultado['dificuldade'] ?? ''
             );
         }
 
@@ -59,7 +63,9 @@ class PortifolioDAO extends BaseDAO
                 $r['idPortifolio'],
                 $r['empresa_id_empresa'],
                 $r['treino_idTreino'],
-                $r['descricao'] ?? ''
+                $r['descricao'] ?? '',
+                $r['metodologia'] ?? '',
+                $r['dificuldade'] ?? ''
             );
         }
 
@@ -78,7 +84,9 @@ class PortifolioDAO extends BaseDAO
                 $r['idPortifolio'],
                 $r['empresa_id_empresa'],
                 $r['treino_idTreino'],
-                $r['descricao'] ?? ''
+                $r['descricao'] ?? '',
+                $r['metodologia'] ?? '',
+                $r['dificuldade'] ?? ''
             );
         }
 

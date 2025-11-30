@@ -6,6 +6,8 @@ class Portifolio implements JsonSerializable
     private $empresa_id_empresa;
     private $treino_idTreino;
     private $descricao;
+    private $metodologia;
+    private $dificuldade;
 
     public function jsonSerialize(): mixed
     {
@@ -14,14 +16,18 @@ class Portifolio implements JsonSerializable
             'empresa_id_empresa' => $this->empresa_id_empresa,
             'treino_idTreino' => $this->treino_idTreino,
             'descricao' => $this->descricao,
+            'metodologia' => $this->metodologia,
+            'dificuldade' => $this->dificuldade,
         ];
     }
-    function __construct($idPortifolio = "", $empresa_id_empresa = "", $treino_idTreino = "", $descricao = "")
+    function __construct($idPortifolio = "", $empresa_id_empresa = "", $treino_idTreino = "", $descricao = "", $metodologia = "", $dificuldade = "")
     {
         $this->idPortifolio = $idPortifolio;
         $this->empresa_id_empresa = $empresa_id_empresa;
         $this->treino_idTreino = $treino_idTreino;
         $this->descricao = $descricao;
+        $this->metodologia = $metodologia;
+        $this->dificuldade = $dificuldade;
     }
 
     // Getters / Setters
@@ -63,6 +69,26 @@ class Portifolio implements JsonSerializable
     public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
+    }
+
+    public function getMetodologia()
+    {
+        return $this->metodologia;
+    }
+
+    public function setMetodologia($metodologia)
+    {
+        $this->metodologia = $metodologia;
+    }
+
+    public function getDificuldade()
+    {
+        return $this->dificuldade;
+    }
+
+    public function setDificuldade($dificuldade)
+    {
+        $this->dificuldade = $dificuldade;
     }
 }
 ?>
