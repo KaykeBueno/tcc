@@ -65,7 +65,7 @@ require_once("validaLogin.php"); //
         <header class="navbar"> 
                 <section>
                     <!-- Nesta página só exibimos os portfólios da empresa logada -->
-                    <button id="btn-meus" type="button">Meus Portfólios</button>
+                     
                     <!-- Link para a tela de cadastro de portifólio -->
                     <a id="btn-cad" class="login-button" href="cadastroPortifolio.html">Adicionar ao Portfólio</a>
                 </section>
