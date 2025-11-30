@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     window.formCadastroPortifolio = {
         formData: {
             treino_idTreino: '',
-            descricao: ''
+            descricao: '',
+            metodologia: '',
+            dificuldade: ''
         },
         treinos: [],
 
@@ -49,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const payload = {
                     treino_idTreino: this.formData.treino_idTreino,
-                    descricao: this.formData.descricao
+                    descricao: this.formData.descricao,
+                    metodologia: this.formData.metodologia,
+                    dificuldade: this.formData.dificuldade
                 };
 
                 const res = await fetch('/tcc/View/api/portifolios.php', {
@@ -99,6 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (sel) window.formCadastroPortifolio.formData.treino_idTreino = sel.value;
                     const desc = document.getElementById('descricao');
                     if (desc) window.formCadastroPortifolio.formData.descricao = desc.value;
+                    const met = document.getElementById('metodologia');
+                    if (met) window.formCadastroPortifolio.formData.metodologia = met.value;
+                    const dif = document.getElementById('dificuldade');
+                    if (dif) window.formCadastroPortifolio.formData.dificuldade = dif.value;
                     window.formCadastroPortifolio.cadastrarPortifolio();
                 } else {
                     console.warn('Função cadastrarPortifolio não disponível');
