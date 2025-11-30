@@ -83,7 +83,8 @@
             <header class="landing-header">
                 <div class="search-wrapper">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="search" class="landing-search-bar" placeholder="Busque por treinos, profissionais ou dicas...">
+                    <input id="landingSearchInput" type="search" class="landing-search-bar" placeholder="Busque por treinos, profissionais ou dicas..." aria-label="Pesquisar">
+                    <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
             </header>
             <section class="hero">
