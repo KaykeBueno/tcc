@@ -22,6 +22,43 @@ document.addEventListener('DOMContentLoaded', function(){
         return s ? String(s).replace(/[&"'<>]/g, function (m) { return ({'&':'&amp;','"':'&quot;',"'":"&#39;",'<':'&lt;','>':'&gt;'})[m]; }) : '';
     }
 
+    function cadastrarPlano(portifolioId, treinoNome) {
+        if (!window.sessionData || !window.sessionData.isUsuario) {
+            alert('Você precisa estar logado como aluno para cadastrar um plano.');
+            return;
+        }
+
+        if (!confirm('Deseja adicionar "' + treinoNome + '" aos seus planos de treino?')) {
+            return;
+        }
+
+        const payload = {
+            portifolio_idPortifolio: portifolioId
+        };
+
+        fetch('../Controller/PlanoTreinoController.php?acao=inserir', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+            if (!res.ok) {
+                return res.json().then(function(data) {
+                    throw new Error(data.error || 'Erro ao cadastrar plano');
+                });
+            }
+            return res.json();
+        })
+        .then(function(data) {
+            alert('Plano cadastrado com sucesso!');
+        })
+        .catch(function(err) {
+            console.error('Erro ao cadastrar plano:', err);
+            alert('Erro ao cadastrar plano: ' + err.message);
+        });
+    }
+
     function renderResults(items, q) {
         resultsBox.innerHTML = '';
         if (!items || items.length === 0) {
@@ -33,9 +70,15 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         items.slice(0, 8).forEach(function(it){
-            const a = document.createElement('a');
-            a.href = '#';
-            a.className = 'search-result-item';
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'search-result-item';
+            
+            // Container de conteúdo (clicável)
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'search-result-content';
+            contentDiv.style.flex = '1';
+            contentDiv.style.cursor = 'pointer';
+            
             // título: nome do treino (treinoNome or nome)
             const title = document.createElement('div');
             title.className = 'search-result-title';
@@ -52,18 +95,33 @@ document.addEventListener('DOMContentLoaded', function(){
             if (it.dificuldade) partes.push('Dificuldade: ' + it.dificuldade);
             meta.textContent = partes.join(' • ');
 
-            a.appendChild(title);
-            a.appendChild(subtitle);
-            if (partes.length) a.appendChild(meta);
+            contentDiv.appendChild(title);
+            contentDiv.appendChild(subtitle);
+            if (partes.length) contentDiv.appendChild(meta);
 
             // comportamento: ao clicar preenche input e fecha lista
-            a.addEventListener('click', function (e) {
+            contentDiv.addEventListener('click', function (e) {
                 e.preventDefault();
                 input.value = title.textContent;
                 resultsBox.innerHTML = '';
             });
 
-            resultsBox.appendChild(a);
+            itemDiv.appendChild(contentDiv);
+
+            // Botão "Cadastrar Plano" (apenas para usuários logados como aluno)
+            if (window.sessionData && window.sessionData.isUsuario && it.idPortifolio) {
+                const btnCadastrar = document.createElement('button');
+                btnCadastrar.className = 'btn-cadastrar-plano-search';
+                btnCadastrar.innerText = 'Cadastrar Plano';
+                btnCadastrar.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    cadastrarPlano(it.idPortifolio, title.textContent);
+                });
+                itemDiv.appendChild(btnCadastrar);
+            }
+
+            resultsBox.appendChild(itemDiv);
         });
     }
 
