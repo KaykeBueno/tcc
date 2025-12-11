@@ -4,6 +4,37 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!grid) return; // nada a fazer se o container não existir
 
     /**
+     * Função para excluir um plano de treino
+     */
+    function excluirPlano(idPlano) {
+        fetch('../Controller/PlanoTreinoController.php?acao=excluir&id=' + idPlano, {
+            method: 'GET',
+            credentials: 'same-origin'
+        })
+        .then(resp => {
+            if (!resp.ok) {
+                return resp.json().then(data => {
+                    throw new Error(data.error || 'Erro ao excluir plano');
+                });
+            }
+            return resp.json();
+        })
+        .then(data => {
+            alert(data.mensagem || 'Plano excluído com sucesso!');
+            // Recarrega a lista de planos
+            const initialPath = location.pathname.toLowerCase();
+            const initialIsPlano = initialPath.includes('cardplanotreino.php');
+            if (initialIsPlano) {
+                loadItems(true); // recarrega apenas "meus planos"
+            }
+        })
+        .catch(err => {
+            console.error('Erro ao excluir plano:', err);
+            alert('Erro ao excluir plano: ' + err.message);
+        });
+    }
+
+    /**
      * Cria o elemento DOM de um card a partir dos dados retornados pela API.
      * Suporta tanto objetos Empresa (nomeFantasia, atividadeEconomica...) quanto
      * Usuario (nome, cpf, sexo, telefone, email...). A função escolhe campos
@@ -142,6 +173,20 @@ document.addEventListener('DOMContentLoaded', function () {
         // Rodapé do card com ações (ex.: Achar, Chat)
         const footer = document.createElement('div');
         footer.className = 'card-footer';
+
+        // Se estivermos na página de planos, adiciona botão de exclusão
+        if (pageIsPlano && item.idPlano) {
+            const btnExcluir = document.createElement('button');
+            btnExcluir.className = 'btn-excluir-plano';
+            btnExcluir.innerText = 'Excluir';
+            btnExcluir.style.cssText = 'background-color:#E74C3C;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;';
+            btnExcluir.addEventListener('click', function() {
+                if (confirm('Tem certeza que deseja excluir este plano?')) {
+                    excluirPlano(item.idPlano);
+                }
+            });
+            footer.appendChild(btnExcluir);
+        }
 
         card.appendChild(footer);
         return card;
