@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <script>
+        // Dados de sessão disponíveis para JS
+        window.sessionData = {
+            isLoggedIn: <?php echo (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])) ? 'true' : 'false'; ?>,
+            isUsuario: <?php echo (isset($_SESSION['id_usuario']) && isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] === 'usuario') ? 'true' : 'false'; ?>,
+            userId: <?php echo isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : 'null'; ?>
+        };
+    </script>
     <script src="https://unpkg.com/petite-vue" defer init></script>
     <script src="js/inicial.js" defer></script>
     <script src="js/util.js" defer></script>
