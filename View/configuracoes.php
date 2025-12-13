@@ -63,7 +63,6 @@ if (isset($_SESSION['id_usuario'])) {
 
             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
             <div class="user-profile">
-                <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário">
                 <div class="user-info">
                     <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6>
                     <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span>
@@ -151,7 +150,6 @@ if (isset($_SESSION['id_usuario'])) {
                                 <input type="password" v-model="formData.confirmarNovaSenha" placeholder="Redigite a nova senha" class="config-input">
                             </div>
                             <div class="form-footer">
-                                <a href="esqueciSenha.php" class="config-link">esqueceu a senha?</a>
                                 <button type="submit" class="config-btn-salvar">ALTERAR SENHA</button>
                             </div>
                         </form>

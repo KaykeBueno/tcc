@@ -69,7 +69,7 @@
                 if (ribbon) ribbon.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
                 if (card) {
                     card.addEventListener('click', function (e) {
-                        // evita duplo disparo quando clica na tarja
+                        // ev   ita duplo disparo quando clica na tarja
                         if (e.target && e.target.id === 'ribbonAvaliacao') return;
                         openModal();
                     });

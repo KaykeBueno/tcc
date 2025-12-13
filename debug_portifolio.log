@@ -1,0 +1,3 @@
+2025-12-13T20:57:24+01:00 - INSERT OK - {"success":true,"id":"1","session":{"id_empresa":6,"nomeFantasia":"kayke","tipoUsuario":"empresa","email":"kayke@kayke","telefone":"43123"},"payload":{"treino_idTreino":"1","descricao":"aaa","metodologia":"aaa","dificuldade":"Iniciante"}}
+2025-12-13T21:55:19+01:00 - INSERT OK - {"success":true,"id":"2","session":{"id_empresa":6,"nomeFantasia":"kayke","tipoUsuario":"empresa"},"payload":{"treino_idTreino":"1","descricao":"bbb","metodologia":"bbb","dificuldade":"Intermediario"}}
+2025-12-13T21:55:34+01:00 - INSERT OK - {"success":true,"id":"3","session":{"id_empresa":6,"nomeFantasia":"kayke","tipoUsuario":"empresa"},"payload":{"treino_idTreino":"8","descricao":"qqq","metodologia":"qqq","dificuldade":"Avançado"}}

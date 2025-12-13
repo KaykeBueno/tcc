@@ -36,8 +36,7 @@
             </div>
 
             <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?>
-                <div class="user-profile">
-                    <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário">
+                <div class="user-profile">  
                     <div class="user-info">
                         <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6>
                         <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span>
@@ -91,7 +90,7 @@
             <header class="landing-header">
                 <div class="search-wrapper">
                     <i class="fas fa-search search-icon"></i>
-                    <input id="landingSearchInput" type="search" class="landing-search-bar" placeholder="Busque por treinos, profissionais ou dicas..." aria-label="Pesquisar">
+                    <input id="landingSearchInput" type="search" class="landing-search-bar" placeholder="Busque por treinos, profissionais, metedologias ou dificuldades    ..." aria-label="Pesquisar">
                     <div id="searchResults" class="search-results" aria-live="polite"></div>
                 </div>
             </header>

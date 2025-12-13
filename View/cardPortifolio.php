@@ -1,6 +1,5 @@
 <?php
-require_once("validaLogin.php"); //
-
+require_once("validaLogin.php"); 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,23 +9,31 @@ require_once("validaLogin.php"); //
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólios - IGym</title>
 
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
     <script src="https://unpkg.com/petite-vue" defer init></script> 
     <script src="js/util.js" defer></script> 
 </head>
-<body class="page-dashboard"> <div class="wrapper"> <nav id="sidebar">
+
+<body class="page-dashboard"> 
+    <div class="wrapper"> 
+        
+        <nav id="sidebar">
             <div class="sidebar-header">
-                           <div class="sidebar-header">
-            <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-            </button>
-</div>
-            <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> <div class="user-profile">
-                    <img src="https://i.imgur.com/kDwRGt2.png" alt="Foto do Usuário"> <div class="user-info">
-                        <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6> <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span> </div>
+                <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <?php if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_empresa'])): ?> 
+            <div class="user-profile">
+                <div class="user-info">
+                    <h6><?= isset($_SESSION["id_usuario"]) ? $_SESSION["nome"] : $_SESSION["nomeFantasia"]?></h6> 
+                    <span><?= isset($_SESSION["id_usuario"]) ? "Aluno(a)" : "Profissional(a)" ?></span> 
                 </div>
+            </div>
             <?php endif; ?>
 
             <ul class="nav flex-column sidebar-nav">
@@ -51,34 +58,23 @@ require_once("validaLogin.php"); //
                 </li>
             </ul>
 
-            
-            <button type="button" class="menu-hamburguer-flutuante" aria-label="Abrir menu" onclick="exibeMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-            </button>
-
             <div class="sidebar-footer">
                 <a href="sair.php" class="nav-link"> <i class="fas fa-sign-out-alt"></i> <span>Sair</span> </a>
             </div>
         </nav>
-        <header class="navbar"> 
+
+        <main id="content">
+            <header class="navbar"> 
                 <section>
-                    <!-- Nesta página só exibimos os portfólios da empresa logada -->
-                     
-                    <!-- Link para a tela de cadastro de portifólio -->
                     <a id="btn-cad" class="login-button" href="cadastroPortifolio.html">Adicionar ao Portfólio</a>
                 </section>
             </header>
-        <main id="content">
+            
             <div class="dashboard-grid" id="dashboard-grid">
-                <!--
-                    Container vazio onde os cards serão inseridos dinamicamente pelo
-                    script `js/cardsDados.js`. Mantivemos a renderização via JS para
-                    UX dinâmica.
-                -->
-            </div>
+                </div>
+        </main>
     </div>
+    
+    <script src="js/cardsDados.js" defer></script>
 </body>
 </html>
-<script src="js/cardsDados.js" defer></script>
